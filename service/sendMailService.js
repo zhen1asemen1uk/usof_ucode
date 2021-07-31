@@ -24,7 +24,7 @@ class sendMailService {
          html: `
          <div>
          <h1>Click link for activation</h1>
-         <a href='${link}'>${link}</a>
+         <a href='${link}'>Click me for activation</a>
          </div>`
       })
    }

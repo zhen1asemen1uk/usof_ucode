@@ -34,12 +34,17 @@ class userModel extends Model {
          UPDATE users SET verify='true' WHERE activationLink='${link}';`);
    }
 
+   async updateActivationLink(id, link) {
+      return await dbConnection.getConnection(`
+         UPDATE users SET activationLink='${link}' WHERE id='${id}';`);
+   }
+
    async checkVerifyUser(login) {
       return await dbConnection.getConnection(`
       SELECT verify FROM users WHERE login='${login}' OR email='${login}';`)
    }
 
-   async getIdUser(user_id) {
+   async getUserByID(user_id) {
       return await dbConnection.getConnection(`
          SELECT  id, photo, login,email, status, verify FROM users WHERE id=${user_id};`);
    }
@@ -55,16 +60,28 @@ class userModel extends Model {
          VALUES ('${login}', '${password}', '${email}', '${photo}', '${status}','${verify}', '${activationLink}');`);
    }
 
-
-   async checkDeleteUser(user_id) {
-      return await dbConnection.getConnection(`
-      SELECT login FROM users WHERE id='${user_id}';`)
-   }
-
-   async deleteIdUser(user_id) {
+   async deleteUserByID(user_id) {
       return await dbConnection.getConnection(`
          DELETE FROM users WHERE id=${user_id};`);
    }
+
+   async updateLoginByID(owner, login) {
+      return await dbConnection.getConnection(`
+         UPDATE users SET login='${login}' WHERE id='${owner}';`);
+   }
+   async updateEmailByID(owner, email) {
+      return await dbConnection.getConnection(`
+         UPDATE users SET email='${email}', verify='false' WHERE id='${owner}';`);
+   }
+   async updatePasswordByID(owner, password) {
+      return await dbConnection.getConnection(`
+         UPDATE users SET password='${password}' WHERE id='${owner}';`);
+   }
+   async updatePhotoByID(owner, photo) {
+      return await dbConnection.getConnection(`
+         UPDATE users SET photo='${photo}' WHERE id='${owner}';`);
+   }
+
 }
 
 

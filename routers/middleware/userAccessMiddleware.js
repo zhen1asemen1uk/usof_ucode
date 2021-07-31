@@ -3,6 +3,7 @@ const userController = require("../../controllers/userController");
 const { JWT_REFRESH_SECRET } = require("../../config");
 
 const jwt = require("jsonwebtoken");
+const userModel = require("../../models/userModel");
 
 module.exports = function () {
    return async function (req, res, next) {
@@ -14,15 +15,15 @@ module.exports = function () {
             const decodedToken = jwt.verify(refreshToken, JWT_REFRESH_SECRET);
 
             const user_id = req.params.user_id;
-            let loginForDel = await userController.checkDeleteUser(user_id);
+            const userForChange = await userModel.getUserByID(user_id);
 
-            if (loginForDel[0].length > 0) {
-               loginForDel = loginForDel[0][0].login;
+            if (userForChange[0].length > 0) {
 
-               if (decodedToken.login == loginForDel) {
+               if (decodedToken.login == userForChange[0][0].login) {
+
                   return next();
                }
-               return res.send(`You can't del ${loginForDel}!`);
+               return res.send(`You can't delete/update ${userForChange[0][0].login}!`);
             } else {
                return res.send(`Uncorrect user id`);
             }
