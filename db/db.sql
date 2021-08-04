@@ -8,7 +8,7 @@ USE db_usof;
 
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    photo VARCHAR(50),
+    avatar VARCHAR(50),
     login VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
@@ -25,22 +25,29 @@ CREATE TABLE IF NOT EXISTS tokens (
 );
 
 CREATE TABLE IF NOT EXISTS posts (
-    id_post INT AUTO_INCREMENT PRIMARY KEY,
-    like_post INT DEFAULT 0,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_author_post INT DEFAULT 0,
     title_post VARCHAR(50),
-    description_post VARCHAR(50) NOT NULL,
-    author_post VARCHAR(50) NOT NULL,
+    content_post VARCHAR(255) NOT NULL,
+    name_category VARCHAR(255) ,
     block_post ENUM ('true', 'false') DEFAULT 'false',
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS comments (
-    
-    id_comment INT AUTO_INCREMENT PRIMARY KEY,
-    like_comment INT DEFAULT 0,
-    author_comment VARCHAR(50) NOT NULL,
-    description_comment VARCHAR(255) NOT NULL,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_post INT,
+    id_author_comment INT DEFAULT 0,
+    content_comment VARCHAR(255) NOT NULL ,
     block_comment ENUM ('true', 'false') DEFAULT 'false',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS likes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_post INT,
+    id_comment INT,
+    like_login VARCHAR(50) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 

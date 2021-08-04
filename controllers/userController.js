@@ -6,6 +6,7 @@ const tokenService = require("../service/tokenService");
 
 const { API_URL } = require(`../config`);
 
+
 const bcrypt = require(`bcryptjs`);
 const uuid = require(`uuid`);
 
@@ -23,9 +24,9 @@ class userController extends Controller {
       }
    }
 
-   async addUser(login, password, email, photo, activationLink) {
+   async addUser(login, password, email, avatar, activationLink) {
       try {
-         return await userModel.addUser(login, password, email, photo, activationLink);
+         return await userModel.addUser(login, password, email, avatar, activationLink);
       } catch (error) {
          res.send(error);
       }
@@ -85,7 +86,6 @@ class userController extends Controller {
          console.log(error);
          res.send(error);
       }
-
    }
 
    async resetPass_userId(id, pass) {
@@ -96,9 +96,9 @@ class userController extends Controller {
       }
    }
 
-   async addUser_ADMIN(login, password, email, photo, status, verify, activationLink) {
+   async addUser_ADMIN(login, password, email, avatar, status, verify, activationLink) {
       try {
-         return await userModel.addUser_ADMIN(login, password, email, photo, status, verify, activationLink);
+         return await userModel.addUser_ADMIN(login, password, email, avatar, status, verify, activationLink);
       } catch (error) {
          res.send(error);
       }
@@ -127,7 +127,7 @@ class userController extends Controller {
 
    async updateDataUserByID(req, res) {
       try {
-         const { login, password, email, photo, status, verify } = req.body;
+         const { login, password, email, avatar, status, verify } = req.body;
          const owner = req.params.user_id;
 
          //check unique users
@@ -153,9 +153,9 @@ class userController extends Controller {
                console.log(`Email - ok`)
             }
          }
-         if (photo) {
-            const updatePhoto = await userModel.updatePhotoByID(owner, photo);
-            console.log(`Photo - ok`);
+         if (avatar) {
+            const updateAvatar = await userModel.updateAvatarByID(owner, avatar);
+            console.log(`Avatar - ok`);
          }
          if (password) {
             //hash password
@@ -165,7 +165,7 @@ class userController extends Controller {
          }
 
          //generation token
-         const token = tokenService.generationToken(owner, login, email, status, verify);
+         const token = tokenService.generationToken(owner, login, email, status, verify, avatar);
 
          const { accessToken, refreshToken } = token;
          //save token to databases
@@ -177,9 +177,28 @@ class userController extends Controller {
 
          res.send(`User updated!`)
       } catch (error) {
-         console.log(`err`);
-         res.send(error);
+         console.log(error);
+         res.send(`Error update user!`);
       }
+   }
+   
+   async addAvatar(req, res) {
+      try {
+         let { id, avatar } = req.user;
+         const avatarFile = req.files.avatar;
+         const avatarName = uuid.v4() + '.jpg';
+         const user = userModel.updateAvatarByID(id, avatarName);
+
+         avatar = avatarName;
+
+         avatarFile.mv(`./public/avatar/${avatarName}`);
+
+         return res.send(`Avatar upload!`)
+      } catch (error) {
+         console.log(error);
+         res.send(`Error upload avatar!`);
+      }
+
    }
 }
 

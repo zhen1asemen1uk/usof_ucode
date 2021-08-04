@@ -17,14 +17,12 @@ class authController extends Controller {
 
    async register(req, res) {
       try {
-         const { login, password, password_confirm, email, photo = `/avatar/user.jpg` } = req.body;
+         const { login, password, password_confirm, email, avatar = `user.jpg` } = req.body;
 
          if (password.length >= 8 && password === password_confirm) {
             //check unique users
             let check = await userModel.getUser(login, email);
             let [rows, fields] = check;
-
-            console.log(rows.length);
 
             if (rows.length > 0) {
                return res.send(`Login or email is already in use!`);
@@ -36,7 +34,7 @@ class authController extends Controller {
                const activationLink = uuid.v4();
 
                //add user to database
-               await userModel.addUser(login, hashPass, email, photo, activationLink);
+               await userModel.addUser(login, hashPass, email, avatar, activationLink);
 
                let check = await userModel.getUser(login, email);
                let [rows, fields] = check;
@@ -44,7 +42,7 @@ class authController extends Controller {
 
                //generation token
                const token = tokenService.generationToken(user.id, user.login,
-                  user.email, user.status, user.verify);
+                  user.email, user.status, user.verify, user.avatar);
 
                const { accessToken, refreshToken } = token;
 
@@ -58,7 +56,7 @@ class authController extends Controller {
                res.cookie(`refreshToken`, refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true }); //when `https` add secure!
 
                return res.json({
-                  ...token, user: { id: user.id, login: user.login, email: user.email, status: user.status, verify: user.verify }
+                  ...token, user: { id: user.id, login: user.login, email: user.email, status: user.status, verify: user.verify, avatar:user.avatar }
                });
             }
          } else {
@@ -86,7 +84,7 @@ class authController extends Controller {
          }
          //generation token
          const token = tokenService.generationToken(user.id, user.login,
-            user.email, user.status, user.verify);
+            user.email, user.status, user.verify, user.avatar);
 
          const { accessToken, refreshToken } = token;
 
@@ -97,7 +95,7 @@ class authController extends Controller {
          res.cookie(`refreshToken`, refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true }); //when `https` add secure!
 
          return res.json({
-            ...token, user: { id: user.id, login: user.login, email: user.email, status: user.status, verify: user.verify }
+            ...token, user: { id: user.id, login: user.login, email: user.email, status: user.status, verify: user.verify, avatar: user.avatar }
          });
       } catch (error) {
          res.send(error);
@@ -123,7 +121,7 @@ class authController extends Controller {
    async refresh(req, res) {
       try {
          const token = tokenService.generationToken(user.id, user.login,
-            user.email, user.status, user.verify);
+            user.email, user.status, user.verify, user.avatar);
 
          const { accessToken, refreshToken } = token;
 
@@ -133,10 +131,11 @@ class authController extends Controller {
          res.cookie(`refreshToken`, refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true }); //when `https` add secure!
 
          return res.json({
-            ...token, user: { id: user.id, login: user.login, email: user.email, status: user.status, verify: user.verify }
+            ...token, user: { id: user.id, login: user.login, email: user.email, status: user.status, verify: user.verify, avatar: user.avatar }
          });
       } catch (error) {
-         res.send(error)
+         console.log(error);
+         res.send(`Error refreshToken`)
       }
    }
 
@@ -190,7 +189,7 @@ class authController extends Controller {
 
    async createUser_ADMIN(req, res) {
       try {
-         const { login, password, password_confirm, email, photo = `/avatar/user.jpg`, status, verify } = req.body;
+         const { login, password, password_confirm, email, avatar = `user.jpg`, status, verify } = req.body;
 
          if (password.length >= 8 && password === password_confirm) {
             //check unique users
@@ -207,13 +206,13 @@ class authController extends Controller {
                //create verify link
                const activationLink = uuid.v4();
                //add user data
-               await userModel.addUser_ADMIN(login, hashPass, email, photo, status, verify, activationLink);
+               await userModel.addUser_ADMIN(login, hashPass, email, avatar, status, verify, activationLink);
                let check = await userModel.getUser(login, email);
                let [rows, fields] = check;
                let user = rows[0];
                //generation token
                const token = tokenService.generationToken(user.id, user.login,
-                  user.email, user.status, user.verify);
+                  user.email, user.status, user.verify, user.avatar);
                const { accessToken, refreshToken } = token;
                //save token to databases
                await tokenService.saveToken(user.id, refreshToken);
@@ -223,14 +222,15 @@ class authController extends Controller {
                res.cookie(`refreshToken`, refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true }); //when `https` add secure!
 
                return res.json({
-                  ...token, user: { id: user.id, login: user.login, email: user.email, status: user.status, verify: user.verify }
+                  ...token, user: { id: user.id, login: user.login, email: user.email, status: user.status, verify: user.verify, avatar: user.avatar }
                });
             }
          } else {
             return res.send(`Password length is less than 8 characters or check confirm password`);
          }
       } catch (error) {
-         res.send(error);
+         console.log(error);
+         res.send(`Error create(`);
       }
    }
 }

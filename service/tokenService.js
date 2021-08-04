@@ -8,11 +8,11 @@ class TokenService {
 constructor(){
 }
 
-   generationToken(id, login, email, status, verify) {
+   generationToken(id, login, email, status, verify,avatar) {
       try {
          const payload = {
             id, login,
-            email, status, verify
+            email, status, verify,avatar
          }
 
          const accessToken = jwt.sign(payload, JWT_ACCESS_SECRET, { expiresIn: "30m" });

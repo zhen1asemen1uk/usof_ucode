@@ -1,38 +1,31 @@
 const express = require('express');
+
+const postController = require('../controllers/postController');
+const authMiddleware = require('./middleware/authMiddleware');
+
 const router = express.Router();
 
-router.get(`/`, (req, res) => {
-   res.send(`posts get`)
-})
-router.get(`/:post_id`, (req, res) => {
-   res.send(`posts get`)
-})
-router.get(`/:post_id/comments`, (req, res) => {
-   res.send(`posts get`)
-})
-router.post(`/:post_id/comments`, (req, res) => {
-   res.send(`posts post`)
-})
-router.get(`/:post_id/categories`, (req, res) => {
-   res.send(`posts get`)
-})
-router.get(`/:post_id/like`, (req, res) => {
-   res.send(`posts get`)
-})
-router.post(`/`, (req, res) => {
-   res.send(`posts post`)
-})
-router.post(`/:post_id/like`, (req, res) => {
-   res.send(`posts post`)
-})
-router.patch(`/:post_id`, (req, res) => {
-   res.send(`posts patch`)
-})
-router.delete(`/:post_id`, (req, res) => {
-   res.send(`posts delete`)
-})
-router.delete(`/:post_id/like`, (req, res) => {
-   res.send(`posts delete`)
-})
+router.get(`/`, postController.getAllPosts);
+
+router.get(`/:post_id`, postController.getPostByID);
+
+router.get(`/:post_id/comments`, postController.getCommentByPostID);
+
+router.post(`/:post_id/comments`, authMiddleware, postController.createComment);
+
+router.get(`/:post_id/categories`, postController.getCategoriesByPostID);
+
+router.get(`/:post_id/like`, postController.getAllLikeByPostID);
+
+router.post(`/`, authMiddleware, postController.createPost);
+
+router.post(`/:post_id/like`, authMiddleware, postController.addLike);
+
+router.patch(`/:post_id`, authMiddleware, postController.updatePostByID);
+
+router.delete(`/:post_id`, authMiddleware, postController.deletePostByID);
+
+router.delete(`/:post_id/like`, authMiddleware, postController.deleteLikeFromPostByID);
+
 
 module.exports = router;

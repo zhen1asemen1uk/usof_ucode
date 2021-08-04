@@ -8,10 +8,8 @@ module.exports = function () {
 
          if (verify[0].length > 0) {
             verify = verify[0][0].verify;
-            console.log(verify);
 
             if (verify == "true") {
-               console.log(verify);
 
                return next();
             }
