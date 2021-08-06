@@ -1,9 +1,9 @@
 const express = require('express');
+const router = express.Router();
 
-const postController = require('../controllers/postController');
 const authMiddleware = require('./middleware/authMiddleware');
 
-const router = express.Router();
+const postController = require('../controllers/postController');
 
 router.get(`/`, postController.getAllPosts);
 

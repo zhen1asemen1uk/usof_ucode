@@ -1,5 +1,5 @@
-const e = require("express");
 const jwt = require("jsonwebtoken");
+
 const { JWT_REFRESH_SECRET } = require("../../config");
 
 module.exports = function (req, res, next) {

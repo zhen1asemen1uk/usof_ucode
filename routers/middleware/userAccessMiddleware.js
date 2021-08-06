@@ -1,6 +1,7 @@
+const jwt = require("jsonwebtoken");
+
 const { JWT_REFRESH_SECRET } = require("../../config");
 
-const jwt = require("jsonwebtoken");
 const userModel = require("../../models/userModel");
 
 module.exports = function () {

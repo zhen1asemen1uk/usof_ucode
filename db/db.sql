@@ -29,8 +29,16 @@ CREATE TABLE IF NOT EXISTS posts (
     id_author_post INT DEFAULT 0,
     title_post VARCHAR(50),
     content_post VARCHAR(255) NOT NULL,
-    name_category VARCHAR(255) ,
     block_post ENUM ('true', 'false') DEFAULT 'false',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_post INT DEFAULT 0,
+    id_author_category INT DEFAULT 0,
+    title_category VARCHAR(50) NOT NULL,
+    block_category ENUM ('true', 'false') DEFAULT 'false',
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 

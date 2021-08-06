@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+
 const { JWT_REFRESH_SECRET } = require("../../config");
 
 module.exports = function (stat) {

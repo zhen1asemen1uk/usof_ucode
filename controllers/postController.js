@@ -1,3 +1,4 @@
+const categoryModel = require("../models/categoryModel");
 const postModel = require("../models/postModel");
 const Controller = require(`./controller`)
 
@@ -98,17 +99,15 @@ class postController extends Controller {
          if (req.body.title && req.body.content && req.body.category) {
             const { title, content, category } = req.body;
 
-            if (!category) {
-               category = 'Other';
-            }
-
             let id_author_post = 0;
 
             if (req.user && req.user.id) {
                id_author_post = req.user.id;
             }
 
-            const createPost = await postModel.createPost(title, content, category, id_author_post);
+            const createPost = await postModel.createPost(title, content, id_author_post);
+            const post_id = createPost[0].insertId;
+            const createCategory = await categoryModel.createCategory(post_id, id_author_post, category);
 
             return res.send('Post add!');
          } else {

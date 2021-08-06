@@ -9,40 +9,41 @@ class postModel extends Model {
       return await dbConnection.getConnection(`
          SELECT * FROM posts;`);
    }
-   async getPostByID(post_id) {
+   async getPostByID(id) {
       return await dbConnection.getConnection(`
-         SELECT * FROM posts WHERE id=${post_id};`);
+         SELECT * FROM posts WHERE id=${id};`);
    }
-   async getCommentByPostID(post_id) {
+  
+   async getCommentByPostID(id_post) {
       return await dbConnection.getConnection(`
-         SELECT * FROM comments WHERE id_post=${post_id};`);
+         SELECT * FROM comments WHERE id_post=${id_post};`);
    }
 
-   async createComment(post_id, author_comment, content_comment) {
+   async createComment(id_post, id_author_comment, content_comment) {
       return await dbConnection.getConnection(`
       INSERT INTO comments (id_post, id_author_comment, content_comment)
-      VALUES ('${post_id}', '${author_comment}', '${content_comment}');`);
+      VALUES ('${id_post}', '${id_author_comment}', '${content_comment}');`);
    }
 
-   async getCategoriesByPostID(id) {
+   async getCategoriesByPostID(id_post) {
       return await dbConnection.getConnection(`
-      SELECT name_category FROM posts WHERE id=${id};`);
+      SELECT title_category FROM categories WHERE id_post=${id_post};`);
    }
 
-   async getAllLikeByPostID(post_id) {
+   async getAllLikeByPostID(id_post) {
       return await dbConnection.getConnection(`
-      SELECT  like_login FROM likes WHERE id_post=${post_id};`);
+      SELECT  like_login FROM likes WHERE id_post=${id_post};`);
    }
    
-   async createPost(title, content, name_category, id_author_post) {
+   async createPost(title_post, content_post, id_author_post) {
       return await dbConnection.getConnection(`
-      INSERT INTO posts (title_post, content_post, name_category,id_author_post)
-      VALUES ('${title}', '${content}', '${name_category}','${id_author_post}');`);
+      INSERT INTO posts (title_post, content_post,id_author_post)
+      VALUES ('${title_post}', '${content_post}','${id_author_post}');`);
    }
    
-   async checkLike(post_id, like_login) {
+   async checkLike(id_post, like_login) {
       return await dbConnection.getConnection(`
-      SELECT * FROM likes WHERE id_post=${post_id} AND like_login='${like_login}';`);
+      SELECT * FROM likes WHERE id_post=${id_post} AND like_login='${like_login}';`);
    }
 
    async addLike(id_post, like_login) {
@@ -51,17 +52,17 @@ class postModel extends Model {
       VALUES ('${id_post}', '${like_login}');`);
    }
 
-   async updateTitleByID(post_id, title) {
+   async updateTitleByID(post_id, title_post) {
       return await dbConnection.getConnection(`
-         UPDATE posts SET title_post='${title}' WHERE id='${post_id}';`);
+         UPDATE posts SET title_post='${title_post}' WHERE id='${post_id}';`);
    }
-   async updateContentByID(post_id, content) {
+   async updateContentByID(post_id, content_post) {
       return await dbConnection.getConnection(`
-         UPDATE posts SET content_post='${content}' WHERE id='${post_id}';`);
+         UPDATE posts SET content_post='${content_post}' WHERE id='${post_id}';`);
    }
-   async updateCategoryByID(post_id, category) {
+   async updateCategoryByID(post_id, title_category) {
       return await dbConnection.getConnection(`
-         UPDATE posts SET name_category='${category}' WHERE id='${post_id}';`);
+         UPDATE categories SET title_category='${title_category}' WHERE id_post='${post_id}';`);
    }
 
    async deletePostByID(post_id) {
