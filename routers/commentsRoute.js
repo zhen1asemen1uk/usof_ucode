@@ -1,23 +1,21 @@
 const express = require('express');
 const router = express.Router();
 
-router.get(`/:comment_id`, (req, res) => {
-   res.send(`comments get`)
-})
-router.get(`/:comment_id/like`, (req, res) => {
-   res.send(`comments get`)
-})
-router.post(`/:comment_id/like`, (req, res) => {
-   res.send(`comments post`)
-})
-router.patch(`/:comment_id`, (req, res) => {
-   res.send(`comments patch`)
-})
-router.delete(`/:comment_id`, (req, res) => {
-   res.send(`comments delete`)
-})
-router.delete(`/:comment_id/like`, (req, res) => {
-   res.send(`comments delete`)
-})
+const authMiddleware = require('./middleware/authMiddleware');
+
+const commentController = require('../controllers/commentController');
+
+router.get(`/:comment_id`, commentController.getCommentByID);
+
+router.get(`/:comment_id/like`, commentController.getAllCommentLikeByID);
+
+router.post(`/:comment_id/like`, authMiddleware, commentController.addLikeForComment);
+
+router.patch(`/:comment_id`, authMiddleware, commentController.updateComment);
+
+router.delete(`/:comment_id`, authMiddleware, commentController.deleteCommentByID);
+
+router.delete(`/:comment_id/like`, authMiddleware, commentController.deleteLikeFromCommentByID);
+
 
 module.exports = router;

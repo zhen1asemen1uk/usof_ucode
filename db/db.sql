@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS categories (
 
 CREATE TABLE IF NOT EXISTS comments (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    id_post INT,
+    id_post INT NOT NULL,
     id_author_comment INT DEFAULT 0,
     content_comment VARCHAR(255) NOT NULL ,
     block_comment ENUM ('true', 'false') DEFAULT 'false',

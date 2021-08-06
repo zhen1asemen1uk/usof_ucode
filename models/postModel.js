@@ -69,6 +69,7 @@ class postModel extends Model {
       return await dbConnection.getConnection(`
          DELETE FROM posts WHERE id=${post_id};`);
    }
+   
    async deleteLikeFromPostByID(post_id, like_login) {
       return await dbConnection.getConnection(`
          DELETE FROM likes WHERE id_post=${post_id} AND like_login='${like_login}';`);
