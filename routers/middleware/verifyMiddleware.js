@@ -17,7 +17,8 @@ module.exports = function () {
 
          return res.send(`Please check you email (maybe spam) or register`);
       } catch (error) {
-         res.send(error)
+         console.log(error);
+         res.send(`Error verify middlewear!`)
       }
    }
 }

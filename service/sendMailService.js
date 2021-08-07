@@ -1,6 +1,6 @@
-const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, API_URL } = require("../config");
-
 const nodemailer = require(`nodemailer`);
+
+const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, API_URL } = require("../config");
 
 class sendMailService {
    constructor() {
@@ -22,9 +22,9 @@ class sendMailService {
          subject: `Activation profile on ${API_URL}`,
          text: ``,
          html: `
-         <div>
+         <div style='text-aling:center'>
          <h1>Click link for activation</h1>
-         <a href='${link}'>Click me for activation</a>
+         <a href='${link}' style='color:green'>Click me</a>
          </div>`
       })
    }
@@ -36,11 +36,17 @@ class sendMailService {
          subject: `You password update.`,
          text: ``,
          html: `
-         <div>
-         <h1>Click link for confirm you password</h1>
-         <p>If you confirm then new password: <strong> ${newPassword}</strong></p>
-         <br>
-         <a href='${API_URL}/api/auth/password-reset/${token}__||__${newPassword}'>Click me for confirm new password</a>
+         <div style="text-align: center;">
+               <h1>Click link for confirm you password</h1>
+               <p>If you confirm then new password: <strong> ${newPassword}</strong></p>
+
+               <a href='${API_URL}/api/auth/password-reset/${token}__||__${newPassword}'>Click me for confirm new password</a>
+
+               <p style='color: red; font-size:10px'>
+                  <span>If you did not reset your password, please ignore this email, it maybea mistake,</span>
+                  <br>
+                  <span>but keep in mind that someone wanted to reset your password accidentally or intentionally.</span>
+               </p>
          </div>`
       })
    }

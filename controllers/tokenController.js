@@ -1,6 +1,7 @@
 const Controller = require(`./controller`);
+
 const tokenModel = require(`../models/tokenModel`);
-class Token extends Controller {
+class tokenController extends Controller {
    constructor() {
       super();
    }
@@ -9,7 +10,8 @@ class Token extends Controller {
       try {
          return await tokenModel.getToken(user_id);
       } catch (error) {
-         res.send(error);
+         console.log(error);
+         res.send(`Error get token`);
       }
    }
 
@@ -17,7 +19,8 @@ class Token extends Controller {
       try {
          return await tokenModel.refreshToken(user_id, refreshToken);
       } catch (error) {
-         res.send(error);
+         console.log(error);
+         res.send(`Error refresh token`);
       }
    }
 
@@ -25,14 +28,16 @@ class Token extends Controller {
       try {
          return await tokenModel.save(user_id, refreshToken);
       } catch (error) {
-         res.send(error);
+         console.log(error);
+         res.send(`Error save token`);
       }
    }
    async delete(refreshToken) {
       try {
          return await tokenModel.delete(refreshToken);
       } catch (error) {
-         res.send(error);
+         console.log(error);
+         res.send(`Error delete token`);
       }
    }
 
@@ -40,9 +45,10 @@ class Token extends Controller {
       try {
          return await tokenModel.getTokenAllInfo(refreshToken);
       } catch (error) {
-         res.send(error);
+         console.log(error);
+         res.send(`Error get info token`);
       }
    }
 }
 
-module.exports = new Token();
+module.exports = new tokenController();

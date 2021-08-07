@@ -1,4 +1,5 @@
-const Model = require(`./model`)
+const Model = require(`./model`);
+
 const dbConnection = require(`../db/dbConnection`);
 
 class tokenModel extends Model {

@@ -1,6 +1,9 @@
-const categoryModel = require("../models/categoryModel");
-const postModel = require("../models/postModel");
 const Controller = require(`./controller`)
+
+const categoryModel = require("../models/categoryModel");
+const commentModel = require("../models/commentModel");
+const likeModel = require("../models/likeModel");
+const postModel = require("../models/postModel");
 
 class postController extends Controller {
    constructor() {
@@ -12,7 +15,7 @@ class postController extends Controller {
 
          return res.json(posts[0])
       } catch (error) {
-         res.send(error);
+         res.send(`Error get all post!`);
       }
    }
 
@@ -28,34 +31,34 @@ class postController extends Controller {
          }
       } catch (error) {
          console.log(error);
-         res.send(error);
+         res.send(`Error get post by id!`);
       }
    }
 
    async getCommentByPostID(req, res) {
       try {
          const post_id = req.params.post_id;
-         let comments = await postModel.getCommentByPostID(post_id);
+         let comments = await commentModel.getCommentByPostID(post_id);
 
          return res.json(comments[0]);
       } catch (error) {
          console.log(error);
-         res.send(error);
+         res.send(`Error get comment by post id!`);
       }
    }
 
    async createComment(req, res) {
       try {
-         if (req.body.content_comment) {
+         if (req.body.content) {
             const post_id = req.params.post_id;
-            const content = req.body.content_comment;
+            const content = req.body.content;
             let autor = 0;
 
             if (req.user && req.user.id) {
                autor = req.user.id;
             }
 
-            const createComment = await postModel.createComment(post_id, autor, content);
+            const createComment = await commentModel.createComment(post_id, autor, content);
             return res.send('Comment add!')
          } else {
             return res.send('Comment must be filled!');
@@ -63,26 +66,26 @@ class postController extends Controller {
          }
       } catch (error) {
          console.log(error);
-         res.send(`Error comment`);
+         res.send(`Error comment!`);
       }
    }
 
    async getCategoriesByPostID(req, res) {
       try {
          const post_id = req.params.post_id;
-         let categories = await postModel.getCategoriesByPostID(post_id);
+         let categories = await categoryModel.getCategoriesByPostID(post_id);
 
          return res.json(categories[0]);
       } catch (error) {
          console.log(error);
-         res.send(error);
+         res.send(`Error get category by post id!`);
       }
    }
    async getAllLikeByPostID(req, res) {
       try {
          if (req.params.post_id >= 1) {
             const post_id = req.params.post_id;
-            let likes = await postModel.getAllLikeByPostID(post_id);
+            let likes = await likeModel.getAllLikeByPostID(post_id);
 
             return res.json(likes[0]);
          } else {
@@ -90,7 +93,7 @@ class postController extends Controller {
          }
       } catch (error) {
          console.log(error);
-         res.send(error);
+         res.send(`Error get all like by post id!`);
       }
    }
 
@@ -130,13 +133,13 @@ class postController extends Controller {
          }
 
          if (like_login !== `people`) {
-            const checkLike = await postModel.checkLike(post_id, like_login);
+            const checkLike = await likeModel.checkLike(post_id, like_login);
 
             if (checkLike[0].length > 0) {
                return res.send('I know you Liked!');;
             }
          }
-         const addLike = await postModel.addLike(post_id, like_login);
+         const addLike = await likeModel.addLike(post_id, like_login);
          return res.send('Liked!');
 
       } catch (error) {
@@ -162,7 +165,7 @@ class postController extends Controller {
                   const updateContentByID = await postModel.updateContentByID(post_id, content);
                }
                if (category) {
-                  const updateCategoryByID = await postModel.updateCategoryByID(post_id, category);
+                  const updateCategoryByID = await categoryModel.updateCategoryByID(post_id, category);
                }
 
                return res.send(`Post update!`);
@@ -205,7 +208,7 @@ class postController extends Controller {
                like_login = req.user.login;
             }
 
-            const deleteLikeFromPostByID = await postModel.deleteLikeFromPostByID(post_id, like_login);
+            const deleteLikeFromPostByID = await likeModel.deleteLikeFromPostByID(post_id, like_login);
 
             res.send(`Unliked`);
          } else {

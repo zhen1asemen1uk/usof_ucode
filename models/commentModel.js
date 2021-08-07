@@ -9,33 +9,28 @@ class commentModel extends Model {
 
    async getCommentByID(id) {
       return await dbConnection.getConnection(`
-         SELECT * FROM comments WHERE id='${id}';`);
+      SELECT * FROM comments WHERE id='${id}';`);
    }
 
-   async getAllCommentLikeByID(id_comment) {
+   async getCommentByPostID(id_post) {
       return await dbConnection.getConnection(`
-         SELECT * FROM likes WHERE id_comment='${id_comment}';`);
+      SELECT * FROM comments WHERE id_post=${id_post};`);
    }
 
-   async addLikeForComment(id_comment, like_login) {
+   async createComment(id_post, id_author_comment, content_comment) {
       return await dbConnection.getConnection(`
-      INSERT INTO likes ( id_comment ,like_login)
-      VALUES ('${id_comment}', '${like_login}');`);
+      INSERT INTO comments (id_post, id_author_comment, content_comment)
+      VALUES ('${id_post}', '${id_author_comment}', '${content_comment}');`);
    }
 
    async updateComment(comment_id, content_comment) {
       return await dbConnection.getConnection(`
-            UPDATE comments SET content_comment = '${content_comment}' WHERE id = '${comment_id}';`);
+      UPDATE comments SET content_comment = '${content_comment}' WHERE id = '${comment_id}';`);
    }
 
    async deleteCommentByID(comment_id) {
       return await dbConnection.getConnection(`
-         DELETE FROM comments WHERE id=${comment_id};`);
-   }
-
-   async deleteLikeFromCommentByID(id_comment, like_login) {
-      return await dbConnection.getConnection(`
-         DELETE FROM likes WHERE id_comment=${id_comment} AND like_login='${like_login}';`);
+      DELETE FROM comments WHERE id=${comment_id};`);
    }
 
 }

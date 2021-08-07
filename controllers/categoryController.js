@@ -1,8 +1,8 @@
-const categoryModel = require("../models/categoryModel");
 
 const Controller = require(`./controller`);
 
 const postModel = require(`../models/postModel`);
+const categoryModel = require("../models/categoryModel");
 
 class categoryController extends Controller {
    constructor() {
@@ -16,7 +16,7 @@ class categoryController extends Controller {
          return res.json(categories[0]);
       } catch (error) {
          console.log(error);
-         res.send(error);
+         res.send(`Error get all categories!`);
       }
    }
 
@@ -28,7 +28,7 @@ class categoryController extends Controller {
          return res.json(data[0]);
       } catch (error) {
          console.log(error);
-         res.send(error);
+         res.send(`Error get data by category!`);
       }
    }
 
@@ -56,7 +56,7 @@ class categoryController extends Controller {
          return res.json(post[0]);
       } catch (error) {
          console.log(error);
-         res.send(error);
+         res.send(`Error get post by category!`);
       }
    }
 
@@ -79,7 +79,7 @@ class categoryController extends Controller {
          }
       } catch (error) {
          console.log(error);
-         res.send(error);
+         res.send(`Error create category!`);
       }
    }
    async updateCategoryByID(req, res) {

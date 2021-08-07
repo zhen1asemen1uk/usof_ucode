@@ -1,4 +1,5 @@
 const sql = require('mysql2');
+
 const config = require('./configDb');
 
 class dbConnection {

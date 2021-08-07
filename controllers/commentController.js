@@ -1,5 +1,7 @@
+const Controller = require(`./controller`);
+
 const commentModel = require("../models/commentModel");
-const Controller = require(`./controller`)
+const likeModel = require("../models/likeModel");
 
 class commentController extends Controller {
    constructor() {
@@ -14,18 +16,18 @@ class commentController extends Controller {
          return res.json(comment[0]);
       } catch (error) {
          console.log(error);
-         res.send(`Error comment!`);
+         res.send(`Error get comment by id!`);
       }
    }
    async getAllCommentLikeByID(req, res) {
       try {
          const comment_id = req.params.comment_id;
-         const like = await commentModel.getAllCommentLikeByID(comment_id);
+         const like = await likeModel.getAllCommentLikeByID(comment_id);
 
          return res.json(like[0]);
       } catch (error) {
          console.log(error);
-         res.send(`Error comment!`);
+         res.send(`Error get all comment like by id!`);
       }
    }
 
@@ -38,12 +40,12 @@ class commentController extends Controller {
             like_login = req.user.login;
          }
 
-         const like = await commentModel.addLikeForComment(comment_id, like_login);
+         const like = await likeModel.addLikeForComment(comment_id, like_login);
 
          return res.json(`Liked!`);
       } catch (error) {
          console.log(error);
-         res.send(`Error comment!`);
+         res.send(`Error like for comment!`);
       }
    }
 
@@ -95,7 +97,7 @@ class commentController extends Controller {
          if (req.params.comment_id >= 1) {
             const comment_id = req.params.comment_id;
             const like_login = req.user.login;
-            const deleteLikeFromComment = await postModel.deleteLikeFromCommentByID(comment_id, like_login);
+            const deleteLikeFromComment = await likeModel.deleteLikeFromCommentByID(comment_id, like_login);
 
             return res.send(`Unliked`);
          } else {

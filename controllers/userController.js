@@ -20,7 +20,8 @@ class userController extends Controller {
       try {
          return await userModel.getUser(login, email);
       } catch (error) {
-         res.send(error);
+         console.log(error);
+         res.send(`Error get user!`);
       }
    }
 
@@ -28,7 +29,8 @@ class userController extends Controller {
       try {
          return await userModel.addUser(login, password, email, avatar, activationLink);
       } catch (error) {
-         res.send(error);
+         console.log(error);
+         res.send(`Error add user!`);
       }
    }
 
@@ -36,7 +38,8 @@ class userController extends Controller {
       try {
          return await userModel.loginUser(login);
       } catch (error) {
-         res.send(error);
+         console.log(error);
+         res.send(`Error login user!`);
       }
    }
 
@@ -46,7 +49,8 @@ class userController extends Controller {
 
          return res.json(users[0])
       } catch (error) {
-         res.send(error);
+         console.log(error);
+         res.send(`Error get all user!`);
       }
    }
 
@@ -64,7 +68,8 @@ class userController extends Controller {
 
          return res.send(`Happy verify go => ${API_URL}`) // res.redirect()
       } catch (error) {
-         res.send(error);
+         console.log(error);
+         res.send(`Error activate user!`);
       }
    }
 
@@ -72,7 +77,8 @@ class userController extends Controller {
       try {
          return await userModel.checkVerifyUser(login);
       } catch (error) {
-         res.send(error);
+         console.log(error);
+         res.send(`Error check verify user!`);
       }
    }
 
@@ -84,7 +90,7 @@ class userController extends Controller {
          return res.json(user[0]);
       } catch (error) {
          console.log(error);
-         res.send(error);
+         res.send(`Error get user by id`);
       }
    }
 
@@ -92,7 +98,8 @@ class userController extends Controller {
       try {
          return await userModel.resetPass_userId(id, pass);
       } catch (error) {
-         res.send(error);
+         console.log(error);
+         res.send(`Error reset password`);
       }
    }
 
@@ -100,28 +107,26 @@ class userController extends Controller {
       try {
          return await userModel.addUser_ADMIN(login, password, email, avatar, status, verify, activationLink);
       } catch (error) {
-         res.send(error);
-      }
-   }
-
-
-   async checkDeleteUser(user_id) {
-      try {
-         return await userModel.checkDeleteUser(user_id);
-      } catch (error) {
          console.log(error);
+         res.send(`Error create user for ADMIN`);
       }
    }
 
    async deleteUserByID(req, res) {
       try {
+         const { refreshToken } = req.cookies;
          await userModel.deleteUserByID(req.params.user_id);
 
-         // cookies???
+         //remove token from database
+         await tokenService.removeToken(refreshToken);
+
+         //delete token from cookies
+         res.clearCookie(`refreshToken`);
 
          res.send(`User deleted!`)
       } catch (error) {
-         res.send(error)
+         console.log(error);
+         res.send(`Error delete user!`)
       }
    }
 
@@ -153,10 +158,7 @@ class userController extends Controller {
                console.log(`Email - ok`)
             }
          }
-         if (avatar) {
-            const updateAvatar = await userModel.updateAvatarByID(owner, avatar);
-            console.log(`Avatar - ok`);
-         }
+        
          if (password) {
             //hash password
             const hashPass = await bcrypt.hash(password, 3);

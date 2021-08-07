@@ -2,8 +2,9 @@ const express = require(`express`);
 const app = express();
 
 const config = require(`./config`);
-const cookieParser = require(`cookie-parser`);
+
 const cors = require(`cors`);
+const cookieParser = require(`cookie-parser`);
 const fileUpload = require(`express-fileupload`);
 
 const port = config.port || 3000;

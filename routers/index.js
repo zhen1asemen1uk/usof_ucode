@@ -7,9 +7,9 @@ const commentsRoute = require(`./commentsRoute`);
 const postsRoute = require(`./postsRoute`);
 const usersRoute = require(`./usersRoute`);
 
-const authMiddleware = require(`./middleware/authMiddleware`);
-
 const userController = require(`../controllers/userController`);
+
+const authMiddleware = require(`./middleware/authMiddleware`);
 
 router.get(`/activate/:link`, userController.activateUser);
 

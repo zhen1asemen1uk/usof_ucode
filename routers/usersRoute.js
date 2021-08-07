@@ -1,11 +1,11 @@
 const express = require(`express`);
 const router = express.Router();
 
-const statusMiddleware = require(`./middleware/statusMiddleware`);
-const userAccessMiddleware = require(`./middleware/userAccessMiddleware`);
-
 const userController = require(`../controllers/userController`);
 const authController = require(`../controllers/authController`);
+
+const statusMiddleware = require(`./middleware/statusMiddleware`);
+const userAccessMiddleware = require(`./middleware/userAccessMiddleware`);
 
 router.get(`/`, userController.getAllUser);
 

@@ -1,11 +1,12 @@
 const Controller = require(`./controller`);
 const tokenController = require(`./tokenController`);
+
 const userModel = require(`../models/userModel`);
+
+const { API_URL } = require(`../config`);
 
 const sendMailService = require(`../service/sendMailService`);
 const tokenService = require(`../service/tokenService`);
-
-const { API_URL } = require(`../config`);
 
 const bcrypt = require(`bcryptjs`);
 const uuid = require(`uuid`);
@@ -63,7 +64,8 @@ class authController extends Controller {
             return res.send(`Password length is less than 8 characters or check confirm password`);
          }
       } catch (error) {
-         res.send(error)
+         console.log(error);
+         res.send(`Error register!`)
       }
    }
 
@@ -98,7 +100,8 @@ class authController extends Controller {
             ...token, user: { id: user.id, login: user.login, email: user.email, status: user.status, verify: user.verify, avatar: user.avatar }
          });
       } catch (error) {
-         res.send(error);
+         console.log(error);
+         res.send(`Error login!`);
       }
    }
 
@@ -114,7 +117,8 @@ class authController extends Controller {
 
          return res.send(`Happy logout!`);
       } catch (error) {
-         res.send(error)
+         console.log(error);
+         res.send(`Error logout!`)
       }
    }
 
@@ -162,7 +166,8 @@ class authController extends Controller {
 
          return res.send(`Check you email.`);
       } catch (error) {
-         res.send(error)
+         console.log(error);
+         res.send(`Error reset password`)
       }
    }
 
@@ -183,7 +188,8 @@ class authController extends Controller {
 
          return res.send(`Happy reset pass!!!`)
       } catch (error) {
-         res.send(error)
+         console.log(error);
+         res.send(`Error reset password`)
       }
    }
 
@@ -230,7 +236,7 @@ class authController extends Controller {
          }
       } catch (error) {
          console.log(error);
-         res.send(`Error create(`);
+         res.send(`Error create!`);
       }
    }
 }

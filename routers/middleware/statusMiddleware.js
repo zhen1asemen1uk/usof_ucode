@@ -26,6 +26,7 @@ module.exports = function (stat) {
          });
 
       } catch (error) {
+         console.log(error);
          return res.status(403).json({ message: `User not loggined` });
       }
    };
