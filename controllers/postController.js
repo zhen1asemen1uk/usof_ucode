@@ -185,8 +185,14 @@ class postController extends Controller {
       try {
          if (req.params.post_id >= 1) {
             const post_id = req.params.post_id;
-            const postDelet = await postModel.deletePostByID(post_id);
+            const deletPost = await postModel.deletePostByID(post_id);
+            const deleteLikeFormPost = await likeModel.deleteLikeFromPostByID(post_id, like_login);
+            const deleteCommentByPostID = await commentModel.deleteCommentByPostID(post_id);
+            // const deleteLikeFromComment = await likeModel.deleteLikeFromPostByID(post_id, like_login);//???
             const deleteCategory = await categoryModel.deleteCategoryByPostID(post_id);
+
+            const like_login = req.user.login;
+
             res.send(`Success deleted!`)
          } else {
             return res.send(`Error post id!`);
@@ -201,16 +207,10 @@ class postController extends Controller {
       try {
          if (req.params.post_id >= 1) {
             const post_id = req.params.post_id;
-
-            let like_login = `people`;
-
-            if (req.user && req.user.login) {
-               like_login = req.user.login;
-            }
-
+            const like_login = req.user.login;
             const deleteLikeFromPostByID = await likeModel.deleteLikeFromPostByID(post_id, like_login);
 
-            res.send(`Unliked`);
+            return res.send(`Unliked`);
          } else {
             return res.send(`Error post id!`);
          }

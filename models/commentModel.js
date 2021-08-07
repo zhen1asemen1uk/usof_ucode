@@ -32,6 +32,10 @@ class commentModel extends Model {
       return await dbConnection.getConnection(`
       DELETE FROM comments WHERE id=${comment_id};`);
    }
+   async deleteCommentByPostID(id_post) {
+      return await dbConnection.getConnection(`
+      DELETE FROM comments WHERE id_post=${id_post};`);
+   }
 
 }
 module.exports = new commentModel();
