@@ -10,9 +10,14 @@ class likeModel extends Model {
       SELECT like_login FROM likes WHERE id_post=${id_post};`);
    }
 
-   async checkLike(id_post, like_login) {
+   async checkLikeForPost(id_post, like_login) {
       return await dbConnection.getConnection(`
       SELECT * FROM likes WHERE id_post=${id_post} AND like_login='${like_login}';`);
+   }
+   
+   async checkLikeForComment(comment_id, like_login) {
+      return await dbConnection.getConnection(`
+      SELECT * FROM likes WHERE id_comment=${comment_id} AND like_login='${like_login}';`);
    }
 
    async getAllCommentLikeByID(id_comment) {

@@ -61,7 +61,7 @@ class userController extends Controller {
          let activeUser = await userModel.activateUser_check(link);
 
          if (!activeUser[0].length > 0) {
-            return console.log(`uncorrect user `);
+            return res.send(`Uncorrect user!`);
          }
 
          await userModel.activateUser_updateVerify(link);
@@ -186,7 +186,7 @@ class userController extends Controller {
    
    async addAvatar(req, res) {
       try {
-         let { id, avatar } = req.user;
+         let { id ,avatar} = req.user;//!!!avatar
          const avatarFile = req.files.avatar;
          const avatarName = uuid.v4() + '.jpg';
          const user = userModel.updateAvatarByID(id, avatarName);

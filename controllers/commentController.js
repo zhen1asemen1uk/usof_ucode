@@ -39,7 +39,11 @@ class commentController extends Controller {
          if (req.user && req.user.login) {
             like_login = req.user.login;
          }
+         const checkLikeForComment = await likeModel.checkLikeForComment(comment_id, like_login);
 
+         if (checkLikeForComment[0].length > 0) {
+            return res.send('I know you Liked!');;
+         }
          const like = await likeModel.addLikeForComment(comment_id, like_login);
 
          return res.json(`Liked!`);

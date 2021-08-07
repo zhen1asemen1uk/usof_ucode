@@ -133,9 +133,9 @@ class postController extends Controller {
          }
 
          if (like_login !== `people`) {
-            const checkLike = await likeModel.checkLike(post_id, like_login);
+            const checkLikeForPost = await likeModel.checkLikeForPost(post_id, like_login);
 
-            if (checkLike[0].length > 0) {
+            if (checkLikeForPost[0].length > 0) {
                return res.send('I know you Liked!');;
             }
          }
@@ -186,7 +186,7 @@ class postController extends Controller {
          if (req.params.post_id >= 1) {
             const post_id = req.params.post_id;
             const postDelet = await postModel.deletePostByID(post_id);
-
+            const deleteCategory = await categoryModel.deleteCategoryByPostID(post_id);
             res.send(`Success deleted!`)
          } else {
             return res.send(`Error post id!`);

@@ -70,6 +70,12 @@ class categoryController extends Controller {
             if (req.user && req.user.id) {
                id_author = req.user.id;
             }
+            
+            const checkCategoryTitle = await categoryModel.checkCategoryTitle(title);
+
+            if (checkCategoryTitle[0].length>0){
+               return res.send(`This category already exists, please choose another category name;`);
+            }
 
             const category = await categoryModel.createCategory(post_id, id_author, title);
 

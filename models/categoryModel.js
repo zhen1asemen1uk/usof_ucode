@@ -7,7 +7,7 @@ class categoryModel extends Model {
       }
       async getAllCategories() {
             return await dbConnection.getConnection(`
-            SELECT title_category FROM categories;`);
+            SELECT id, id_post, id_author_category, title_category FROM categories;`);
       }
 
       async getDataByCategory_ID(id) {
@@ -33,6 +33,11 @@ class categoryModel extends Model {
             UPDATE categories SET title_category='${title_category}' WHERE id_post='${post_id}';`);
       }
 
+      async checkCategoryTitle(title) {
+            return await dbConnection.getConnection(`
+            SELECT * FROM categories WHERE title_category='${title}';`);
+      }
+
       async createCategory(post_id, id_author, title) {
             return await dbConnection.getConnection(`
             INSERT INTO categories (id_post, id_author_category, title_category)
@@ -47,6 +52,10 @@ class categoryModel extends Model {
       async deleteCategoryByID(category_id) {
             return await dbConnection.getConnection(`
             DELETE FROM categories WHERE id=${category_id};`);
+      }
+      async deleteCategoryByPostID(id_post) {
+            return await dbConnection.getConnection(`
+            DELETE FROM categories WHERE id_post=${id_post};`);
       }
 
 

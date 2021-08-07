@@ -22,9 +22,10 @@ class sendMailService {
          subject: `Activation profile on ${API_URL}`,
          text: ``,
          html: `
-         <div style='text-aling:center'>
-         <h1>Click link for activation</h1>
-         <a href='${link}' style='color:green'>Click me</a>
+         <div style="text-align:center;padding: 5px 10px 20px 10px;
+            background-color: black; border-radius: 5px; color: white;">
+            <h2>Hello, my friend! </h2>
+            <span><a href='${link}' style='color:green;'>Click me for activation </a>🤟🏻</span>
          </div>`
       })
    }
@@ -36,18 +37,20 @@ class sendMailService {
          subject: `You password update.`,
          text: ``,
          html: `
-         <div style="text-align: center;">
-               <h1>Click link for confirm you password</h1>
-               <p>If you confirm then new password: <strong> ${newPassword}</strong></p>
+         <div style=" padding: 5px 10px 15px 10px; text-align: center;
+      background-color:black ; border-radius: 5px;">
+      <h2 style="color: white">Click link for<br> confirm you password 🔒</h2>
+      <p style="color: white">If you confirm then new password 🤫: <strong> ${newPassword}</strong></p>
 
-               <a href='${API_URL}/api/auth/password-reset/${token}__||__${newPassword}'>Click me for confirm new password</a>
+      <a style="color: green" href='${API_URL}/api/auth/password-reset/${token}__||__${newPassword}'>
+         Click me for confirm new password</a>
 
-               <p style='color: red; font-size:10px'>
-                  <span>If you did not reset your password, please ignore this email, it maybea mistake,</span>
-                  <br>
-                  <span>but keep in mind that someone wanted to reset your password accidentally or intentionally.</span>
-               </p>
-         </div>`
+      <p style='color: red; font-size:10px'>
+         <span>❗️If you did not reset your password, please ignore this email, it maybea mistake,</span>
+         <br>
+         <span>but keep in mind that someone wanted to reset your password accidentally or intentionally.</span>
+      </p>
+   </div>`
       })
    }
 }
