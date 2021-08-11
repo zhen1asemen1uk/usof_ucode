@@ -189,6 +189,7 @@ class postController extends Controller {
    async deletePostByID(req, res) {
       try {
          if (req.params.post_id >= 1) {
+            const like_login = req.user.login;
             const post_id = req.params.post_id;
             const deletPost = await postModel.deletePostByID(post_id);
             const deleteLikeFormPost = await likeModel.deleteLikeFromPostByID(post_id, like_login);
@@ -196,7 +197,6 @@ class postController extends Controller {
             // const deleteLikeFromComment = await likeModel.deleteLikeFromPostByID(post_id, like_login);//???
             const deleteCategory = await categoryModel.deleteCategoryByPostID(post_id);
 
-            const like_login = req.user.login;
 
             res.send(`Success deleted!`)
          } else {

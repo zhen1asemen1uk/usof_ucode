@@ -187,7 +187,8 @@ class userController extends Controller {
    async addAvatar(req, res) {
       try {
          let { id ,avatar} = req.user;//!!!avatar
-         const avatarFile = req.files.avatar;
+         console.log(req.files);
+         const avatarFile = req.files.ava;
          const avatarName = uuid.v4() + '.jpg';
          const user = userModel.updateAvatarByID(id, avatarName);
 
