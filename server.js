@@ -2,13 +2,11 @@ const express = require(`express`);
 const app = express();
 
 const config = require(`./config`);
+const { port, host } = config;
 
 const cors = require(`cors`);
 const cookieParser = require(`cookie-parser`);
 const fileUpload = require(`express-fileupload`);
-
-const port = config.port || 3000;
-
 
 
 app.use(fileUpload({}));
@@ -26,4 +24,4 @@ app.use((req, res) => {
 })
 
 
-app.listen(port, () => { console.log(`Server started...\n http://localhost:${port}`) });
+app.listen(port, () => { console.log(`Server started...\n On ==> ${host}${port}`) });

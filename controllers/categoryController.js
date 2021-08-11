@@ -12,7 +12,6 @@ class categoryController extends Controller {
    async getAllCategories(req, res) {
       try {
          const categories = await categoryModel.getAllCategories();
-
          return res.json(categories[0]);
       } catch (error) {
          console.log(error);
@@ -34,26 +33,24 @@ class categoryController extends Controller {
 
    async getPostsByCategoriesID(req, res) {
       try {
+         //plan "B"
+         // const posts = await categoryModel.getPostsByCategoriesID(category_id);
          const category_id = req.params.category_id;
-         const posts = await categoryModel.getPostsByCategoriesID(category_id);
+         //"category_id" = name category!
+         const posts = await categoryModel.getDataByCategory_Title(category_id);
 
-         //mby else "category_id"
+         let allPosts = [];
+         let post;
 
-         // const posts = await categoryModel.getDataByCategory_Title(category_id);
+         for (let i = 0; i < posts[0].length; i++) {
 
-         // let allPosts = [];
-         // let post;
+            if (!posts[0][i].id_post == 0) {
+               post = await postModel.getPostByID(posts[0][i].id_post);
+               allPosts.push(post[0][0]);
+            }
+         }
 
-         // for (let i = 0; i < posts[0].length; i++) {
-         //    if (!posts[0][i].id_post == 0) {
-         //       allPosts.push(posts[0][i].id_post);
-         //    }
-         // }
-
-         const id_post = posts[0][0].id_post;
-         const post = await postModel.getPostByID(id_post);
-
-         return res.json(post[0]);
+         return res.json(allPosts);
       } catch (error) {
          console.log(error);
          res.send(`Error get post by category!`);
@@ -69,12 +66,9 @@ class categoryController extends Controller {
 
             if (req.user && req.user.id) {
                id_author = req.user.id;
-            }
-            
-            const checkCategoryTitle = await categoryModel.checkCategoryTitle(title);
-
-            if (checkCategoryTitle[0].length>0){
-               return res.send(`This category already exists, please choose another category name;`);
+               if (req.body.post_id) {
+                  post_id = req.body.post_id;
+               }
             }
 
             const category = await categoryModel.createCategory(post_id, id_author, title);
@@ -95,7 +89,6 @@ class categoryController extends Controller {
             const categoryAutorId = await categoryModel.getDataByCategory_ID(category_id);
 
             if (req.user.id == categoryAutorId[0][0].id_author_category) {
-
 
                if (req.body.title) {
                   const { title } = req.body;

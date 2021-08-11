@@ -99,8 +99,8 @@ class postController extends Controller {
 
    async createPost(req, res) {
       try {
-         if (req.body.title && req.body.content && req.body.category) {
-            const { title, content, category } = req.body;
+         if (req.body.title && req.body.content && req.body.categories) {
+            const { title, content, categories } = req.body;
 
             let id_author_post = 0;
 
@@ -110,7 +110,12 @@ class postController extends Controller {
 
             const createPost = await postModel.createPost(title, content, id_author_post);
             const post_id = createPost[0].insertId;
-            const createCategory = await categoryModel.createCategory(post_id, id_author_post, category);
+
+            let category = categories.split(` `);
+            
+            for (let i = 0; i < category.length;i++){
+               const createCategory = await categoryModel.createCategory(post_id, id_author_post, category[i]);
+            }
 
             return res.send('Post add!');
          } else {

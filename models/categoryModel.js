@@ -33,10 +33,10 @@ class categoryModel extends Model {
             UPDATE categories SET title_category='${title_category}' WHERE id_post='${post_id}';`);
       }
 
-      async checkCategoryTitle(title) {
-            return await dbConnection.getConnection(`
-            SELECT * FROM categories WHERE title_category='${title}';`);
-      }
+      // async checkCategoryTitle(title) {
+      //       return await dbConnection.getConnection(`
+      //       SELECT * FROM categories WHERE title_category='${title}';`);
+      // }
 
       async createCategory(post_id, id_author, title) {
             return await dbConnection.getConnection(`
