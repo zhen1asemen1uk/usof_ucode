@@ -1,7 +1,7 @@
 module.exports = {
-   port: 3000,
+   port: 3001,
    host: `http://localhost:`,
-   API_URL: `http://localhost:3000`,
+   API_URL: `http://localhost:3001`,
    CLIENT_URL: `http://localhost:3000`,
    //JWT
    JWT_ACCESS_SECRET: "bla-Bla-bla",
