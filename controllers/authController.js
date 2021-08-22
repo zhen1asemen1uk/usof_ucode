@@ -132,7 +132,7 @@ class authController extends Controller {
          //save token to cookies
          res.cookie(`refreshToken`, refresh.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true }); //when `https` add secure!
 
-         return res.json({ refresh });
+         return res.json({ ...refresh });
       } catch (error) {
          console.log(error);
          res.send(`Error refreshToken`)

@@ -3,9 +3,21 @@ import { BrowserRouter, Link } from "react-router-dom";
 
 import "./styles/App.css";
 
+// import Context from "./index";
 import AppRouter from "./components/AppRouter";
 
+
+
 const App = () => {
+
+  // const { store } = useContext(Context);
+
+  // useEffect(() => {
+  //   if (localStorage.getItem(`token`)) {
+  //     store.checkAuth();
+  //   }
+  // }, []);
+
   return (
     <>
       <BrowserRouter>
@@ -17,6 +29,7 @@ const App = () => {
             <Link to="/login_page">login</Link>
           </nav>
         </header>
+        {/* <h1>{store.isAuth?`User loggined! ${store.user.email}`:`User not login!`}</h1> */}
         <AppRouter />
       </BrowserRouter>
     </>

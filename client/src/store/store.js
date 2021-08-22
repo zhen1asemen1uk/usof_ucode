@@ -17,7 +17,7 @@ class Store {
       try {
          const res = await AuthServices.login(login, password);
          console.log(res);
-         
+
          localStorage.setItem('token', res.data.accessToken);
          this.setAuth(true);
          this.setUser(res.data.user);
@@ -53,9 +53,15 @@ class Store {
       }
    }
 
-   async checkAuth(){
+   async checkAuth() {
       try {
-         const res = await axios.get(`${API_URL}/api/`)/////////!!!!!!!!!!!!!!
+         const res = await axios.get(`${API_URL}/api/auth/refresh`, { withCredentials: true });
+         console.log(res);
+
+         localStorage.setItem('token', res.data.accessToken);
+         this.setAuth(true);
+         this.setUser(res.data.user);
+
       } catch (e) {
          console.log(e);
       }

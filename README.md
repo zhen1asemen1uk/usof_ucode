@@ -1,4 +1,32 @@
 # usof_backEnd
+For start:
+      npm i
+
+      mysql -u root -p < db.sql (or insert text from db.sql to database)
+
+      must be:    /db/configDb.json
+      in config:  {
+                        "user": "...",
+                        "password": "...",
+                        "server": "localhost",
+                        "database": "db_usof"
+                  }
+
+      must be:    /config.js 
+      in config:  module.exports = {
+                        port: 5000,
+                        host: "http://localhost:",
+                        API_URL: "http://localhost:5000",
+                        CLIENT_URL: "http://localhost:3000",
+                        //JWT
+                        JWT_ACCESS_SECRET: "...",
+                        JWT_REFRESH_SECRET: "...",
+                        //email
+                        SMTP_HOST: "...",
+                        SMTP_PORT: ,
+                        SMTP_USER: "...",
+                        SMTP_PASSWORD: "..."
+                  }
 
 (my REST API for ucode project)
 
@@ -44,5 +72,14 @@ Comments:
       update comment data dy id;
       delete a comment;
       delete a like under a comment;
-      
+
 # usof_frontEnd
+For start:
+
+      npm i
+
+      must be:    /src/config.js 
+      in config:  module.exports = {
+                        API_URL: "http://localhost:5000"
+                  }
+(my React frontEnd for ucode project)
