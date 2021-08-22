@@ -10,7 +10,7 @@ import AppRouter from "./components/AppRouter";
 
 const App = () => {
 
-  // const { store } = useContext(Context);
+  // const { store } = useContext(Context);//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   // useEffect(() => {
   //   if (localStorage.getItem(`token`)) {

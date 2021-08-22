@@ -27,7 +27,7 @@ For start:
                         SMTP_USER: "...",
                         SMTP_PASSWORD: "..."
                   }
-
+npm run dev - start server and client
 (my REST API for ucode project)
 
 Auth:
@@ -75,11 +75,11 @@ Comments:
 
 # usof_frontEnd
 For start:
-
       npm i
 
       must be:    /src/config.js 
       in config:  module.exports = {
                         API_URL: "http://localhost:5000"
                   }
+                  
 (my React frontEnd for ucode project)
