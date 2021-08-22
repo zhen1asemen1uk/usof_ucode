@@ -7,6 +7,7 @@ const { API_URL } = require(`../config`);
 
 const sendMailService = require(`../service/sendMailService`);
 const tokenService = require(`../service/tokenService`);
+const userService = require(`../service/userService`);
 
 const bcrypt = require(`bcryptjs`);
 const uuid = require(`uuid`);
@@ -57,7 +58,7 @@ class authController extends Controller {
                res.cookie(`refreshToken`, refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true }); //when `https` add secure!
 
                return res.json({
-                  ...token, user: { id: user.id, login: user.login, email: user.email, status: user.status, verify: user.verify, avatar:user.avatar }
+                  ...token, user: { id: user.id, login: user.login, email: user.email, status: user.status, verify: user.verify, avatar: user.avatar }
                });
             }
          } else {
@@ -124,19 +125,14 @@ class authController extends Controller {
 
    async refresh(req, res) {
       try {
-         const token = tokenService.generationToken(user.id, user.login,
-            user.email, user.status, user.verify, user.avatar);
+         const { refreshToken } = req.cookies;
 
-         const { accessToken, refreshToken } = token;
-
-         await tokenService.saveToken(user.id, refreshToken);
-
+         const refresh = await userService.refresh(refreshToken);
+         
          //save token to cookies
-         res.cookie(`refreshToken`, refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true }); //when `https` add secure!
+         res.cookie(`refreshToken`, refresh.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true }); //when `https` add secure!
 
-         return res.json({
-            ...token, user: { id: user.id, login: user.login, email: user.email, status: user.status, verify: user.verify, avatar: user.avatar }
-         });
+         return res.json({ refresh });
       } catch (error) {
          console.log(error);
          res.send(`Error refreshToken`)
@@ -158,7 +154,7 @@ class authController extends Controller {
             return res.send(`Unknown user.`);
          }
 
-         let token = await tokenController.getToken(rows[0].id);
+         let token = await tokenController.getTokenByID(rows[0].id);
          token = token[0][0].refreshToken;
 
          //send email and new password

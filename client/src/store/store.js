@@ -55,7 +55,7 @@ class Store {
 
    async checkAuth(){
       try {
-         const res = await axios.get(`${API_URL}/api/`)
+         const res = await axios.get(`${API_URL}/api/`)/////////!!!!!!!!!!!!!!
       } catch (e) {
          console.log(e);
       }

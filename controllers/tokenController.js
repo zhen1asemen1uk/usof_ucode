@@ -6,9 +6,17 @@ class tokenController extends Controller {
       super();
    }
 
-   async getToken(user_id) {
+   async getTokenByID(user_id) {
       try {
-         return await tokenModel.getToken(user_id);
+         return await tokenModel.getTokenByID(user_id);
+      } catch (error) {
+         console.log(error);
+         res.send(`Error get token`);
+      }
+   }
+   async getToken(refreshToken) {
+      try {
+         return await tokenModel.getToken(refreshToken);
       } catch (error) {
          console.log(error);
          res.send(`Error get token`);

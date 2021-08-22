@@ -7,9 +7,14 @@ class tokenModel extends Model {
       super();
    }
 
-   async getToken(user_id) {
+   async getTokenByID(user_id) {
       return await dbConnection.getConnection(`
       SELECT refreshToken FROM tokens WHERE user_id=${user_id};`);
+   }
+
+   async getToken(refreshToken) {
+      return await dbConnection.getConnection(`
+      SELECT * FROM tokens WHERE refreshToken='${refreshToken}';`);
    }
 
    async refreshToken(user_id, refreshToken) {
