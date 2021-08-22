@@ -1,21 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+
+import  Context from '../index';
 
 
 const LoginPage = () => {
 
    const [login, setLogin] = useState("");
    const [password, setPassword] = useState("");
-
-   // const addUser = (e) => {
-   //    e.preventDefault();
-   // }
+   
+   const { store } = useContext(Context)
 
    return (
       <>
-         <h1>LoginPage Page</h1>
-
-         <form action="/api/auth/login" method="post">
-
+         <h1>Login Page</h1>
             <input type="text" name="login" id="login"
                placeholder="Login" autoFocus required={true}
                maxLength={18} pattern={"[A-Za-z]+"} value={login}
@@ -27,8 +24,7 @@ const LoginPage = () => {
                maxLength={18} value={password} onChange={e => setPassword(e.target.value)}
             />
 
-            <button type="submit" onClick={addUser}>Login</button>
-         </form>
+            <button onClick={() => store.login(login, password)} >Login</button>
       </>
    )
 };

@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import ReactDOM from 'react-dom';
-import './styles/index.css';
+
 import App from './App';
+import Store from './store/store';
+
+const store = new Store();
+
+const Context = createContext({ store });
 
 ReactDOM.render(
-    <App />,
-  document.getElementById('root')
-);
- 
+   <Context.Provider value={{ store }}>
+      <App />
+   </Context.Provider>
+   , document.getElementById('root'));
+
+export default  Context 

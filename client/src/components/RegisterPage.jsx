@@ -38,7 +38,7 @@ export const RegisterPage = () => {
                value={email} onChange={e => setEmail(e.target.value)}
             />
 
-            <button type="submit" onClick={addUser}>Create</button>
+            <button type="submit" >Create</button>
          </form>
       </ >
    )
