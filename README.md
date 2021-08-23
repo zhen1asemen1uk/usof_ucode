@@ -27,7 +27,8 @@ For start:
                         SMTP_USER: "...",
                         SMTP_PASSWORD: "..."
                   }
-npm run dev - start server and client
+      npm run dev - start server and client
+      
 (my REST API for ucode project)
 
 Auth:

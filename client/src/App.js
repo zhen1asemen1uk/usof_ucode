@@ -23,10 +23,10 @@ const App = () => {
       <BrowserRouter>
         <header>
           <nav className='navBar'>
-            <Link to="/feed">feed</Link>
-            <Link to="/user_page">user</Link>
-            <Link to="/register_page">register</Link>
-            <Link to="/login_page">login</Link>
+            <Link to="/posts">posts</Link>
+            <Link to="/user">user</Link>
+            <Link to="/register">register</Link>
+            <Link to="/login">login</Link>
           </nav>
         </header>
         {/* <h1>{store.isAuth?`User loggined! ${store.user.email}`:`User not login!`}</h1> */}

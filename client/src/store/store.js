@@ -1,27 +1,32 @@
 import axios from 'axios';
 import { API_URL } from '../config';
 import AuthServices from '../services/AuthServices'
-
 class Store {
    user = {};
    isAuth = false;
-
+   
    setAuth(ath) {
       this.isAuth = ath;
    }
    setUser(usr) {
       this.user = usr;
    }
-
+   
    async login(login, password) {
       try {
          const res = await AuthServices.login(login, password);
-         console.log(res);
-
+         
          localStorage.setItem('token', res.data.accessToken);
+         
          this.setAuth(true);
          this.setUser(res.data.user);
-
+         
+         if(res.data.user){
+            
+         }else{
+            
+         }
+       
       } catch (error) {
          console.log(error);
       }
@@ -31,10 +36,11 @@ class Store {
       try {
          const res = await AuthServices.register(login, password, password_confirm, email);
          console.log(res);
+         console.log(res.data);
          // localStorage.setItem('token', res.data.accessToken);
          // this.setAuth(true);
          // this.setUser(res.data.user);
-
+         // return res
       } catch (error) {
          console.log(error);
       }

@@ -12,7 +12,7 @@ const AppRouter = () => {
                <Route component={route.component} path={route.path} exact={route.exact} key={route.path} />
             )}
 
-            <Redirect to="/feed" />
+            <Redirect to="/posts" />
 
          </Switch>
       </>
