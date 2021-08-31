@@ -1,13 +1,15 @@
 import axios from 'axios';
+
 import { API_URL } from '../config';
 import AuthServices from '../services/AuthServices'
 class Store {
    user = {};
    isAuth = false;
-   
+
    setAuth(ath) {
       this.isAuth = ath;
    }
+   
    setUser(usr) {
       this.user = usr;
    }
@@ -20,11 +22,11 @@ class Store {
          
          this.setAuth(true);
          this.setUser(res.data.user);
-         
+
          if(res.data.user){
-            
+            console.log(1); 
          }else{
-            
+            console.log(2);
          }
        
       } catch (error) {

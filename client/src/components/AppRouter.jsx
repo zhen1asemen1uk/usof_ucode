@@ -9,7 +9,7 @@ const AppRouter = () => {
       <>
          <Switch>
             {routes.map((route) =>
-               <Route component={route.component} path={route.path} exact={route.exact} key={route.path} />
+               <Route component={route.component} path={route.path} exact={route.exact} key={route.path} />      //key!!!!
             )}
 
             <Redirect to="/posts" />

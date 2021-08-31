@@ -1,11 +1,11 @@
 import React, { createContext } from 'react';
 import ReactDOM from 'react-dom';
+import store from 'redux-store'
 
 import App from './App';
 import Store from './store/store';
 
 const store = new Store();
-
 const Context = createContext({ store });
 
 ReactDOM.render(
@@ -14,4 +14,4 @@ ReactDOM.render(
    </Context.Provider>
    , document.getElementById('root'));
 
-export default  Context 
+export default Context 

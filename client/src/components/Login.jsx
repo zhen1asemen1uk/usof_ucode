@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 
-import Context from '..';
+import Context from '../index';
 
 
 const LoginPage = () => {

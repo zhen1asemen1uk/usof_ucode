@@ -14,7 +14,6 @@ export const RegisterPage = () => {
    return (
       <>
          <h1>Register Page</h1>
-
          <input type="text" name="login" id="login"
             placeholder="Login" autoFocus required={true}
             maxLength={18} pattern={"[A-Za-z]+"} value={login}
@@ -38,7 +37,7 @@ export const RegisterPage = () => {
 
          <button onClick={
             () => { store.register(login, password, password_confirm, email) }
-         } > 
+         } >
             Create
          </button>
       </ >
