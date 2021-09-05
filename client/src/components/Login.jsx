@@ -1,15 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 
-import Context from '../index';
-
+import { useDispatch } from "react-redux";
 
 const LoginPage = () => {
 
    const [login, setLogin] = useState("");
    const [password, setPassword] = useState("");
 
-   const { store } = useContext(Context)
-
+   const dispatch = useDispatch();
+  
    return (
       <>
          <h1>Login Page</h1>
@@ -24,7 +23,9 @@ const LoginPage = () => {
             maxLength={18} value={password} onChange={e => setPassword(e.target.value)}
          />
 
-         <button onClick={() => { store.login(login, password) }} >Login</button>
+         <button onClick={() => {
+            dispatch({ type: "login", payload: {login, password} })
+         }} >Login</button>
       </>
    )
 };

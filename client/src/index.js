@@ -1,17 +1,12 @@
-import React, { createContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import store from 'redux-store'
+
+import { Provider } from 'react-redux';
 
 import App from './App';
-import Store from './store/store';
-
-const store = new Store();
-const Context = createContext({ store });
+import {store} from './reducers/index'
 
 ReactDOM.render(
-   <Context.Provider value={{ store }}>
+   <Provider store={store}>
       <App />
-   </Context.Provider>
-   , document.getElementById('root'));
-
-export default Context 
+   </Provider>, document.getElementById('root'));

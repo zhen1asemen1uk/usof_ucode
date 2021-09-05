@@ -65,3 +65,7 @@ CREATE TABLE IF NOT EXISTS likes (
 -- VALUES ('./bla-bla-bla', 'ysemeniuk', 'ysemeniuk', 'jekasemenuk@ukr.net', 'admin'),
 -- ('./bla-bla-bla', 'yevhen', 'ysemeniuk', 'jekasemenuk@gmail.com', 'user');
 
+
+
+-- "user": "root",
+-- "password": "1111",

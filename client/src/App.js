@@ -1,4 +1,5 @@
 import React from "react";
+// import { useDispatch,useSelector} from "react-redux";
 import { BrowserRouter, Link } from "react-router-dom";
 
 import "./styles/App.css";
@@ -8,8 +9,13 @@ import AppRouter from "./components/AppRouter";
 
 
 const App = () => {
+  // const dispatch = useDispatch();
+  // const cash = useSelector(cash => cash.cash)
 
-  //   const { store } = useContext(Context);//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  // const addCash = (cash) => {
+  //   dispatch({ type: 'Add state', payload: cash })
+  // }
+
 
   //   useEffect(() => {
   //     if (localStorage.getItem(`token`)) {

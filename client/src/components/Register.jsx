@@ -1,15 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from "react-redux";
 
-import Context from '..';
-
-export const RegisterPage = () => {
+const RegisterPage = () => {
 
    const [login, setLogin] = useState("");
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
    const [password_confirm, setPassword_confirm] = useState("");
 
-   const { store } = useContext(Context);
+   const dispatch = useDispatch();
 
    return (
       <>
@@ -35,11 +34,13 @@ export const RegisterPage = () => {
             value={email} onChange={e => setEmail(e.target.value)}
          />
 
-         <button onClick={
-            () => { store.register(login, password, password_confirm, email) }
-         } >
-            Create
-         </button>
+         <button onClick={() => {
+            dispatch({
+               type: "register", payload: {
+                  login, password, password_confirm, email
+               }
+            })
+         }}>Create</button>
       </ >
    )
 };
