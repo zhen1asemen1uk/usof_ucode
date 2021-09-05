@@ -9,32 +9,33 @@ export const commentReducer = async (state = initialState, action) => {
    switch (action.type) {
 
       case getCommentByID_Type:
-         const getCommentByID = await commentAPI.getCommentByID(id)
+         const getCommentByID = await commentAPI.getCommentByID(action.payload.id)
          console.log(getCommentByID);
          return { ...state, commentData: getCommentByID }
 
       case getCommentLikesByID_Type:
-         const getCommentLikesByID = await commentAPI.getCommentLikesByID(id)
+         const getCommentLikesByID = await commentAPI.getCommentLikesByID(action.payload.id)
          console.log(getCommentLikesByID);
          return { ...state, commentData: getCommentLikesByID }
 
       case addLikesByCommentID_Type:
-         const addLikesByCommentID = await commentAPI.addLikesByCommentID(id)
+         const addLikesByCommentID = await commentAPI.addLikesByCommentID(action.payload.id)
          console.log(addLikesByCommentID);
          return { ...state, commentData: addLikesByCommentID }
 
       case updateComment_Type:
-         const updateComment = await commentAPI.updateComment(id, content_comment)
+         const updateComment = await commentAPI.updateComment(
+            action.payload.id, action.payload.content_comment)
          console.log(updateComment);
          return { ...state, commentData: updateComment }
 
       case deleteComment_Type:
-         const deleteComment = await commentAPI.deleteComment(id)
+         const deleteComment = await commentAPI.deleteComment(action.payload.id)
          console.log(deleteComment);
          return { ...state, commentData: deleteComment }
 
       case deleteLikeByCommentID_Type:
-         const deleteLikeByCommentID = await commentAPI.deleteLikeByCommentID(id)
+         const deleteLikeByCommentID = await commentAPI.deleteLikeByCommentID(action.payload.id)
          console.log(deleteLikeByCommentID);
          return { ...state, commentData: deleteLikeByCommentID }
 

@@ -1,54 +1,64 @@
 import { initialState } from ".";
 import { postAPI } from "../API/postAPI";
-import { register, login, logout } from "./types";
+import {
+   getAllPosts_Type, getPostByID_Type, getCommentsPostByID_Type,
+   addCommentsForPost_Type, getAllCategoryByPostID_Type,
+   getAllLikeByPostID_Type, addPost_Type, addLikeForPost_Type,
+   updatePost_Type, deletePost_Type, deleteLikeByPost_Type
+} from "./types";
 
 export const postReducer = async (state = initialState, action) => {
    switch (action.type) {
 
-      case register:
+      case getAllPosts_Type:
          const getAllPosts = await postAPI.getAllPosts();
          console.log(getAllPosts);
          return { ...state, postData: getAllPosts }
 
-      case login:
-         const getPostByID = await postAPI.getPostByID(id);
+      case getPostByID_Type:
+         const getPostByID = await postAPI.getPostByID(action.payload.id);
          console.log(getPostByID);
          return { ...state, postData: getPostByID }
 
-      case logout:
-         const getCommentsPostByID = await postAPI.getCommentsPostByID(id);
+      case getCommentsPostByID_Type:
+         const getCommentsPostByID = await postAPI.getCommentsPostByID(action.payload.id);
          console.log(getCommentsPostByID);
          return { ...state, postData: getCommentsPostByID }
-      case logout:
-         const addCommentsForPost = await postAPI.addCommentsForPost(id, content);
+      case addCommentsForPost_Type:
+         const addCommentsForPost = await postAPI.addCommentsForPost(
+            action.payload.id, action.payload.content);
          console.log(addCommentsForPost);
          return { ...state, postData: addCommentsForPost }
-      case logout:
-         const getAllCategoryByPostID = await postAPI.getAllCategoryByPostID(id);
+      case getAllCategoryByPostID_Type:
+         const getAllCategoryByPostID = await postAPI.getAllCategoryByPostID(action.payload.id);
          console.log(getAllCategoryByPostID);
          return { ...state, postData: getAllCategoryByPostID }
-      case logout:
-         const getAllLikeByPostID = await postAPI.getAllLikeByPostID(id);
+      case getAllLikeByPostID_Type:
+         const getAllLikeByPostID = await postAPI.getAllLikeByPostID(action.payload.id);
          console.log(getAllLikeByPostID);
          return { ...state, postData: getAllLikeByPostID }
-      case logout:
-         const addPost = await postAPI.addPost(id, title, content, categories);
+      case addPost_Type:
+         const addPost = await postAPI.addPost(
+            action.payload.id, action.payload.title,
+            action.payload.content, action.payload.categories);
          console.log(addPost);
          return { ...state, postData: addPost }
-      case logout:
-         const addLikeForPost = await postAPI.addLikeForPost(id);
+      case addLikeForPost_Type:
+         const addLikeForPost = await postAPI.addLikeForPost(action.payload.id);
          console.log(addLikeForPost);
          return { ...state, postData: addLikeForPost }
-      case logout:
-         const updatePost = await postAPI.updatePost(id, title, content, categories);
+      case updatePost_Type:
+         const updatePost = await postAPI.updatePost(
+            action.payload.id, action.payload.title,
+            action.payload.content, action.payload.categories);
          console.log(updatePost);
          return { ...state, postData: updatePost }
-      case logout:
-         const deletePost = await postAPI.deletePost(id);
+      case deletePost_Type:
+         const deletePost = await postAPI.deletePost(action.payload.id);
          console.log(deletePost);
          return { ...state, postData: deletePost }
-      case logout:
-         const deleteLikeByPost = await postAPI.deleteLikeByPost(id);
+      case deleteLikeByPost_Type:
+         const deleteLikeByPost = await postAPI.deleteLikeByPost(action.payload.id);
          console.log(deleteLikeByPost);
          return { ...state, postData: deleteLikeByPost }
 
@@ -56,13 +66,3 @@ export const postReducer = async (state = initialState, action) => {
          return state
    }
 }
-
-
-
-
-
-
-
-
-
-
