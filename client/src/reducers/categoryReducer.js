@@ -22,14 +22,21 @@ export const categoryReducer = async (state = initialState, action) => {
          const getPostsByCategotyID = await categoryAPI.getPostsByCategotyID(action.payload.title);
          console.log(getPostsByCategotyID);
          return { ...state, categoryData: getPostsByCategotyID }
+
       case addCategory_Type:
-         const addCategory = await categoryAPI.addCategory(action.payload.title, action.payload.post_id);
+         const addCategory = await categoryAPI.addCategory(
+            action.payload.title,
+            action.payload.post_id);
          console.log(addCategory);
          return { ...state, categoryData: addCategory }
+
       case updateCategory_Type:
-         const updateCategory = await categoryAPI.updateCategory(action.payload.id, action.payload.title);
+         const updateCategory = await categoryAPI.updateCategory(
+            action.payload.id,
+            action.payload.title);
          console.log(updateCategory);
          return { ...state, categoryData: updateCategory }
+
       case deleteCategory_Type:
          const deleteCategory = await categoryAPI.deleteCategory(action.payload.id);
          console.log(deleteCategory);

@@ -1,8 +1,12 @@
 import { initialState } from ".";
 import { userAPI } from "../API/userAPI";
 import {
-   getAllUsers_Type, getUserByID_Type, registerForADMIN_Type,
-   addAvatar_Type, updateUser_Type, deleteUser_Type
+   getAllUsers_Type,
+   getUserByID_Type,
+   registerForADMIN_Type,
+   addAvatar_Type,
+   updateUser_Type,
+   deleteUser_Type
 } from "./types";
 
 
@@ -21,9 +25,11 @@ export const userReducer = async (state = initialState, action) => {
 
       case registerForADMIN_Type:
          const registerForADMIN = await userAPI.registerForADMIN(
-            action.payload.login, action.payload.password,
+            action.payload.login,
+            action.payload.password,
             action.payload.password_confirm,
-            action.payload.email, action.payload.status,
+            action.payload.email,
+            action.payload.status,
             action.payload.verify)
          console.log(registerForADMIN);
          return { ...state, users: registerForADMIN }
