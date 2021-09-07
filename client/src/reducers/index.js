@@ -8,17 +8,15 @@ import { categoryReducer } from './categoryReducer'
 import { commentReducer } from './commentReducer'
 import { postReducer } from './postReducer'
 
-export const initialState = {
-   isAush: false,
-}
+
 
 const rootReducer = combineReducers({
-   authReducer,
-   userReducer,
-   categoryReducer,
-   commentReducer,
-   postReducer
+   authPage: authReducer,
+   userPage: userReducer,
+   categoryPage: categoryReducer,
+   commentPage: commentReducer,
+   postPage: postReducer
 })
 
-export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
-console.log(store.getState())
+export const store = createStore(rootReducer,
+    composeWithDevTools(applyMiddleware(thunk)));

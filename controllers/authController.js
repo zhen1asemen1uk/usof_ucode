@@ -24,6 +24,10 @@ class authController extends Controller {
          if (password.length >= 8 && password === password_confirm) {
             //check unique users
             let check = await userModel.getUser(login, email);
+            console.log(check);
+            if (!check){
+               return res.send(`Error!`)
+            }
             let [rows, fields] = check;
 
             if (rows.length > 0) {

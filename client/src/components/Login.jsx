@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 
-import { useDispatch } from "react-redux";
+import {login_Auth} from '../reducers/authReducer'
 
 const LoginPage = () => {
 
    const [login, setLogin] = useState("");
    const [password, setPassword] = useState("");
-
+ 
    const dispatch = useDispatch();
-  
+   const userData = useSelector(globalState => globalState.userData)
+
    return (
       <>
          <h1>Login Page</h1>
@@ -24,10 +26,10 @@ const LoginPage = () => {
          />
 
          <button onClick={() => {
-            dispatch({ type: "login", payload: {login, password} })
+            dispatch(login_Auth( {login, password}))
          }} >Login</button>
       </>
    )
-};
+}; 
 
 export default LoginPage;

@@ -1,4 +1,3 @@
-import { initialState } from ".";
 import { userAPI } from "../API/userAPI";
 import {
    getAllUsers_Type,
@@ -9,17 +8,22 @@ import {
    deleteUser_Type
 } from "./types";
 
+export const initialState = {
+   users: null
+}
 
 export const userReducer = async (state = initialState, action) => {
    switch (action.type) {
 
       case getAllUsers_Type:
          const getAllUsers = await userAPI.getAllUsers();
+
          console.log(getAllUsers);
          return { ...state, users: getAllUsers }
 
       case getUserByID_Type:
          const getUserByID = await userAPI.getUserByID(action.payload.id);
+
          console.log(getUserByID);
          return { ...state, users: getUserByID }
 
@@ -31,11 +35,13 @@ export const userReducer = async (state = initialState, action) => {
             action.payload.email,
             action.payload.status,
             action.payload.verify)
+
          console.log(registerForADMIN);
          return { ...state, users: registerForADMIN }
 
       case addAvatar_Type:
          const addAvatar = await userAPI.addAvatar(action.payload.ava);
+
          console.log(addAvatar);
          return { ...state, users: addAvatar }
 
@@ -45,11 +51,13 @@ export const userReducer = async (state = initialState, action) => {
             action.payload.login,
             action.payload.password,
             action.payload.email)
+
          console.log(updateUser);
          return { ...state, users: updateUser }
 
       case deleteUser_Type:
          const deleteUser = await userAPI.deleteUser(action.payload.id)
+
          console.log(deleteUser);
          return { ...state, users: deleteUser }
 
@@ -60,5 +68,11 @@ export const userReducer = async (state = initialState, action) => {
 }
 
 
+export const getAllUsers_User = (payload) => ({ type: getAllUsers_Type, payload });
+export const getUserByID_User = (payload) => ({ type: getUserByID_Type, payload });
+export const registerForADMIN_User = (payload) => ({ type: registerForADMIN_Type, payload });
+export const addAvatar_User = (payload) => ({ type: addAvatar_Type, payload });
+export const updateUser_User = (payload) => ({ type: updateUser_Type, payload });
+export const deleteUser_User = (payload) => ({ type: deleteUser_Type, payload });
 
 

@@ -1,4 +1,3 @@
-import { initialState } from ".";
 import { postAPI } from "../API/postAPI";
 import {
    getAllPosts_Type,
@@ -13,6 +12,11 @@ import {
    deletePost_Type,
    deleteLikeByPost_Type
 } from "./types";
+
+
+export const initialState = {
+   postData: null
+}
 
 export const postReducer = async (state = initialState, action) => {
    switch (action.type) {
@@ -86,3 +90,15 @@ export const postReducer = async (state = initialState, action) => {
          return state
    }
 }
+
+export const getAllPosts_Post = (payload) => ({ type: getAllPosts_Type, payload });
+export const getPostByID_Post = (payload) => ({ type: getPostByID_Type, payload });
+export const getCommentsPostByID_Post = (payload) => ({ type: getCommentsPostByID_Type, payload });
+export const addCommentsForPost_Post = (payload) => ({ type: addCommentsForPost_Type, payload });
+export const getAllCategoryByPostID_Post = (payload) => ({ type: getAllCategoryByPostID_Type, payload });
+export const getAllLikeByPostID_Post = (payload) => ({ type: getAllLikeByPostID_Type, payload });
+export const addPost_Post = (payload) => ({ type: addPost_Type, payload });
+export const addLikeForPost_Post = (payload) => ({ type: addLikeForPost_Type, payload });
+export const updatePost_Post = (payload) => ({ type: updatePost_Type, payload });
+export const deletePost_Post = (payload) => ({ type: deletePost_Type, payload });
+export const deleteLikeByPost_Post = (payload) => ({ type: deleteLikeByPost_Type, payload });

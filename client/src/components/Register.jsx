@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
+import { register_Auth } from '../reducers/authReducer';
 
 const RegisterPage = () => {
 
@@ -35,11 +36,9 @@ const RegisterPage = () => {
          />
 
          <button onClick={() => {
-            dispatch({
-               type: "register", payload: {
+            dispatch(register_Auth({
                   login, password, password_confirm, email
-               }
-            })
+            }))
          }}>Create</button>
       </ >
    )
