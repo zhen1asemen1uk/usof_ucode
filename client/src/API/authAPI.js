@@ -6,28 +6,39 @@ export const authAPI = {
 
    register(login, password, password_confirm, email) {
       return async function (dispatch) {
-         const dataRegister = await api.post(`/api/auth/register`, {
-            login: login, password: password,
-            password_confirm: password_confirm,
-            email: email
-         })
+         try {
+            const dataRegister = await api.post(`/api/auth/register`, {
+               login: login, password: password,
+               password_confirm: password_confirm,
+               email: email
+            })
 
-         return dispatch(register_Auth(dataRegister));
+            return dispatch(register_Auth(dataRegister));
+         } catch (error) {
+            console.log(`Error register ${error}`);
+         }
+
       }
    },
 
    login(login, password) {
       return async function (dispatch) {
-         const dataLogin = await api.post(`/api/auth/login`, {
-            login: login,
-            password: password
-         })
+         try {
+            const dataLogin = await api.post(`/api/auth/login`, {
+               login: login,
+               password: password
+            })
+            localStorage.setItem('token', dataLogin.data.accessToken);
+            return dispatch(login_Auth(dataLogin));
+         }
+         catch (error) {
+            console.log(`Error login ${error}`);
+         }
 
-         return dispatch(login_Auth(dataLogin));
       }
    },
-     
-    verify(link) {
+
+   verify(link) {
       return api.get(`/activate/${link}`)
    },
 
@@ -43,15 +54,25 @@ export const authAPI = {
    },
 
    logout() {
-      return async function (dispatch) {
-         const dataLogout = await api.post(`/api/auth/logout`)
-         console.log(dataLogout);
-         return dispatch(logout_Auth(dataLogout));
+      return async (dispatch) => {
+         try {
+            const dataLogout = await api.post(`/api/auth/logout`);
+
+            return dispatch(logout_Auth(dataLogout))
+         } catch (error) {
+            console.log(`Error logout ${error}`);
+         }
+
       }
+   },
 
+   async checkAuth() {
+      try {
+         const check = await api.get(`/api/auth/refresh`);
 
-
-
-      // return api.post(`/api/auth/logout`)
+         localStorage.setItem('token', check.data.accessToken);
+      } catch (error) {
+         console.log(`Error check refresh ${error}`);
+      }
    }
 }

@@ -9,7 +9,7 @@ import {
 } from "./types";
 
 export const initialState = {
-   userData: [],
+   user: {},
    isAuth: false,
    isLoading: false
 }
@@ -24,39 +24,37 @@ export const authReducer = (state = initialState, action) => {
             action.payload.password_confirm,
             action.payload.email);
 
-         console.log(register.data);
-         return { ...state, userData: register.data }
+         return { ...state, user: register.data }
 
       case login_Type:
          if (typeof action.payload.data == "object") {
             state.isAuth = true;
          }
-         return { ...state, userData: action.payload.data.user }
+         return { ...state, user: action.payload.data.user }
 
       case verify_Type:
          const verify = authAPI.verify(action.payload.link);
 
          console.log(verify.data);
-         return { ...state, userData: verify.data }
+         return { ...state, user: verify.data }
 
       case password_reset_Type:
          const password_reset = authAPI.password_reset(
             action.payload.login, action.payload.newPassword);
 
          console.log(password_reset.data);
-         return { ...state, userData: password_reset.data }
+         return { ...state, user: password_reset.data }
 
       case password_reset_link_Type:
          const password_reset_link = authAPI.password_reset_link(action.payload.link);
 
          console.log(password_reset_link.data);
-         return { ...state, userData: password_reset_link.data }
+         return { ...state, user: password_reset_link.data }
 
       case logout_Type:
-         const logout = authAPI.logout();
-
-         console.log(logout);
-         return { ...state, }
+         state.isAuth = false;
+         localStorage.removeItem('token');
+         return { ...state, user: {} }
 
       default:
          return state
