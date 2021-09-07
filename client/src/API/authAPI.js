@@ -1,37 +1,57 @@
 import api from '.'
+import { login_Auth, logout_Auth, register_Auth } from '../reducers/authReducer/authReducer';
 
 export const authAPI = {
-   async login(login, password) {
-      return api.post(`/api/auth/login`, {
-         login: login,
-         password: password
-      })
+
+
+   register(login, password, password_confirm, email) {
+      return async function (dispatch) {
+         const dataRegister = await api.post(`/api/auth/register`, {
+            login: login, password: password,
+            password_confirm: password_confirm,
+            email: email
+         })
+
+         return dispatch(register_Auth(dataRegister));
+      }
    },
 
-   async register(login, password, password_confirm, email) {
-      return api.post(`/api/auth/register`, {
-         login: login, password: password,
-         password_confirm: password_confirm,
-         email: email
-      })
-   },
+   login(login, password) {
+      return async function (dispatch) {
+         const dataLogin = await api.post(`/api/auth/login`, {
+            login: login,
+            password: password
+         })
 
-   async verify(link) {
+         return dispatch(login_Auth(dataLogin));
+      }
+   },
+     
+    verify(link) {
       return api.get(`/activate/${link}`)
    },
 
-   async password_reset(login, newPassword) {
+   password_reset(login, newPassword) {
       return api.post(`/api/auth/password-reset`, {
          login: login,
          newPassword: newPassword
       });
    },
 
-   async password_reset_link(link) {
+   password_reset_link(link) {
       return api.post(`/api/auth/password-reset/${link}`)
    },
-   
-   async logout() {
-      return api.post(`/api/auth/logout`)
+
+   logout() {
+      return async function (dispatch) {
+         const dataLogout = await api.post(`/api/auth/logout`)
+         console.log(dataLogout);
+         return dispatch(logout_Auth(dataLogout));
+      }
+
+
+
+
+      // return api.post(`/api/auth/logout`)
    }
 }

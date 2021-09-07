@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const UserPage = () => {
+export const Users = () => {
    return (
       <div>
          <h1>User Page</h1>
@@ -8,4 +8,4 @@ export const UserPage = () => {
       </div>
    )
 };
-export default UserPage;
+export default Users;

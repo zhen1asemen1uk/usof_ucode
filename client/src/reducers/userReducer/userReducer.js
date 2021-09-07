@@ -1,4 +1,4 @@
-import { userAPI } from "../API/userAPI";
+import { userAPI } from "../../API/userAPI";
 import {
    getAllUsers_Type,
    getUserByID_Type,
@@ -12,23 +12,23 @@ export const initialState = {
    users: null
 }
 
-export const userReducer = async (state = initialState, action) => {
+export const userReducer =  (state = initialState, action) => {
    switch (action.type) {
 
       case getAllUsers_Type:
-         const getAllUsers = await userAPI.getAllUsers();
+         const getAllUsers = userAPI.getAllUsers();
 
          console.log(getAllUsers);
          return { ...state, users: getAllUsers }
 
       case getUserByID_Type:
-         const getUserByID = await userAPI.getUserByID(action.payload.id);
+         const getUserByID = userAPI.getUserByID(action.payload.id);
 
          console.log(getUserByID);
          return { ...state, users: getUserByID }
 
       case registerForADMIN_Type:
-         const registerForADMIN = await userAPI.registerForADMIN(
+         const registerForADMIN = userAPI.registerForADMIN(
             action.payload.login,
             action.payload.password,
             action.payload.password_confirm,
@@ -40,13 +40,13 @@ export const userReducer = async (state = initialState, action) => {
          return { ...state, users: registerForADMIN }
 
       case addAvatar_Type:
-         const addAvatar = await userAPI.addAvatar(action.payload.ava);
+         const addAvatar = userAPI.addAvatar(action.payload.ava);
 
          console.log(addAvatar);
          return { ...state, users: addAvatar }
 
       case updateUser_Type:
-         const updateUser = await userAPI.updateUser(
+         const updateUser = userAPI.updateUser(
             action.payload.id,
             action.payload.login,
             action.payload.password,
@@ -56,7 +56,7 @@ export const userReducer = async (state = initialState, action) => {
          return { ...state, users: updateUser }
 
       case deleteUser_Type:
-         const deleteUser = await userAPI.deleteUser(action.payload.id)
+         const deleteUser = userAPI.deleteUser(action.payload.id)
 
          console.log(deleteUser);
          return { ...state, users: deleteUser }

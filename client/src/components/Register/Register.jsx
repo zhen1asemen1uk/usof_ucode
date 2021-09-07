@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch } from "react-redux";
-import { register_Auth } from '../reducers/authReducer';
 
-const RegisterPage = () => {
+const Register = (props) => {
 
    const [login, setLogin] = useState("");
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
    const [password_confirm, setPassword_confirm] = useState("");
-
-   const dispatch = useDispatch();
 
    return (
       <>
@@ -36,12 +32,10 @@ const RegisterPage = () => {
          />
 
          <button onClick={() => {
-            dispatch(register_Auth({
-                  login, password, password_confirm, email
-            }))
+            props.sendRegisterData(login, password, password_confirm, email)
          }}>Create</button>
       </ >
    )
 };
 
-export default RegisterPage;
+export default Register;

@@ -1,4 +1,4 @@
-import { authAPI } from "../API/authAPI";
+import { authAPI } from "../../API/authAPI";
 import {
    register_Type,
    verify_Type,
@@ -9,16 +9,16 @@ import {
 } from "./types";
 
 export const initialState = {
-   userData: null,
-   isAush: false,
+   userData: [],
+   isAuth: false,
    isLoading: false
 }
 
-export const authReducer = async (state = initialState, action) => {
+export const authReducer = (state = initialState, action) => {
    switch (action.type) {
 
       case register_Type:
-         const register = await authAPI.register(
+         const register = authAPI.register(
             action.payload.login,
             action.payload.password,
             action.payload.password_confirm,
@@ -27,25 +27,11 @@ export const authReducer = async (state = initialState, action) => {
          console.log(register.data);
          return { ...state, userData: register.data }
 
-      case login_Type://!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-         // function () {
-         //    return function (dispatch) {
-         //       await authAPI.login(
-         //          action.payload.login,
-         //          action.payload.password);
-         //       dispatch(login_Type)
-         //    }
-         // }
-         // let login =
-
-         //  await authAPI.login(
-         //    action.payload.login,
-         //    action.payload.password);
-
-         // console.log(login);
-         // console.log(login.data);
-         // return { ...state, userData: login.data }
+      case login_Type:
+         if (typeof action.payload.data == "object") {
+            state.isAuth = true;
+         }
+         return { ...state, userData: action.payload.data.user }
 
       case verify_Type:
          const verify = authAPI.verify(action.payload.link);
@@ -69,8 +55,8 @@ export const authReducer = async (state = initialState, action) => {
       case logout_Type:
          const logout = authAPI.logout();
 
-         console.log(logout.data);
-         return { ...state, userData: logout.data }
+         console.log(logout);
+         return { ...state, }
 
       default:
          return state
