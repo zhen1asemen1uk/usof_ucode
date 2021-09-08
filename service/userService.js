@@ -16,8 +16,9 @@ class userService {
       const tokenFromDB = await tokenController.getToken(refToken);
 
       if (!userData || !tokenFromDB) {
-         return console.error(`Error refresh token!!!!!!!!!`);
+         return console.error(`Error refresh token, user unAuthorized !!!`);
       }
+      
       let user = await userModel.getUserByID(userData.id);
       user = user[0][0];
 

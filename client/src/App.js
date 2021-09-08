@@ -18,7 +18,6 @@ const App = () => {
 
   useEffect(() => {
     if (localStorage.getItem(`token`)) {
-      store.authState.isAuth = true;
       authAPI.checkAuth();
     }
   }, [store]);
