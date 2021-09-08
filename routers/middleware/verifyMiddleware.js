@@ -5,7 +5,7 @@ module.exports = function () {
       try {
          const login = req.body.login;
          let verify = await userController.checkVerifyUser(login);
-
+         
          if (verify[0].length > 0) {
             verify = verify[0][0].verify;
 

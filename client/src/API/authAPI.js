@@ -1,4 +1,6 @@
+import axios from 'axios';
 import api from '.'
+import { API_URL } from '../config';
 import { login_Auth, logout_Auth, register_Auth } from '../reducers/authReducer/authReducer';
 
 export const authAPI = {
@@ -28,7 +30,6 @@ export const authAPI = {
                login: login,
                password: password
             })
-            localStorage.setItem('token', dataLogin.data.accessToken);
             return dispatch(login_Auth(dataLogin));
          }
          catch (error) {
@@ -68,11 +69,15 @@ export const authAPI = {
 
    async checkAuth() {
       try {
-         const check = await api.get(`/api/auth/refresh`);
+         
+         const check = await axios.get(`${API_URL}/api/auth/refresh`,
+         {withCredentials:true});
 
          localStorage.setItem('token', check.data.accessToken);
       } catch (error) {
          console.log(`Error check refresh ${error}`);
+      }finally{
+
       }
    }
 }

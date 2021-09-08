@@ -20,8 +20,8 @@ export const initialState = {
 
 export const postReducer = (state = initialState, action) => {
    switch (action.type) {
+
       case getAllPosts_Type:
-         console.log(`post reducer ${action.payload.data }`);
 
          return { ...state, postsData: action.payload.data }
 
@@ -58,7 +58,6 @@ export const postReducer = (state = initialState, action) => {
             action.payload.title,
             action.payload.content,
             action.payload.categories);
-         console.log(addPost);
          return { ...state, postsData: addPost }
 
       case addLikeForPost_Type:

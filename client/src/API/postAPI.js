@@ -2,14 +2,12 @@ import api from '.'
 import { addPost_Post, getAllPosts_Post } from '../reducers/postReducer/postReducer';
 
 export const postAPI = {
-   getAllPosts() {//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+   getAllPosts() {
       return async function (dispatch) {
          const dataPosts = await api.get(`/api/posts/`)
-         // console.log(`post API ${dataPosts}`)
+         
          return dispatch(getAllPosts_Post(dataPosts));
       }
-
-      // return api.get(`/api/posts/`)
    },
 
    getPostByID(id) {
@@ -32,23 +30,21 @@ export const postAPI = {
       return api.get(`/api/posts/${id}/like`)
    },
 
-   addPost(title, content, categories) {//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+   addPost(title, content, categories) {
       return async function (dispatch) {
-         try {
-            const newPosts = await api.post(`/api/posts/`, {
-               title: title,
-               content: content,
-               categories: categories
-            })
-            console.log(`post API ${newPosts}`)
-            return dispatch(addPost_Post());
-         }
-         catch (error) {
-            console.log(error);
+         const newPosts = await api.post(`/api/posts/`, {
+            title: title,
+            content: content,
+            categories: categories
+         })
+         if (newPosts.data === 'Post add!') {
+            return dispatch(addPost_Post({
+               title,
+               content,
+               categories
+            }));
          }
       }
-
-      // return api.post(`/api/posts/`, { title: title, content: content, categories: categories })
    },
 
    addLikeForPost(id) {

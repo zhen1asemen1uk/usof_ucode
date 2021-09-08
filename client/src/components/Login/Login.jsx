@@ -4,7 +4,7 @@ const Login = (props) => {
 
    const [login, setLogin] = useState("");
    const [password, setPassword] = useState("");
-  
+
    return (
       <>
          <h1>Login Page</h1>
@@ -16,14 +16,15 @@ const Login = (props) => {
 
          <input type="password" name="password" id="password"
             placeholder="Password" minLength={8} required={true}
-            maxLength={18} value={password} onChange={e => setPassword(e.target.value)}
+            maxLength={18} value={password}
+            onChange={e => setPassword(e.target.value)}
          />
 
          <button onClick={() => {
-             props.sendLoginData(login,password)
-         }} >Login</button>
+            props.sendLoginData(login, password)
+         }}>Login</button>
       </>
    )
-}; 
+};
 
 export default Login;

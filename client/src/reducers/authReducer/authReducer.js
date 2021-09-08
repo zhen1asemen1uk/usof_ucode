@@ -28,9 +28,12 @@ export const authReducer = (state = initialState, action) => {
 
       case login_Type:
          if (typeof action.payload.data == "object") {
+            localStorage.setItem('token', action.payload.data.accessToken);
             state.isAuth = true;
+            return { ...state, user: action.payload.data.user }
          }
-         return { ...state, user: action.payload.data.user }
+         return { ...state, user: action.payload.data }
+         
 
       case verify_Type:
          const verify = authAPI.verify(action.payload.link);
