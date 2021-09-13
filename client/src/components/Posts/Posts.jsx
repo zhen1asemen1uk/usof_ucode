@@ -8,19 +8,19 @@ import NonePosts from './NonePosts';
 const Posts = (props) => {
 
    const { authState, postState, addPost } = props;
-
+   console.log(postState);
    if (postState.postsData.length > 0) {
       return (
          <>
             {authState.isAuth ?
                <AddPost addPost={addPost} /> :
-               <AllPosts postState={postState} />
+               <AllPosts postsData={postState.postsData} />
             }
 
-            <AllPosts postState={postState} />
+            <AllPosts postsData={postState.postsData} />
          </>
       )
    }
-   return <NonePosts />
+   return <NonePosts addPost={addPost} />
 }
 export default Posts;

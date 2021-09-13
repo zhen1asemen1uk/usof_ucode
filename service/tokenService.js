@@ -28,9 +28,10 @@ class TokenService {
 
    }
 
-   async vadateAccessToken(accessToken) {
+   async validateAccessToken(accessToken) {
       try {
          const userData = jwt.verify(accessToken, JWT_ACCESS_SECRET);
+         console.log(userData);
          return userData
       } catch (error) {
          console.log(error);

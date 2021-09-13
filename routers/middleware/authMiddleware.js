@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const { JWT_REFRESH_SECRET, JWT_ACCESS_SECRET } = require("../../config");
+const tokenService = require("../../service/tokenService");
 
 module.exports = function (req, res, next) {
    try {
@@ -10,15 +11,19 @@ module.exports = function (req, res, next) {
          return res.status(403).json({ message: `Error authorization` });
       }
 
-      const token = authorization.split(` `)[1];
+      const accessToken = authorization.split(` `)[1];
 
-      if (!token) {
+      if (!accessToken) {
          return res.status(403).json({ message: `Error token` });
       }
+      let userData = tokenService.validateAccessToken(accessToken);
 
+      if (!userData) {
+         return res.status(403).json({ message: `Error token!` });
+      }
       // const decodedToken = jwt.verify(token, JWT_REFRESH_SECRET);
-      const decodedToken = jwt.verify(token, JWT_ACCESS_SECRET);
-      req.user = decodedToken;
+      // const decodedToken = jwt.verify(token, JWT_ACCESS_SECRET);
+      req.user = userData;
 
       return next();
 

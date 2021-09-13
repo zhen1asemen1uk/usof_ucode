@@ -3,10 +3,9 @@ import { addPost_Post, getAllPosts_Post } from '../reducers/postReducer/postRedu
 
 export const postAPI = {
    getAllPosts() {
-      return async function (dispatch) {
-         const dataPosts = await api.get(`/api/posts/`)
-         
-         return dispatch(getAllPosts_Post(dataPosts));
+      return async (dispatch) => {
+         const dataPosts = await api.get(`/api/posts/`);
+         return dispatch(getAllPosts_Post(dataPosts.data));
       }
    },
 
@@ -31,19 +30,14 @@ export const postAPI = {
    },
 
    addPost(title, content, categories) {
-      return async function (dispatch) {
-         const newPosts = await api.post(`/api/posts/`, {
-            title: title,
-            content: content,
-            categories: categories
-         })
-         if (newPosts.data === 'Post add!') {
-            return dispatch(addPost_Post({
-               title,
-               content,
-               categories
-            }));
-         }
+      return async (dispatch) => {
+         const newPost = await api.post(`/api/posts/`, {
+            title,
+            content,
+            categories
+         });
+         console.log(newPost);
+         return dispatch(addPost_Post(newPost.data));
       }
    },
 

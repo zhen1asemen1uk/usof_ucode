@@ -22,8 +22,7 @@ export const postReducer = (state = initialState, action) => {
    switch (action.type) {
 
       case getAllPosts_Type:
-
-         return { ...state, postsData: action.payload.data }
+         return { ...state, postsData: action.payload }
 
       case getPostByID_Type:
          console.log(1);
@@ -54,11 +53,11 @@ export const postReducer = (state = initialState, action) => {
          return { ...state, postsData: getAllLikeByPostID }
 
       case addPost_Type:
-         const addPost = postAPI.addPost(
-            action.payload.title,
-            action.payload.content,
-            action.payload.categories);
-         return { ...state, postsData: addPost }
+         console.log(action.payload);
+         console.log(state);
+         return {
+            ...state, postsData: state.postsData.concat({...action.payload})//!!!!!!!!!!!!!!!!!!!
+         }
 
       case addLikeForPost_Type:
          const addLikeForPost = postAPI.addLikeForPost(action.payload.id);

@@ -116,7 +116,6 @@ class postController extends Controller {
             for (let i = 0; i < category.length;i++){
                const createCategory = await categoryModel.createCategory(post_id, id_author_post, category[i]);
             }
-
             return res.send('Post add!');
          } else {
             return res.send('Title, content and category must be filled!');

@@ -24,8 +24,8 @@ class authController extends Controller {
          if (password.length >= 8 && password === password_confirm) {
             //check unique users
             let check = await userModel.getUser(login, email);
-            console.log(check);
-            if (!check){
+
+            if (!check) {
                return res.send(`Error!`)
             }
             let [rows, fields] = check;
@@ -132,10 +132,9 @@ class authController extends Controller {
          const { refreshToken } = req.cookies;
 
          const refresh = await userService.refresh(refreshToken);
-         
+
          //save token to cookies
          res.cookie(`refreshToken`, refresh.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true }); //when `https` add secure!
-
          return res.json({ ...refresh });
       } catch (error) {
          console.log(error);
@@ -201,8 +200,6 @@ class authController extends Controller {
             //check unique users
             let check = await userModel.getUser(login, email);
             let [rows, fields] = check;
-
-            console.log(rows.length);
 
             if (rows.length > 0) {
                return res.send(`Login or email is already in use!`);
