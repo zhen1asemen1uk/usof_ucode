@@ -103,8 +103,7 @@ class postController extends Controller {
             const { title, content, categories } = req.body;
 
             let id_author_post = 0;
-
-            if (req.user && req.user.id) {
+            if (req.user?.id) {
                id_author_post = req.user.id;
             }
 
@@ -112,11 +111,13 @@ class postController extends Controller {
             const post_id = createPost[0].insertId;
 
             let category = categories.split(` `);
-            
-            for (let i = 0; i < category.length;i++){
+
+            for (let i = 0; i < category.length; i++) {
                const createCategory = await categoryModel.createCategory(post_id, id_author_post, category[i]);
             }
-            return res.send('Post add!');
+            const post = await postModel.getPostByID(post_id);
+
+            return res.json(post[0][0]);
          } else {
             return res.send('Title, content and category must be filled!');
          }

@@ -1,5 +1,17 @@
 import api from '.'
-import { addPost_Post, getAllPosts_Post } from '../reducers/postReducer/postReducer';
+import {
+   addCommentsForPost_Post,
+   addLikeForPost_Post,
+   addPost_Post,
+   deleteLikeByPost_Post,
+   deletePost_Post,
+   getAllCategoryByPostID_Post,
+   getAllLikeByPostID_Post,
+   getAllPosts_Post,
+   getCommentsPostByID_Post,
+   getPostByID_Post,
+   updatePost_Post
+} from '../reducers/postReducer/postReducer';
 
 export const postAPI = {
    getAllPosts() {
@@ -10,23 +22,38 @@ export const postAPI = {
    },
 
    getPostByID(id) {
-      return api.get(`/api/posts/${id}`)
+      return async (dispatch) => {
+         const dataPosts = await api.get(`/api/posts/${id}`)
+         return dispatch(getPostByID_Post(dataPosts.data));
+      }
    },
 
    getCommentsPostByID(id) {
-      return api.get(`/api/posts/${id}/comments`)
+      return async (dispatch) => {
+         const dataComment = await api.get(`/api/posts/${id}/comments`);
+         return dispatch(getCommentsPostByID_Post(dataComment.data));
+      }
    },
 
    addCommentsForPost(id, content) {
-      return api.post(`/api/posts/${id}/comments`, { content: content })
+      return async (dispatch) => {
+         const dataComment = await api.post(`/api/posts/${id}/comments`, { content: content })
+         return dispatch(addCommentsForPost_Post(dataComment.data));
+      }
    },
 
    getAllCategoryByPostID(id) {
-      return api.get(`/api/posts/${id}/categories`)
+      return async (dispatch) => {
+         const dataCategory = await api.get(`/api/posts/${id}/categories`)
+         return dispatch(getAllCategoryByPostID_Post(dataCategory.data));
+      }
    },
 
    getAllLikeByPostID(id) {
-      return api.get(`/api/posts/${id}/like`)
+      return async (dispatch) => {
+         const dataLike = await api.get(`/api/posts/${id}/like`)
+         return dispatch(getAllLikeByPostID_Post(dataLike.data));
+      }
    },
 
    addPost(title, content, categories) {
@@ -36,24 +63,35 @@ export const postAPI = {
             content,
             categories
          });
-         console.log(newPost);
          return dispatch(addPost_Post(newPost.data));
       }
    },
 
    addLikeForPost(id) {
-      return api.post(`/api/posts/${id}/like`)
+      return async (dispatch) => {
+         const dataPosts = await api.post(`/api/posts/${id}/like`)
+         return dispatch(addLikeForPost_Post(dataPosts.data));
+      }
    },
 
    updatePost(id, title, content, categories) {
-      return api.patch(`/api/posts/${id}`, { title: title, content: content, categories: categories })
+      return async (dispatch) => {
+         const dataPosts = await api.patch(`/api/posts/${id}`, { title: title, content: content, categories: categories })
+         return dispatch(updatePost_Post(dataPosts.data));
+      }
    },
 
    deletePost(id) {
-      return api.delete(`/api/posts/${id}`)
+      return async (dispatch) => {
+         const deletedPost = await api.delete(`/api/posts/${id}`)
+         return dispatch(deletePost_Post(deletedPost.data));
+      }
    },
 
    deleteLikeByPost(id) {
-      return api.delete(`/api/posts/${id}/like`)
+      return async (dispatch) => {
+         const deletedLike = await api.delete(`/api/posts/${id}/like`);
+         return dispatch(deleteLikeByPost_Post(deletedLike.data));
+      }
    },
 }

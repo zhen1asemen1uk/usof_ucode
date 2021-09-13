@@ -14,8 +14,6 @@ class postModel extends Model {
       SELECT * FROM posts WHERE id=${id};`);
    }
 
-  
-   
    async createPost(title_post, content_post, id_author_post) {
       return await dbConnection.getConnection(`
       INSERT INTO posts (title_post, content_post,id_author_post)

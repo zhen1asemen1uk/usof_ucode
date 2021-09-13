@@ -1,4 +1,3 @@
-import { postAPI } from "../../API/postAPI";
 import {
    getAllPosts_Type,
    getPostByID_Type,
@@ -15,7 +14,11 @@ import {
 
 
 export const initialState = {
-   postsData: []
+   postsData: [],
+   postDataByID: [],
+   commentsPostByID: [],
+   categoryByPostID: [],
+   likeForPost: []
 }
 
 export const postReducer = (state = initialState, action) => {
@@ -25,63 +28,39 @@ export const postReducer = (state = initialState, action) => {
          return { ...state, postsData: action.payload }
 
       case getPostByID_Type:
-         console.log(1);
-         const getPostByID = postAPI.getPostByID(action.payload.id);
-         console.log(getPostByID);
-         return { ...state, postsData: getPostByID }
-
-      case getCommentsPostByID_Type:
-         const getCommentsPostByID = postAPI.getCommentsPostByID(action.payload.id);
-         console.log(getCommentsPostByID);
-         return { ...state, postsData: getCommentsPostByID }
-
-      case addCommentsForPost_Type:
-         const addCommentsForPost = postAPI.addCommentsForPost(
-            action.payload.id,
-            action.payload.content);
-         console.log(addCommentsForPost);
-         return { ...state, postsData: addCommentsForPost }
-
-      case getAllCategoryByPostID_Type:
-         const getAllCategoryByPostID = postAPI.getAllCategoryByPostID(action.payload.id);
-         console.log(getAllCategoryByPostID);
-         return { ...state, postsData: getAllCategoryByPostID }
-
-      case getAllLikeByPostID_Type:
-         const getAllLikeByPostID = postAPI.getAllLikeByPostID(action.payload.id);
-         console.log(getAllLikeByPostID);
-         return { ...state, postsData: getAllLikeByPostID }
-
-      case addPost_Type:
-         console.log(action.payload);
-         console.log(state);
          return {
-            ...state, postsData: state.postsData.concat({...action.payload})//!!!!!!!!!!!!!!!!!!!
+            ...state, postDataByID: action.payload
          }
 
-      case addLikeForPost_Type:
-         const addLikeForPost = postAPI.addLikeForPost(action.payload.id);
-         console.log(addLikeForPost);
-         return { ...state, postsData: addLikeForPost }
+      case getCommentsPostByID_Type:
+         return { ...state, commentsPostByID: action.payload }
 
-      case updatePost_Type:
-         const updatePost = postAPI.updatePost(
-            action.payload.id,
-            action.payload.title,
-            action.payload.content,
-            action.payload.categories);
-         console.log(updatePost);
-         return { ...state, postsData: updatePost }
+      case addCommentsForPost_Type://!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+         return { ...state }
 
-      case deletePost_Type:
-         const deletePost = postAPI.deletePost(action.payload.id);
-         console.log(deletePost);
-         return { ...state, postsData: deletePost }
+      case getAllCategoryByPostID_Type:
+         return { ...state, categoryByPostID: action.payload }
 
-      case deleteLikeByPost_Type:
-         const deleteLikeByPost = postAPI.deleteLikeByPost(action.payload.id);
-         console.log(deleteLikeByPost);
-         return { ...state, postsData: deleteLikeByPost }
+      case getAllLikeByPostID_Type:
+         return { ...state, likeForPost: action.payload }
+
+      case addPost_Type:
+         return {
+            ...state, postsData: state.postsData.concat({ ...action.payload })
+         }
+
+      case addLikeForPost_Type://!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+         return { ...state }
+
+      case updatePost_Type://!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+         return { ...state }
+
+      case deletePost_Type://!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+         console.log(action.payload);
+         return { ...state }
+
+      case deleteLikeByPost_Type://!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+         return { ...state }
 
       default:
          return state
