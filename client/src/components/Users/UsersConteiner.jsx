@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { userAPI } from '../../API/userAPI';
+import Users from './Users';
+import '../../styles/Users.css'
 
 export const UsersConteiner = () => {
-   return (
-      <div>
-         <h1>User Page</h1>
+   const dispatch = useDispatch();
 
-      </div>
+   const userState = useSelector(state => state.userState);
+
+   const getAllUsers = () => {
+      dispatch(userAPI.getAllUsers());
+   }
+
+   useEffect(() => {
+      getAllUsers()
+   }, [])
+
+   return (
+      <Users userState={userState} />
    )
 };
 export default UsersConteiner;

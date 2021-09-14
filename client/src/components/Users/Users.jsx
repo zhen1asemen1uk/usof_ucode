@@ -1,11 +1,16 @@
 import React from 'react';
+import AllUsers from './AllUsers';
+import NoneUsers from './NoneUsers';
 
-export const Users = () => {
-   return (
-      <div>
-         <h1>User Page</h1>
+export const Users = (props) => {
 
-      </div>
-   )
+   const { userState } = props;
+
+
+
+   if (userState.users.length > 0) {
+      return <AllUsers users={userState.users} />
+   }
+   return <NoneUsers />
 };
 export default Users;

@@ -1,8 +1,12 @@
 import api from '.'
+import { getAllUsers_User } from '../reducers/userReducer/userReducer';
 
 export const userAPI = {
-   async getAllUsers() {
-      return api.get(`/api/users/`)
+   getAllUsers() {
+      return async (dispatch) => {
+         const usersData = await api.get(`/api/users/`);
+         return dispatch(getAllUsers_User(usersData.data));
+      }
    },
 
    async getUserByID(id) {

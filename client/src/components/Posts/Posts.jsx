@@ -1,5 +1,5 @@
 import React from 'react';
-import "../../styles/Post.css";
+import "../../styles/Posts.css";
 
 import AddPost from './AddPost';
 import AllPosts from './AllPosts';
@@ -8,7 +8,7 @@ import NonePosts from './NonePosts';
 const Posts = (props) => {
 
    const { authState, postState, addPost } = props;
-   console.log(postState);
+
    if (postState.postsData.length > 0) {
       return (
          <>

@@ -9,17 +9,14 @@ import {
 } from "./types";
 
 export const initialState = {
-   users: null
+   users: []
 }
 
 export const userReducer =  (state = initialState, action) => {
    switch (action.type) {
 
       case getAllUsers_Type:
-         const getAllUsers = userAPI.getAllUsers();
-
-         console.log(getAllUsers);
-         return { ...state, users: getAllUsers }
+         return { ...state, users: action.payload }
 
       case getUserByID_Type:
          const getUserByID = userAPI.getUserByID(action.payload.id);

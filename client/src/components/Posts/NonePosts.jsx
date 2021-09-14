@@ -1,5 +1,5 @@
 import React from 'react'
-import "../../styles/Post.css";
+import "../../styles/Posts.css";
 import AddPost from './AddPost';
 
 const NonePosts = (props) => {

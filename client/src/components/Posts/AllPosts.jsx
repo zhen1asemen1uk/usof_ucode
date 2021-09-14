@@ -1,11 +1,11 @@
 import React from 'react'
-import '../../styles/Post.css'
+import '../../styles/Posts.css'
 
 const AllPosts = (props) => {
 
    const { postsData } = props;
    return (
-      <div className='wrapp'>
+      <div className='wrappPost'>
          <div className='posts'>
             {postsData.map((pst) => {
                return (
