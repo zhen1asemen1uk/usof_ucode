@@ -1,14 +1,20 @@
 import React from 'react'
-import "../../styles/Posts.css";
+
 import AddPost from './AddPost';
 
+import "../../styles/Posts.css";
+
 const NonePosts = (props) => {
-   const { addPost } = props;
+   const { addPost, authState } = props;
 
    return (
       <>
          <h1>None posts 😕</h1>
-         <AddPost addPost={addPost} />
+         {authState.isAuth ?
+            <AddPost addPost={addPost} />
+            :
+            <></>
+         }
       </>
    )
 }

@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { authAPI } from '../../API/authAPI';
 import Register from './Register';
 
+import '../../styles/Register.css'
+
 const RegisterConteiner = () => {
 
    const dispatch = useDispatch();

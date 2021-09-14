@@ -7,7 +7,8 @@ class postModel extends Model {
    }
    async getAllPosts() {
       return await dbConnection.getConnection(`
-         SELECT * FROM posts;`);
+      SELECT * FROM users INNER JOIN posts ON users.id=posts.id_author_post;`);
+      // SELECT * FROM posts;`);
    }
    async getPostByID(id) {
       return await dbConnection.getConnection(`
@@ -19,7 +20,7 @@ class postModel extends Model {
       INSERT INTO posts (title_post, content_post,id_author_post)
       VALUES ('${title_post}', '${content_post}','${id_author_post}');`);
    }
- 
+
    async updateTitleByID(post_id, title_post) {
       return await dbConnection.getConnection(`
       UPDATE posts SET title_post='${title_post}' WHERE id='${post_id}';`);
@@ -33,6 +34,6 @@ class postModel extends Model {
       return await dbConnection.getConnection(`
       DELETE FROM posts WHERE id=${post_id};`);
    }
-  
+
 }
 module.exports = new postModel();

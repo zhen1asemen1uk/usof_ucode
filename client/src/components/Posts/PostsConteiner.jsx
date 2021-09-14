@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { postAPI } from '../../API/postAPI';
 import Posts from './Posts';
 
+import "../../styles/Posts.css";
+
+
 
 const PostsConteiner = () => {
 
@@ -11,7 +14,7 @@ const PostsConteiner = () => {
 
    const postState = useSelector(state => state.postState);
    const authState = useSelector(state => state.authState);
-
+   console.log(postState);
    const addPost = (title, content, categories) => {
       dispatch(postAPI.addPost(title, content, categories));
    }

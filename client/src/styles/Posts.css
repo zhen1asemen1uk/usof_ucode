@@ -105,5 +105,5 @@ border-bottom: 2px solid black;
   align-items: flex-end;
   width: 100%;
   font-size: 0.7em;
-
+  cursor: pointer;
 }

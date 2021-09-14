@@ -11,9 +11,18 @@ class postController extends Controller {
    }
    async getAllPosts(req, res) {
       try {
-         const posts = await postModel.getAllPosts();
-
-         return res.json(posts[0])
+         const postsData = await postModel.getAllPosts();
+         
+         for (const key in postsData[0]) {
+            delete postsData[0][key].password
+            delete postsData[0][key].activationLink
+            delete postsData[0][key].verify
+            delete postsData[0][key].status
+            delete postsData[0][key].avatar
+            delete postsData[0][key].email
+        }
+         
+         return res.json(postsData[0])
       } catch (error) {
          res.send(`Error get all post!`);
       }

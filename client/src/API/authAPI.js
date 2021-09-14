@@ -69,14 +69,19 @@ export const authAPI = {
 
    async checkAuth() {
       try {
-         
-         const check = await axios.get(`${API_URL}/api/auth/refresh`,
-         {withCredentials:true});
+         const check = await axios.get(`
+
+         ${API_URL}/api/auth/refresh`,
+            { withCredentials: true });
 
          localStorage.setItem('token', check.data.accessToken);
+
+         const obj = JSON.stringify(check.data.user)
+         localStorage.setItem('userData', obj);
+
       } catch (error) {
          console.log(`Error check refresh ${error}`);
-      }finally{
+      } finally {
 
       }
    }

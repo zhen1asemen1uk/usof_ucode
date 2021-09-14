@@ -4,7 +4,7 @@ const userModel = require(`../models/userModel`);
 const sendMailService = require("../service/sendMailService");
 const tokenService = require("../service/tokenService");
 
-const { API_URL } = require(`../config`);
+const { API_URL, CLIENT_URL } = require(`../config`);
 
 
 const bcrypt = require(`bcryptjs`);
@@ -66,7 +66,7 @@ class userController extends Controller {
 
          await userModel.activateUser_updateVerify(link);
 
-         return res.send(`Happy verify go => ${API_URL}`) // res.redirect()
+         res.redirect(`${CLIENT_URL}/login`)
       } catch (error) {
          console.log(error);
          res.send(`Error activate user!`);

@@ -5,6 +5,8 @@ import { authAPI } from '../../API/authAPI';
 import PostsConteiner from '../Posts/PostsConteiner';
 import Login from './Login';
 
+import '../../styles/Login.css'
+
 const LoginConteiner = () => {
 
    const dispatch = useDispatch();

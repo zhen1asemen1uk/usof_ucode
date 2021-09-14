@@ -2,18 +2,29 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
-import "./styles/App.css";
 import AppRouter from "./components/AppRouter";
-import { authAPI } from "./API/authAPI";
 import IsAuth from "./components/NavBar/IsAuth";
 import NotAuth from "./components/NavBar/NotAuth";
+
+import { authAPI } from "./API/authAPI";
+
+import "./styles/App.css";
 
 
 const App = () => {
   const store = useSelector(store => store);
+  const user = useSelector(store => store.authState.user);
+  console.log(user);
 
+//for true auth status
   if (localStorage.getItem(`token`)) {
     store.authState.isAuth = true;
+  }
+  
+//for save avatar after refresh page
+  if (localStorage.getItem(`userData`)) {
+    let obj = JSON.parse(localStorage.getItem(`userData`))
+    store.authState.user = obj;
   }
 
   useEffect(() => {
@@ -27,7 +38,7 @@ const App = () => {
       <BrowserRouter>
         <header>
           <nav className='navBar'>
-            {store.authState.isAuth ? <IsAuth /> : <NotAuth />}
+            {store.authState.isAuth ? <IsAuth user={user} /> : <NotAuth />}
           </nav>
         </header>
 

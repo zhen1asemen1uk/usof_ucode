@@ -1,5 +1,4 @@
 import React from 'react';
-import "../../styles/Posts.css";
 
 import AddPost from './AddPost';
 import AllPosts from './AllPosts';
@@ -21,6 +20,6 @@ const Posts = (props) => {
          </>
       )
    }
-   return <NonePosts addPost={addPost} />
+   return <NonePosts addPost={addPost} authState={authState} />
 }
 export default Posts;

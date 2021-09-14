@@ -29,6 +29,10 @@ export const authReducer = (state = initialState, action) => {
       case login_Type:
          if (typeof action.payload.data == "object") {
             localStorage.setItem('token', action.payload.data.accessToken);
+
+            const obj = JSON.stringify(action.payload.data.user);
+            localStorage.setItem('userData', obj);
+
             state.isAuth = true;
             return { ...state, user: action.payload.data.user }
          }
@@ -57,6 +61,7 @@ export const authReducer = (state = initialState, action) => {
       case logout_Type:
          state.isAuth = false;
          localStorage.removeItem('token');
+         localStorage.removeItem('userData');
          return { ...state, user: {} }
 
       default:
