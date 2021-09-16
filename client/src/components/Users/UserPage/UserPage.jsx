@@ -23,6 +23,7 @@ const UserPage = (props) => {
                   <h3>Data:</h3>
                   <div className={stl.loginUser}><strong>Login:</strong> {userPage[0].login}</div>
                   <div className={stl.emailUser}><strong>Email:</strong> {userPage[0].email}</div>
+                  <div className={stl.statusUser}><strong>Status:</strong> {userPage[0].status}</div>
                </div>
                <div className={stl.postsData}>
                   <h2>Posts:</h2>

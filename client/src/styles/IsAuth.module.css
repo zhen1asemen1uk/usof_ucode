@@ -1,17 +1,27 @@
 .myIcon {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 40px;
+  height: 50px;
+  width: 50px;
   margin-left: 15px;
   border-radius: 10px;
   cursor: pointer;
 }
 
-.logout {
+.myIcon:hover .dropDown {
+  transition: all 0.4s;
+  top: 10px;
+  z-index: 5;
+}
+
+.dropDown {
+  height: 55px;
+  transition: all 0.8s;
   display: flex;
-  justify-content: center;
-  align-self: center;
+  flex-direction: column;
+  position: relative;
+  top: -30px;
+  z-index: -5;
 }
 
 .myAvatar {
@@ -20,8 +30,8 @@
   align-self: center;
   align-items: center;
   border-radius: 10px;
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
 }
 
 .myAvatar:hover {
@@ -32,8 +42,8 @@
   display: flex;
   justify-content: center;
   border-radius: 10px;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
 }
 
 #linkForAvatar:hover {

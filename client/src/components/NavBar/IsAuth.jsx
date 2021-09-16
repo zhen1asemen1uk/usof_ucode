@@ -27,10 +27,12 @@ const IsAuth = (props) => {
                   alt="avatar" className={stl.myAvatar} />
 
             </Link>
-
-            <Link className={stl.logout} to='/' onClick={() => {
-               dispatch(authAPI.logout())
-            }}>logout</Link>
+            <div className={stl.dropDown}>
+               <Link to='/setting'>setting</Link>
+               <Link to='/' onClick={() => {
+                  dispatch(authAPI.logout())
+               }}>logout</Link>
+            </div>
          </div>
       </>
    )
