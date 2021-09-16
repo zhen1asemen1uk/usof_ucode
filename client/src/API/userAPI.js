@@ -1,5 +1,5 @@
 import api from '.'
-import { getAllUsers_User } from '../reducers/userReducer/userReducer';
+import { getAllUsers_User, getUserByID_User } from '../reducers/userReducer/userReducer';
 
 export const userAPI = {
    getAllUsers() {
@@ -9,8 +9,11 @@ export const userAPI = {
       }
    },
 
-   async getUserByID(id) {
-      return api.get(`/api/users/${id}`)
+   getUserByID(id) {
+      return async (dispatch) => {
+         const usersData = await api.get(`/api/users/${id}`);
+         return dispatch(getUserByID_User(usersData.data));
+      }
    },
 
    async registerForADMIN(

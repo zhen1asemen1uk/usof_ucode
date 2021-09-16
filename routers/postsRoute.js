@@ -9,6 +9,8 @@ router.get(`/`, postController.getAllPosts);
 
 router.get(`/:post_id`, postController.getPostByID);
 
+router.get(`/:user_id/user`, postController.getPostByUserID);
+
 router.get(`/:post_id/comments`, postController.getCommentByPostID);
 
 router.post(`/:post_id/comments`, authMiddleware, postController.createComment);

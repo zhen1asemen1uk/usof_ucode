@@ -9,6 +9,7 @@ import {
    getAllLikeByPostID_Post,
    getAllPosts_Post,
    getCommentsPostByID_Post,
+   getPostByUserID_Post,
    getPostByID_Post,
    updatePost_Post
 } from '../reducers/postReducer/postReducer';
@@ -25,6 +26,12 @@ export const postAPI = {
       return async (dispatch) => {
          const dataPosts = await api.get(`/api/posts/${id}`)
          return dispatch(getPostByID_Post(dataPosts.data));
+      }
+   },
+   getPostByUserID(id) {
+      return async (dispatch) => {
+         const dataPosts = await api.get(`/api/posts/${id}/user`)
+         return dispatch(getPostByUserID_Post(dataPosts.data));
       }
    },
 

@@ -1,6 +1,7 @@
 import {
    getAllPosts_Type,
    getPostByID_Type,
+   getPostByUserID_Type,
    getCommentsPostByID_Type,
    addCommentsForPost_Type,
    getAllCategoryByPostID_Type,
@@ -16,6 +17,7 @@ import {
 export const initialState = {
    postsData: [],
    postDataByID: [],
+   postDataByUserID:[],
    commentsPostByID: [],
    categoryByPostID: [],
    likeForPost: []
@@ -30,6 +32,11 @@ export const postReducer = (state = initialState, action) => {
       case getPostByID_Type:
          return {
             ...state, postDataByID: action.payload
+         }
+
+      case getPostByUserID_Type:
+         return {
+            ...state, postDataByUserID: action.payload
          }
 
       case getCommentsPostByID_Type:
@@ -69,6 +76,7 @@ export const postReducer = (state = initialState, action) => {
 
 export const getAllPosts_Post = (payload) => ({ type: getAllPosts_Type, payload });
 export const getPostByID_Post = (payload) => ({ type: getPostByID_Type, payload });
+export const getPostByUserID_Post = (payload) => ({ type: getPostByUserID_Type, payload });
 export const getCommentsPostByID_Post = (payload) => ({ type: getCommentsPostByID_Type, payload });
 export const addCommentsForPost_Post = (payload) => ({ type: addCommentsForPost_Type, payload });
 export const getAllCategoryByPostID_Post = (payload) => ({ type: getAllCategoryByPostID_Type, payload });

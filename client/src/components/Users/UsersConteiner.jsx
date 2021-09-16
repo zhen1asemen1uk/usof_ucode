@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import { postAPI } from '../../API/postAPI';
 import { userAPI } from '../../API/userAPI';
 import Users from './Users';
-import '../../styles/Users.css'
 
 export const UsersConteiner = () => {
    const dispatch = useDispatch();
@@ -13,12 +13,19 @@ export const UsersConteiner = () => {
       dispatch(userAPI.getAllUsers());
    }
 
+   const getUserByID = (userID) => {
+      dispatch(userAPI.getUserByID(userID));
+   }
+   
+   const getPostByUserID = (userID) => {
+      dispatch(postAPI.getPostByUserID(userID));
+   }
    useEffect(() => {
       getAllUsers()
    }, [])
-
+   
    return (
-      <Users userState={userState} />
+      <Users userState={userState} getUserByID={getUserByID} getPostByUserID={getPostByUserID} />
    )
 };
 export default UsersConteiner;

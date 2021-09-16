@@ -1,16 +1,12 @@
 import React from 'react';
 import AllUsers from './AllUsers';
 import NoneUsers from './NoneUsers';
-import UserPage from './UserPage';
 
 export const Users = (props) => {
 
-   const { userState } = props;
-
-   <UserPage userState={userState} />
-
+   const { userState, getUserByID, getPostByUserID } = props;  
    if (userState.users.length > 0) {
-      return <AllUsers users={userState.users} />
+      return <AllUsers users={userState.users} getUserByID={getUserByID} getPostByUserID={getPostByUserID} />
    }
    return <NoneUsers />
 };

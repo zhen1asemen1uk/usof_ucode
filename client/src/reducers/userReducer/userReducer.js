@@ -9,7 +9,8 @@ import {
 } from "./types";
 
 export const initialState = {
-   users: []
+   users: [],
+   userPage:[]
 }
 
 export const userReducer =  (state = initialState, action) => {
@@ -19,10 +20,7 @@ export const userReducer =  (state = initialState, action) => {
          return { ...state, users: action.payload }
 
       case getUserByID_Type:
-         const getUserByID = userAPI.getUserByID(action.payload.id);
-
-         console.log(getUserByID);
-         return { ...state, users: getUserByID }
+         return { ...state, userPage: action.payload }
 
       case registerForADMIN_Type:
          const registerForADMIN = userAPI.registerForADMIN(

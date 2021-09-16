@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { authAPI } from '../../API/authAPI';
 import Register from './Register';
 
-import '../../styles/Register.css'
+// import stl from '../../styles/Register.module.css'
 
 const RegisterConteiner = () => {
 

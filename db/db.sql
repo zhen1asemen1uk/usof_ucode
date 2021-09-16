@@ -65,6 +65,8 @@ CREATE TABLE IF NOT EXISTS likes (
 -- VALUES ('./bla-bla-bla', 'ysemeniuk', 'ysemeniuk', 'jekasemenuk@ukr.net', 'admin'),
 -- ('./bla-bla-bla', 'yevhen', 'ysemeniuk', 'jekasemenuk@gmail.com', 'user');
 
+-- SET GLOBAL max_connections = 1024;
+-- SHOW VARIABLES LIKE "max_connections";
 
 
 -- "user": "root",

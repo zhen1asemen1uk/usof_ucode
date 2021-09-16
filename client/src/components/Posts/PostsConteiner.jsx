@@ -4,23 +4,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { postAPI } from '../../API/postAPI';
 import Posts from './Posts';
 
-import "../../styles/Posts.css";
-
-
-
 const PostsConteiner = () => {
 
    const dispatch = useDispatch();
 
    const postState = useSelector(state => state.postState);
    const authState = useSelector(state => state.authState);
-   console.log(postState);
+
    const addPost = (title, content, categories) => {
       dispatch(postAPI.addPost(title, content, categories));
    }
 
    const getPostByID = (id) => {
       dispatch(postAPI.getPostByID(id));
+   }
+   const getPostByUserID = (id) => {
+      dispatch(postAPI.getPostByUserID(id));
    }
    const getCommentsPostByID = (id) => {
       dispatch(postAPI.getCommentsPostByID(id));

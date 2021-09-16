@@ -14,16 +14,15 @@ import "./styles/App.css";
 const App = () => {
   const store = useSelector(store => store);
   const user = useSelector(store => store.authState.user);
-  console.log(user);
 
-//for true auth status
-  if (localStorage.getItem(`token`)) {
+  //for true auth status
+  if (localStorage.getItem(`token`) && localStorage.getItem(`token`) !== 'undefined') {
     store.authState.isAuth = true;
   }
-  
-//for save avatar after refresh page
-  if (localStorage.getItem(`userData`)) {
-    let obj = JSON.parse(localStorage.getItem(`userData`))
+
+  //for save avatar after refresh page
+  if (localStorage.getItem(`userData`) && localStorage.getItem(`userData`) !== 'undefined') {
+    const obj = JSON.parse(localStorage.getItem(`userData`))
     store.authState.user = obj;
   }
 

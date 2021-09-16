@@ -1,6 +1,7 @@
 //posts
 export const getAllPosts_Type = 'getAllPosts';
 export const getPostByID_Type = 'getPostByID';
+export const getPostByUserID_Type = 'getPostByUserID';
 export const getCommentsPostByID_Type = 'getCommentsPostByID';
 export const addCommentsForPost_Type = 'addCommentsForPost';
 export const getAllCategoryByPostID_Type = 'getAllCategoryByPostID';

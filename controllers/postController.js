@@ -43,6 +43,22 @@ class postController extends Controller {
          res.send(`Error get post by id!`);
       }
    }
+   
+   async getPostByUserID(req, res) {
+      try {
+         if (req.params.user_id >= 1) {
+            const user_id = req.params.user_id;
+            let post = await postModel.getPostByUserID(user_id);
+
+            return res.json(post[0]);
+         } else {
+            return res.send(`Error post id!`);
+         }
+      } catch (error) {
+         console.log(error);
+         res.send(`Error get post by id!`);
+      }
+   }
 
    async getCommentByPostID(req, res) {
       try {

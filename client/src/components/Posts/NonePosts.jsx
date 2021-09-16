@@ -2,8 +2,6 @@ import React from 'react'
 
 import AddPost from './AddPost';
 
-import "../../styles/Posts.css";
-
 const NonePosts = (props) => {
    const { addPost, authState } = props;
 

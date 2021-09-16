@@ -14,6 +14,11 @@ class postModel extends Model {
       return await dbConnection.getConnection(`
       SELECT * FROM posts WHERE id=${id};`);
    }
+   
+   async getPostByUserID(id) {
+      return await dbConnection.getConnection(`
+      SELECT * FROM posts WHERE id_author_post=${id};`);
+   }
 
    async createPost(title_post, content_post, id_author_post) {
       return await dbConnection.getConnection(`

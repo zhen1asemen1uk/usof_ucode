@@ -19,7 +19,7 @@ header .navBar{
    margin-left: auto;
 }
 
-header .navBar a{
+header .navBar a {
    display: flex;
    align-items: center;
    color: black;

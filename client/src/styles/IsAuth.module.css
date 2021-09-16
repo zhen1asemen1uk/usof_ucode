@@ -1,0 +1,42 @@
+.myIcon {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 40px;
+  margin-left: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.logout {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.myAvatar {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  border-radius: 10px;
+  width: 35px;
+  height: 35px;
+}
+
+.myAvatar:hover {
+  box-shadow: 0px 0px 5px 0px #000000;
+}
+
+#linkForAvatar {
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+}
+
+#linkForAvatar:hover {
+  margin: 0;
+  padding: 0;
+}
