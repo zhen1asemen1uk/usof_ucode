@@ -8,16 +8,15 @@ class postModel extends Model {
    async getAllPosts() {
       return await dbConnection.getConnection(`
       SELECT * FROM users INNER JOIN posts ON users.id=posts.id_author_post;`);
-      // SELECT * FROM posts;`);
    }
    async getPostByID(id) {
       return await dbConnection.getConnection(`
       SELECT * FROM posts WHERE id=${id};`);
    }
-   
+
    async getPostByUserID(id) {
       return await dbConnection.getConnection(`
-      SELECT * FROM posts WHERE id_author_post=${id};`);
+      SELECT * FROM users INNER JOIN posts ON users.id=posts.id_author_post WHERE id_author_post=${id};`);
    }
 
    async createPost(title_post, content_post, id_author_post) {

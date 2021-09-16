@@ -14,7 +14,7 @@ const Register = (props) => {
          <div className={stl.wrappFormReg}>
             <input type="text" name="login" id={stl.login}
                placeholder="Login" autoFocus required={true}
-               maxLength={18} pattern={"[A-Za-z]+"} value={login}
+               maxLength={40} pattern={"[A-Za-z]+"} value={login}
                onChange={e => setLogin(e.target.value)}
                className={`${stl.log} ${stl.inp}`}
 
@@ -36,7 +36,7 @@ const Register = (props) => {
             <input type="email" name="email" id={stl.email}
                placeholder="Email" required={true} maxLength={50}
                value={email} onChange={e => setEmail(e.target.value)}
-               className={`${stl.email} ${stl.inp}`}
+               className={`${stl.email} ${stl.inp}`} 
 
             />
 

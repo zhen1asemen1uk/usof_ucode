@@ -12,7 +12,7 @@ const Login = (props) => {
          <div className={stl.wrappFormLog}>
             <input type="text" name="login" id={stl.login}
                placeholder="Login" autoFocus required={true}
-               maxLength={18} pattern={"[A-Za-z]+"} value={login}
+               maxLength={40} pattern={"[A-Za-z]+"} value={login}
                onChange={e => setLogin(e.target.value)}
                className={`${stl.log} ${stl.inp}`}
             />

@@ -5,7 +5,6 @@ import { postAPI } from '../../API/postAPI';
 import Posts from './Posts';
 
 const PostsConteiner = () => {
-
    const dispatch = useDispatch();
 
    const postState = useSelector(state => state.postState);

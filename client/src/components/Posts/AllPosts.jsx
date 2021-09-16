@@ -7,9 +7,7 @@ const AllPosts = (props) => {
 
    if (typeof postsData === 'string') {
       return (
-         <>
-            <h1>{postsData}</h1>
-         </>)
+         <><h1>{postsData}</h1> </>)
    }
 
    return (
@@ -23,8 +21,7 @@ const AllPosts = (props) => {
                      <p className={stl.postAuthor}>{pst.login}</p>
                      <span className={stl.postLike}>Like 99</span>
                   </div>)
-            }
-            )}
+            })}
          </div>
       </div>
    )

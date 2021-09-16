@@ -48,7 +48,16 @@ class postController extends Controller {
       try {
          if (req.params.user_id >= 1) {
             const user_id = req.params.user_id;
-            let post = await postModel.getPostByUserID(user_id);
+            const post = await postModel.getPostByUserID(user_id);
+
+            for (const key in post[0]) {
+               delete post[0][key].password
+               delete post[0][key].activationLink
+               delete post[0][key].verify
+               delete post[0][key].status
+               delete post[0][key].avatar
+               delete post[0][key].email
+            }
 
             return res.json(post[0]);
          } else {
