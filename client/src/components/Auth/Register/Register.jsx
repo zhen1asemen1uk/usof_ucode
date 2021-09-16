@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import stl from '../../styles/Register.module.css'
+import stl from '../../../styles/Register.module.css'
 
 const Register = (props) => {
+   const { sendRegisterData, authState } = props;
 
    const [login, setLogin] = useState("");
    const [email, setEmail] = useState("");
@@ -36,13 +37,18 @@ const Register = (props) => {
             <input type="email" name="email" id={stl.email}
                placeholder="Email" required={true} maxLength={50}
                value={email} onChange={e => setEmail(e.target.value)}
-               className={`${stl.email} ${stl.inp}`} 
+               className={`${stl.email} ${stl.inp}`}
 
             />
 
             <button onClick={() => {
-               props.sendRegisterData(login, password, password_confirm, email)
+               sendRegisterData(login, password, password_confirm, email)
             }} className={`${stl.btnSend}`}>Create</button>
+
+            {typeof authState.user === 'string' ?
+               <div className={stl.notification}>{authState.user}</div> :
+               <div></div>}
+
          </div>
       </ >
    )

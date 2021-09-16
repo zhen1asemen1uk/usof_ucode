@@ -1,7 +1,7 @@
 import axios from 'axios';
 import api from '.'
 import { API_URL } from '../config';
-import { login_Auth, logout_Auth, register_Auth } from '../reducers/authReducer/authReducer';
+import { login_Auth, logout_Auth, password_reset_Auth, register_Auth } from '../reducers/authReducer/authReducer';
 
 export const authAPI = {
 
@@ -15,7 +15,7 @@ export const authAPI = {
                email: email
             })
 
-            return dispatch(register_Auth(dataRegister));
+            return dispatch(register_Auth(dataRegister.data));
          } catch (error) {
             console.log(`Error register ${error}`);
          }
@@ -35,7 +35,6 @@ export const authAPI = {
          catch (error) {
             console.log(`Error login ${error}`);
          }
-
       }
    },
 
@@ -44,14 +43,32 @@ export const authAPI = {
    },
 
    password_reset(login, newPassword) {
-      return api.post(`/api/auth/password-reset`, {
-         login: login,
-         newPassword: newPassword
-      });
+      return async function (dispatch) {
+         try {
+            const resetData = await api.post(`/api/auth/password-reset`, {
+               login: login,
+               newPassword: newPassword
+            });
+            return dispatch(password_reset_Auth(resetData));
+         }
+         catch (error) {
+            console.log(`Error login ${error}`);
+         }
+      }
    },
 
-   password_reset_link(link) {
-      return api.post(`/api/auth/password-reset/${link}`)
+   password_reset_link(token, newPass) {
+      return async function (dispatch) {
+         try {
+            const resetData = await api.post(`/api/auth/password-reset/${token}`, {
+               newPassword: newPass
+            });
+            return dispatch(password_reset_Auth(resetData));
+         }
+         catch (error) {
+            console.log(`Error login ${error}`);
+         }
+      }
    },
 
    logout() {

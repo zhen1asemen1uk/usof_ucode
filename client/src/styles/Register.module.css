@@ -40,3 +40,19 @@
    background-color: black;
    color: white;
 }
+
+.notification {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-self: center;
+   align-items: center;
+   color: green;
+   border: 1px solid #8ed9f6;
+   background: #e3f7fc;
+   border-radius: 3px;
+   width: fit-content;
+   padding: 2px 4px;
+   margin: 10px 0px;
+   transition: all 1s;
+}

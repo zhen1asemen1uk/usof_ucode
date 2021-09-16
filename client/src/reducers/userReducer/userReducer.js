@@ -23,38 +23,38 @@ export const userReducer =  (state = initialState, action) => {
          return { ...state, userPage: action.payload }
 
       case registerForADMIN_Type:
-         const registerForADMIN = userAPI.registerForADMIN(
-            action.payload.login,
-            action.payload.password,
-            action.payload.password_confirm,
-            action.payload.email,
-            action.payload.status,
-            action.payload.verify)
+         // const registerForADMIN = userAPI.registerForADMIN(
+         //    action.payload.login,
+         //    action.payload.password,
+         //    action.payload.password_confirm,
+         //    action.payload.email,
+         //    action.payload.status,
+            // action.payload.verify)
 
-         console.log(registerForADMIN);
-         return { ...state, users: registerForADMIN }
+         console.log(action.payload);
+         return { ...state}
 
       case addAvatar_Type:
-         const addAvatar = userAPI.addAvatar(action.payload.ava);
+         // const addAvatar = userAPI.addAvatar(action.payload.ava);
 
-         console.log(addAvatar);
-         return { ...state, users: addAvatar }
+         console.log(action.payload.ava);
+         return { ...state}
 
       case updateUser_Type:
-         const updateUser = userAPI.updateUser(
-            action.payload.id,
-            action.payload.login,
-            action.payload.password,
-            action.payload.email)
+         // const updateUser = userAPI.updateUser(
+         //    action.payload.id,
+         //    action.payload.login,
+         //    action.payload.password,
+         //    action.payload.email)
 
-         console.log(updateUser);
-         return { ...state, users: updateUser }
+         console.log(action.payload);
+         return { ...state}
 
       case deleteUser_Type:
-         const deleteUser = userAPI.deleteUser(action.payload.id)
+         // const deleteUser = userAPI.deleteUser(action.payload.id)
 
-         console.log(deleteUser);
-         return { ...state, users: deleteUser }
+         console.log(action.payload);
+         return { ...state }
 
       default:
          return state

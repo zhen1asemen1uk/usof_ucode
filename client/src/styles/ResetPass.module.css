@@ -1,7 +1,8 @@
-.wrappFormLog {
+.wrappForm {
    display: flex;
    flex-direction: column;
    align-items: center;
+   transition: all 1s;
 }
 
 .inp {
@@ -39,14 +40,6 @@
    transition: all 0.6s;
    background-color: black;
    color: white;
-}
-
-.resetPass a {
-   display: flex;
-   outline: none;
-   text-decoration: none;
-   color: black;
-   font-size: 12px!important;
 }
 
 .notification {

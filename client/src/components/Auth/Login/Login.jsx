@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import stl from '../../styles/Login.module.css'
+import { Link } from "react-router-dom";
+
+import stl from '../../../styles/Login.module.css'
 
 const Login = (props) => {
+   const { sendLoginData, authState } = props;
 
    const [login, setLogin] = useState("");
    const [password, setPassword] = useState("");
@@ -24,9 +27,17 @@ const Login = (props) => {
                className={`${stl.pass} ${stl.inp}`}
             />
 
+            <div className={stl.resetPass}>
+               <Link to='resetPassword'>reset password?</Link>
+            </div>
+
             <button onClick={() => {
-               props.sendLoginData(login, password)
+               sendLoginData(login, password)
             }} className={stl.btnSend}>Login</button>
+
+            {typeof authState.user == 'string' ?
+               <div className={stl.notification}>{authState.user}</div> :
+               <div></div>}
          </div>
       </>
    )

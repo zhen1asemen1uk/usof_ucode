@@ -3,19 +3,21 @@ const userController = require("../../controllers/userController");
 module.exports = function () {
    return async function (req, res, next) {
       try {
+         if (!req.body.login){
+            return res.send(`Error empty login!`);
+         }
          const login = req.body.login;
          let verify = await userController.checkVerifyUser(login);
          
-         if (verify[0].length > 0) {
+         if (verify && verify[0] && verify[0].length > 0) {
             verify = verify[0][0].verify;
 
             if (verify == "true") {
-
                return next();
             }
          }
 
-         return res.send(`Please check you email (maybe spam) or register`);
+         return res.send(`Login email or password incorrect`);
       } catch (error) {
          console.log(error);
          res.send(`Error verify middlewear!`)

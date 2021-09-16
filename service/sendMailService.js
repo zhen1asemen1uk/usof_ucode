@@ -1,6 +1,6 @@
 const nodemailer = require(`nodemailer`);
 
-const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, API_URL } = require("../config");
+const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, API_URL, CLIENT_URL } = require("../config");
 
 class sendMailService {
    constructor() {
@@ -30,20 +30,19 @@ class sendMailService {
       })
    }
 
-   async sendNewPassword(toMail, newPassword, token) {
+   async sendNewPassword(toMail, token) {
       await this.transporter.sendMail({
          from: SMTP_USER,
          to: toMail,
-         subject: `You password update.`,
+         subject: `You password.`,
          text: ``,
          html: `
          <div style=" padding: 5px 10px 15px 10px; text-align: center;
       background-color:black ; border-radius: 5px;">
-      <h2 style="color: white">Click link for<br> confirm you password 🔒</h2>
-      <p style="color: white">If you confirm then new password 🤫: <strong> ${newPassword}</strong></p>
-
-      <a style="color: green" href='${API_URL}/api/auth/password-reset/${token}__||__${newPassword}'>
-         Click me for confirm new password</a>
+      <h2 style="color: white">Click link for create new password 🔒</h2>
+<br/>
+      <a style="color: green" href='${CLIENT_URL}/createNewPassword/${token}'>
+         Click me for create...</a>
 
       <p style='color: red; font-size:10px'>
          <span>❗️If you did not reset your password, please ignore this email, it maybea mistake,</span>

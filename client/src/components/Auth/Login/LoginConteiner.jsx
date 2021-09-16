@@ -1,13 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
-import { authAPI } from '../../API/authAPI';
-import PostsConteiner from '../Posts/PostsConteiner';
+import { authAPI } from '../../../API/authAPI';
+import PostsConteiner from '../../Posts/PostsConteiner';
 import Login from './Login';
 
 const LoginConteiner = () => {
-
    const dispatch = useDispatch();
+
    const authState = useSelector(state => state.authState);
 
    const sendLoginData = (login, password) => {
@@ -15,7 +15,7 @@ const LoginConteiner = () => {
    }
 
    return (<>
-      {authState.isAuth ? <PostsConteiner /> : <Login sendLoginData={sendLoginData} />}
+      {authState.isAuth ? <PostsConteiner /> : <Login authState={authState} sendLoginData={sendLoginData} />}
    </>)
 };
 

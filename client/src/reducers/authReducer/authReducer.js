@@ -10,6 +10,7 @@ import {
 
 export const initialState = {
    user: {},
+   passwordReset: {},
    isAuth: false,
    isLoading: false
 }
@@ -18,13 +19,8 @@ export const authReducer = (state = initialState, action) => {
    switch (action.type) {
 
       case register_Type:
-         const register = authAPI.register(
-            action.payload.login,
-            action.payload.password,
-            action.payload.password_confirm,
-            action.payload.email);
-
-         return { ...state, user: register.data }
+         console.log(action.payload);
+         return { ...state, user: action.payload }
 
       case login_Type:
          if (typeof action.payload.data == "object") {
@@ -46,11 +42,8 @@ export const authReducer = (state = initialState, action) => {
          return { ...state, user: verify.data }
 
       case password_reset_Type:
-         const password_reset = authAPI.password_reset(
-            action.payload.login, action.payload.newPassword);
-
-         console.log(password_reset.data);
-         return { ...state, user: password_reset.data }
+         console.log(action.payload);
+         return { ...state, passwordReset: action.payload}
 
       case password_reset_link_Type:
          const password_reset_link = authAPI.password_reset_link(action.payload.link);
