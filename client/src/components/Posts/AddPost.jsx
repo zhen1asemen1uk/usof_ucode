@@ -12,17 +12,17 @@ const AddPost = (props) => {
       <div>
          <div className={stl.addPost}>
             <input type='text' placeholder="title" autoComplete="off"
-               name="title" required={true} id={stl.title}
+               name="title" id={stl.title}
                onChange={e => setTitle(e.target.value)}
                className={`${stl.postInp} ${stl.title}`} />
             <br />
             <input type='text' placeholder="content" autoComplete="off"
-               name="content" required={true} id={stl.content}
+               name="content" id={stl.content}
                onChange={e => setContent(e.target.value)}
                className={`${stl.postInp} ${stl.content}`} />
             <br />
             <input type='text' placeholder="categories" autoComplete="off"
-               name="categories" required={true} id={stl.categories}
+               name="categories" id={stl.categories}
                onChange={e => setCategories(e.target.value)}
                className={`${stl.postInp} ${stl.categories}`} />
             <br />

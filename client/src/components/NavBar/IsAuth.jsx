@@ -23,7 +23,7 @@ const IsAuth = (props) => {
                dispatch(postAPI.getPostByUserID(user.id))
             }}>
 
-               <img src={`${API_URL}/avatar/${props.user.avatar}`}
+               <img src={`${API_URL}/avatar/${user.avatar}`}
                   alt="avatar" className={stl.myAvatar} />
 
             </Link>

@@ -1,4 +1,3 @@
-import { userAPI } from "../../API/userAPI";
 import {
    getAllUsers_Type,
    getUserByID_Type,
@@ -10,10 +9,12 @@ import {
 
 export const initialState = {
    users: [],
-   userPage:[]
+   userPage: [],
+   updateData: [],
+   deletedData:[]
 }
 
-export const userReducer =  (state = initialState, action) => {
+export const userReducer = (state = initialState, action) => {
    switch (action.type) {
 
       case getAllUsers_Type:
@@ -23,38 +24,19 @@ export const userReducer =  (state = initialState, action) => {
          return { ...state, userPage: action.payload }
 
       case registerForADMIN_Type:
-         // const registerForADMIN = userAPI.registerForADMIN(
-         //    action.payload.login,
-         //    action.payload.password,
-         //    action.payload.password_confirm,
-         //    action.payload.email,
-         //    action.payload.status,
-            // action.payload.verify)
-
-         console.log(action.payload);
-         return { ...state}
-
-      case addAvatar_Type:
-         // const addAvatar = userAPI.addAvatar(action.payload.ava);
-
-         console.log(action.payload.ava);
-         return { ...state}
-
-      case updateUser_Type:
-         // const updateUser = userAPI.updateUser(
-         //    action.payload.id,
-         //    action.payload.login,
-         //    action.payload.password,
-         //    action.payload.email)
-
-         console.log(action.payload);
-         return { ...state}
-
-      case deleteUser_Type:
-         // const deleteUser = userAPI.deleteUser(action.payload.id)
-
          console.log(action.payload);
          return { ...state }
+
+      case addAvatar_Type:
+         return { ...state, updateData: action.payload }
+
+      case updateUser_Type:
+         console.log(action.payload);
+         return { ...state, updateData: action.payload }
+
+      case deleteUser_Type:
+         console.log(action.payload);
+         return { ...state, deletedData: action.payload }
 
       default:
          return state

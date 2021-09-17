@@ -1,5 +1,5 @@
 import api from '.'
-import { getAllUsers_User, getUserByID_User } from '../reducers/userReducer/userReducer';
+import { addAvatar_User, getAllUsers_User, getUserByID_User, updateUser_User } from '../reducers/userReducer/userReducer';
 
 export const userAPI = {
    getAllUsers() {
@@ -16,7 +16,7 @@ export const userAPI = {
       }
    },
 
-   async registerForADMIN(
+    registerForADMIN(
       login, password,
       password_confirm,
       email, status, verify) {
@@ -27,17 +27,30 @@ export const userAPI = {
       })
    },
 
-   async addAvatar(ava) {
-      return api.patch(`/api/users/avatar`, { ava: ava })
+    addAvatar(ava) {
+      return async (dispatch) => {
+         try {
+            const formData = new FormData;
+            formData.append('ava', ava);
+
+            const updateData = await api.patch(`/api/users/avatar`, formData);
+            return dispatch(addAvatar_User(updateData.data));
+         } catch (error) {
+            console.log(error);
+         }
+      }
    },
 
-   async updateUser(id, login, password, email) {
-      return api.patch(`/api/users/${id}`, {
-         login: login, password: password, email: email
-      })
+    updateUser(id, login, password, email) {
+       return async (dispatch) => {
+          const updateData = await api.patch(`/api/users/${id}`, {
+             login: login, password: password, email: email
+          })
+          return dispatch(updateUser_User(updateData.data));
+       }
    },
 
-   async deleteUser(id) {
+    deleteUser(id) {
       return api.delete(`/api/users/${id}`);
    }
 }

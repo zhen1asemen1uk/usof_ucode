@@ -11,3 +11,4 @@ config.json
 configDb
 configDb.json
 /db/configDb.json
+/public/avatar/*

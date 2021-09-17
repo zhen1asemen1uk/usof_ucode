@@ -132,33 +132,33 @@ class userController extends Controller {
 
    async updateDataUserByID(req, res) {
       try {
-         const { login, password, email, avatar, status, verify } = req.body;
+         const { login, password, email } = req.body;
          const owner = req.params.user_id;
-
          //check unique users
          let check = await userModel.getUser(login, email);
          let [rows, fields] = check;
 
          if (rows.length > 0) {
             return res.send(`Login or email is already in use!`);
-         } else {
-            if (login) {
-               const updateLogin = await userModel.updateLoginByID(owner, login);
-               console.log(`Login - ok`)
-            }
-
-            if (email) {
-               const updateEmail = await userModel.updateEmailByID(owner, email);
-               //create verify link
-               const activationLink = uuid.v4();
-               //update link
-               const updateActivationLink = await userModel.updateActivationLink(owner, activationLink);
-               //send emaid
-               const sendActivationMail = await sendMailService.sendActivationMail(email, `${API_URL}/activate/${activationLink}`);
-               console.log(`Email - ok`)
-            }
          }
-        
+
+         if (login) {
+            const updateLogin = await userModel.updateLoginByID(owner, login);
+            console.log(`Login - ok`)
+         }
+
+         if (email) {
+            const updateEmail = await userModel.updateEmailByID(owner, email);
+            //create verify link
+            const activationLink = uuid.v4();
+            //update link
+            const updateActivationLink = await userModel.updateActivationLink(owner, activationLink);
+            //send emaid
+            const sendActivationMail = await sendMailService.sendActivationMail(email, `${API_URL}/activate/${activationLink}`);
+            console.log(`Email - ok`)
+         }
+
+
          if (password) {
             //hash password
             const hashPass = await bcrypt.hash(password, 3);
@@ -167,11 +167,15 @@ class userController extends Controller {
          }
 
          //generation token
-         const token = tokenService.generationToken(owner, login, email, status, verify, avatar);
+         const token = tokenService.generationToken(
+            owner,
+            login,
+            email,
+            req.user.status, req.user.verify, req.user.avatar);
 
          const { accessToken, refreshToken } = token;
-         //save token to databases
 
+         //save token to databases
          const saveToken = await tokenService.saveToken(owner, refreshToken);
 
          //send cookies token
@@ -183,16 +187,14 @@ class userController extends Controller {
          res.send(`Error update user!`);
       }
    }
-   
+
    async addAvatar(req, res) {
       try {
-         let { id ,avatar} = req.user;//!!!avatar
-         console.log(req.files);
+         let { id } = req.user;
+
          const avatarFile = req.files.ava;
          const avatarName = uuid.v4() + '.jpg';
-         const user = userModel.updateAvatarByID(id, avatarName);
-
-         avatar = avatarName;
+         userModel.updateAvatarByID(id, avatarName);
 
          avatarFile.mv(`./public/avatar/${avatarName}`);
 
