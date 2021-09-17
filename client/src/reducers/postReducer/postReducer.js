@@ -10,14 +10,20 @@ import {
    addLikeForPost_Type,
    updatePost_Type,
    deletePost_Type,
-   deleteLikeByPost_Type
+   deleteLikeByPost_Type,
+   sortByTitleASC_Type,
+   sortByTitleDESC_Type,
+   sortByAuthorASC_Type,
+   sortByAuthorDESC_Type,
+   sortByTimeASC_Type,
+   sortByTimeDESC_Type
 } from "./types";
 
 
 export const initialState = {
    postsData: [],
    postDataByID: [],
-   postDataByUserID:[],
+   postDataByUserID: [],
    commentsPostByID: [],
    categoryByPostID: [],
    likeForPost: []
@@ -69,6 +75,66 @@ export const postReducer = (state = initialState, action) => {
       case deleteLikeByPost_Type://!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
          return { ...state }
 
+      case sortByTitleASC_Type:
+         action.payload.sort((a, b) => {
+            if (b.title_post < a.title_post) {
+               return -1
+            } else {
+               return 1
+            }
+         })
+         return { ...state, postsData: action.payload }
+
+      case sortByTitleDESC_Type:
+         action.payload.sort((a, b) => {
+            if (b.title_post > a.title_post) {
+               return -1
+            } else {
+               return 1
+            }
+         })
+         return { ...state, postsData: action.payload }
+
+      case sortByAuthorASC_Type:
+         action.payload.sort((a, b) => {
+            if (b.login < a.login) {
+               return -1
+            } else {
+               return 1
+            }
+         })
+         return { ...state, postsData: action.payload }
+
+      case sortByAuthorDESC_Type:
+         action.payload.sort((a, b) => {
+            if (b.login > a.login) {
+               return -1
+            } else {
+               return 1
+            }
+         })
+         return { ...state, postsData: action.payload }
+
+      case sortByTimeASC_Type:
+         action.payload.sort((a, b) => {
+            if (b.created_at < a.created_at) {
+               return -1
+            } else {
+               return 1
+            }
+         });
+         return { ...state, postsData: action.payload }
+
+      case sortByTimeDESC_Type:
+         action.payload.sort((a, b) => {
+            if (b.created_at > a.created_at) {
+               return -1
+            } else {
+               return 1
+            }
+         });
+         return { ...state, postsData: action.payload }
+
       default:
          return state
    }
@@ -86,3 +152,13 @@ export const addLikeForPost_Post = (payload) => ({ type: addLikeForPost_Type, pa
 export const updatePost_Post = (payload) => ({ type: updatePost_Type, payload });
 export const deletePost_Post = (payload) => ({ type: deletePost_Type, payload });
 export const deleteLikeByPost_Post = (payload) => ({ type: deleteLikeByPost_Type, payload });
+
+export const sortByTitleASC_Post = (payload) => ({ type: sortByTitleASC_Type, payload });
+export const sortByTitleDESC_Post = (payload) => ({ type: sortByTitleDESC_Type, payload });
+export const sortByAuthorASC_Post = (payload) => ({ type: sortByAuthorASC_Type, payload });
+export const sortByAuthorDESC_Post = (payload) => ({ type: sortByAuthorDESC_Type, payload });
+export const sortByTimeASC_Post = (payload) => ({ type: sortByTimeASC_Type, payload });
+export const sortByTimeDESC_Post = (payload) => ({ type: sortByTimeDESC_Type, payload });
+
+
+

@@ -30,7 +30,7 @@ export const userAPI = {
     addAvatar(ava) {
       return async (dispatch) => {
          try {
-            const formData = new FormData;
+            const formData = new FormData();
             formData.append('ava', ava);
 
             const updateData = await api.patch(`/api/users/avatar`, formData);

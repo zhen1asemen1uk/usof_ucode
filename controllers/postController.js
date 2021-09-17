@@ -12,7 +12,7 @@ class postController extends Controller {
    async getAllPosts(req, res) {
       try {
          const postsData = await postModel.getAllPosts();
-         
+
          for (const key in postsData[0]) {
             delete postsData[0][key].password
             delete postsData[0][key].activationLink

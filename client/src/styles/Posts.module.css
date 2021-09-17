@@ -67,6 +67,7 @@ h1 {
   justify-content: space-between;
   padding: 5px;
   margin: 5px;
+  background-color: white;
   border: 1px solid black;
   border-radius: 10px;
   width: 100%;
@@ -86,11 +87,64 @@ h1 {
   width: 100%;
 }
 
+.fiels {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .postAuthor {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  width: 100%;
-  font-size: 0.7em;
+  align-items: center;
+  outline: none;
+  text-decoration: none;
+  color: black;
   cursor: pointer;
+  transition: all 0.8s;
+}
+
+.postLike {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.createdAt {
+  display: flex;
+  font-size: 1px;
+  margin-right: 5px;
+  opacity: 0.6;
+  z-index: -5;
+  transition: all 1.5s;
+}
+
+.postAuthor:hover .createdAt {
+  font-size: 10px;
+  transition: all 0.5s;
+  z-index: 1;
+}
+
+.sortBar {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: 20px;
+  padding: 0 10px;
+  margin-bottom: 20px;
+}
+
+.sortCategory {
+  display: flex;
+  align-items: center;
+  margin: 0 25px;
+}
+
+.sortCategory button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  height: 15px;
+  width: 40px;
+  margin: 0 5px;
 }

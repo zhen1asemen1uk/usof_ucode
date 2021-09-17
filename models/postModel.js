@@ -7,7 +7,7 @@ class postModel extends Model {
    }
    async getAllPosts() {
       return await dbConnection.getConnection(`
-      SELECT * FROM users INNER JOIN posts ON users.id=posts.id_author_post;`);
+      SELECT * FROM users INNER JOIN posts ON users.id=posts.id_author_post ORDER BY 6 DESC;`);
    }
    async getPostByID(id) {
       return await dbConnection.getConnection(`

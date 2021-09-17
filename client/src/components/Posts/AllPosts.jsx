@@ -1,15 +1,19 @@
 import React from 'react'
+import { Link } from "react-router-dom";
+
 import stl from '../../styles/Posts.module.css'
 
 const AllPosts = (props) => {
 
-   const { postsData } = props;
+   const { postsData, getUserByID, getPostByUserID } = props;
 
    if (typeof postsData === 'string') {
       return (
          <><h1>{postsData}</h1> </>)
    }
 
+  
+  
    return (
       <div className={stl.wrappPost}>
          <div className={stl.posts}>
@@ -18,8 +22,20 @@ const AllPosts = (props) => {
                   <div key={`${pst.title_post}_${pst.created_at}`} className={stl.post}>
                      <div className={stl.postTitle}>{pst.title_post}</div>
                      <p className={stl.postContent}>{pst.content_post}</p>
-                     <p className={stl.postAuthor}>{pst.login}</p>
-                     <span className={stl.postLike}>Like 99</span>
+
+                     <div className={stl.fiels}>
+
+                        <span className={stl.postLike}>Like {Math.floor(Math.random() * (100 - 0)) + 0}</span>
+
+                        <Link className={stl.postAuthor} to='user' onClick={() => {
+                           getUserByID(pst.id_author_post);
+                           getPostByUserID(pst.id_author_post);
+                        }}>
+                           <div className={stl.createdAt}>{pst.created_at.split("T")[0].replaceAll('-', '.')}</div>
+                           {pst.login}
+                        </Link>
+
+                     </div>
                   </div>)
             })}
          </div>
