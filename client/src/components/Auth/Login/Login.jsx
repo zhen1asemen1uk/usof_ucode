@@ -12,7 +12,7 @@ const Login = (props) => {
    
    return (
       <>
-         <h1>Login Page</h1>
+         <h1>Login Page 🚪</h1>
          <div className={stl.wrappFormLog}>
             <input type="text" name="login" id={stl.login}
                placeholder="Login" autoFocus required={true}
