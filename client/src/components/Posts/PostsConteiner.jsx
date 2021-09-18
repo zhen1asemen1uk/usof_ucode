@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 import { postAPI } from '../../API/postAPI';
@@ -8,6 +8,8 @@ import {
    sortByAuthorASC_Post, sortByAuthorDESC_Post,
    sortByTimeASC_Post, sortByTimeDESC_Post
 } from '../../reducers/postReducer/postReducer';
+import NonePosts from './NonePosts';
+import Loading from '../Auth/Loading';
 
 import Posts from './Posts';
 
@@ -16,6 +18,7 @@ const PostsConteiner = () => {
 
    let postState = useSelector(state => state.postState);
    const authState = useSelector(state => state.authState);
+   const isLoading = useSelector(store => store.authState.isLoading);
 
    const addPost = (title, content, categories) => {
       dispatch(postAPI.addPost(title, content, categories));
@@ -91,25 +94,41 @@ const PostsConteiner = () => {
       dispatch(postAPI.deleteLikeByPost(id));
    }
 
-
-
-   useEffect(() => {
-      dispatch(postAPI.getAllPosts());
-   }, [])
-
-   return <Posts authState={authState}
-      postState={postState}
-      addPost={addPost}
-      getPostByID={getPostByID}
-      getUserByID={getUserByID}
-      getPostByUserID={getPostByUserID}
-      sortByTitleASC={sortByTitleASC}
-      sortByTitleDESC={sortByTitleDESC}
-      sortByAuthorASC={sortByAuthorASC}
-      sortByAuthorDESC={sortByAuthorDESC}
-      sortByTimeASC={sortByTimeASC}
-      sortByTimeDESC={sortByTimeDESC}
-   />
+   if (postState.postsData.length > 0) {
+      return (<>{
+         isLoading === false ?
+            <Posts authState={authState}
+               postState={postState}
+               addPost={addPost}
+               getPostByID={getPostByID}
+               getUserByID={getUserByID}
+               getPostByUserID={getPostByUserID}
+               sortByTitleASC={sortByTitleASC}
+               sortByTitleDESC={sortByTitleDESC}
+               sortByAuthorASC={sortByAuthorASC}
+               sortByAuthorDESC={sortByAuthorDESC}
+               sortByTimeASC={sortByTimeASC}
+               sortByTimeDESC={sortByTimeDESC}
+               //not useed
+               getCommentsPostByID={getCommentsPostByID}
+               addCommentsForPost={addCommentsForPost}
+               getAllCategoryByPostID={getAllCategoryByPostID}
+               addLikeForPost={addLikeForPost}
+               getAllLikeByPostID={getAllLikeByPostID}
+               updatePost={updatePost}
+               deletePost={deletePost}
+               deleteLikeByPost={deleteLikeByPost}
+            /> :
+            <Loading />
+      }</>
+      )
+   }
+   return (<>{
+      isLoading === false ?
+         <NonePosts addPost={addPost} authState={authState} />
+         :
+         <Loading />
+   }</>)
 };
 
-export default PostsConteiner;;
+export default PostsConteiner;

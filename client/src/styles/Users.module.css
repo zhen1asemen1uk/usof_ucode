@@ -18,6 +18,10 @@ h1, h6 {
   text-decoration: none;
 }
 
+.linkForEveryone:hover {
+  box-shadow: 0px 0px 10px -2px rgba(34, 60, 80, 0.3);
+}
+
 .users {
   display: flex;
   flex-wrap: wrap;
@@ -50,10 +54,11 @@ h1, h6 {
 .userLogin {
   display: flex;
   overflow-x: hidden;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 105px;
   font-weight: 700;
+  font-size: 10px;
 }
 
 .userID {

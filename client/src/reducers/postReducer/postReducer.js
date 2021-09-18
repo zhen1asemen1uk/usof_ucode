@@ -16,7 +16,8 @@ import {
    sortByAuthorASC_Type,
    sortByAuthorDESC_Type,
    sortByTimeASC_Type,
-   sortByTimeDESC_Type
+   sortByTimeDESC_Type,
+   search_Type
 } from "./types";
 
 
@@ -26,7 +27,8 @@ export const initialState = {
    postDataByUserID: [],
    commentsPostByID: [],
    categoryByPostID: [],
-   likeForPost: []
+   likeForPost: [],
+   filterPosts: []
 }
 
 export const postReducer = (state = initialState, action) => {
@@ -134,7 +136,17 @@ export const postReducer = (state = initialState, action) => {
             }
          });
          return { ...state, postsData: action.payload }
+      case search_Type:
 
+         const filterPostsData = state.postsData.filter((word) => {
+            const title = word.title_post.includes(action.payload)
+            if (title.length > 0) {
+               return title
+            }
+            return word.content_post.includes(action.payload)
+         });
+
+         return { ...state, filterPosts: filterPostsData }
       default:
          return state
    }
@@ -160,5 +172,6 @@ export const sortByAuthorDESC_Post = (payload) => ({ type: sortByAuthorDESC_Type
 export const sortByTimeASC_Post = (payload) => ({ type: sortByTimeASC_Type, payload });
 export const sortByTimeDESC_Post = (payload) => ({ type: sortByTimeDESC_Type, payload });
 
+export const search_Post = (payload) => ({ type: search_Type, payload });
 
 

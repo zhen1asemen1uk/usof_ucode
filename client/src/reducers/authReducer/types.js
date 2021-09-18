@@ -5,3 +5,4 @@ export const login_Type = 'login';
 export const password_reset_Type = 'password_reset';
 export const password_reset_link_Type = 'password_reset_link';
 export const logout_Type = 'logout';
+export const isLoading_Type = 'isLoading';

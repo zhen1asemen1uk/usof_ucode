@@ -11,7 +11,7 @@ const UserPage = (props) => {
    const { userPage, posts, getPostByUserID } = props;
 
    const userPosts = () => {
-      getPostByUserID(userPage[0].id)
+      getPostByUserID(userPage[0].id);
    }
 
    if (userPage.length > 0) {

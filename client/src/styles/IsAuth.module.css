@@ -10,18 +10,37 @@
 
 .myIcon:hover .dropDown {
   transition: all 0.4s;
-  top: 8px;
+  top: 5px;
   z-index: 5;
 }
 
 .dropDown {
-  height: 55px;
-  transition: all 0.8s;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  height: 55px;
   position: relative;
-  top: -35px;
+  right: 5px;
+  top: -50px;
+  transition: all 0.8s;
   z-index: -5;
+}
+
+.dropDown a {
+  display: flex;
+  color: black;
+  width: fit-content;
+  padding: 2px 5px;
+  border-radius: 10%;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dropDown a:hover {
+  color: white;
+  background-color: black;
+  border-radius: 5px;
+  transition: all 0.3s;
 }
 
 .myAvatar {
@@ -45,9 +64,74 @@
   border-radius: 10px;
   width: 50px;
   height: 50px;
-}
-
-#linkForAvatar:hover {
   margin: 0;
   padding: 0;
+}
+
+.searchWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  margin-right: 20vw;
+}
+
+.search {
+  margin: 0 10px;
+  height: 20px;
+  width: 30vw;
+  outline: none;
+  text-decoration: none;
+  border-radius: 5px;
+  border-top: 1px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.searchBtn {
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  border: none;
+  border-top: 1px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  background-color: white;
+  font-weight: 600;
+  /* width: fit-content; */
+  width: 25px;
+  height: 15px;
+  cursor: pointer;
+  background-image: url(https://w7.pngwing.com/pngs/605/56/png-transparent-search-icon-computer-icons-android-desktop-search-button-internet-share-icon-search-button.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.searchBtn:hover {
+  transition: all 0.6s;
+  background-color: black;
+  color: white;
+}
+
+.links {
+  display: flex;
+}
+
+.links a {
+  display: flex;
+  flex-direction: row;
+  color: black;
+  padding: 2px 5px;
+  border-radius: 10%;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.links a:hover {
+  color: white;
+  background-color: black;
+  border-radius: 5px;
+  transition: all 0.3s;
 }

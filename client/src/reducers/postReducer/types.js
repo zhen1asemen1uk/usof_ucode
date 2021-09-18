@@ -19,3 +19,4 @@ export const sortByAuthorDESC_Type = 'sortByAuthorDESC';
 export const sortByTimeASC_Type = 'sortByTimeASC';
 export const sortByTimeDESC_Type = 'sortByTimeDESC';
 
+export const search_Type = 'search';

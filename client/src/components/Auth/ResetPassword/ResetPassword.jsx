@@ -8,7 +8,7 @@ const ResetPassword = (props) => {
    const [resetLogin, setResetLogin] = useState("");
 
    const passwordReset = authState.passwordReset;
-   console.log(passwordReset.data);
+
    return (
       <>
          <h1>Reset password page</h1>

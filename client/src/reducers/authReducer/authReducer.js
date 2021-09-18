@@ -5,7 +5,8 @@ import {
    login_Type,
    password_reset_Type,
    password_reset_link_Type,
-   logout_Type
+   logout_Type,
+   isLoading_Type
 } from "./types";
 
 export const initialState = {
@@ -14,12 +15,10 @@ export const initialState = {
    isAuth: false,
    isLoading: false
 }
-
 export const authReducer = (state = initialState, action) => {
    switch (action.type) {
 
       case register_Type:
-         console.log(action.payload);
          return { ...state, user: action.payload }
 
       case login_Type:
@@ -33,7 +32,7 @@ export const authReducer = (state = initialState, action) => {
             return { ...state, user: action.payload.data.user }
          }
          return { ...state, user: action.payload.data }
-         
+
 
       case verify_Type:
          const verify = authAPI.verify(action.payload.link);
@@ -43,7 +42,7 @@ export const authReducer = (state = initialState, action) => {
 
       case password_reset_Type:
          console.log(action.payload);
-         return { ...state, passwordReset: action.payload}
+         return { ...state, passwordReset: action.payload }
 
       case password_reset_link_Type:
          const password_reset_link = authAPI.password_reset_link(action.payload.link);
@@ -53,9 +52,14 @@ export const authReducer = (state = initialState, action) => {
 
       case logout_Type:
          state.isAuth = false;
-         localStorage.removeItem('token');
-         localStorage.removeItem('userData');
+
+         document.cookie = "refreshToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+         localStorage.removeItem(`token`);
+         localStorage.removeItem(`userData`);
          return { ...state, user: {} }
+
+      case isLoading_Type:
+         return { ...state, isLoading: action.payload }
 
       default:
          return state
@@ -68,3 +72,4 @@ export const login_Auth = (payload) => ({ type: login_Type, payload });
 export const password_reset_Auth = (payload) => ({ type: password_reset_Type, payload });
 export const password_reset_link_Auth = (payload) => ({ type: password_reset_link_Type, payload });
 export const logout_Auth = (payload) => ({ type: logout_Type, payload });
+export const isLoading_Auth = (payload) => ({ type: isLoading_Type, payload });

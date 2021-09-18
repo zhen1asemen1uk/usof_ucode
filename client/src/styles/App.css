@@ -1,38 +1,24 @@
-body{
+body {
    margin: 0px;
    padding: 0px;
 }
 
-header{
+header {
    display: flex;
-   width: 98.6vw;
+   width: 100vw;
    height: 50px;
    padding: 5px 10px;
    background-color: rgb(0, 132, 255);
    font-weight: 600;
    color: white;
-   align-items: center;
+   /* align-items: center; */
 }
 
-header .navBar{
-   display: flex;
-   margin-left: auto;
-}
-
-header .navBar a {
+.navBar {
    display: flex;
    align-items: center;
-   color: black;
-   padding: 0px 5px;
-   border-radius: 10%;
-   text-decoration: none;
-   height: 20px;
-   align-self: center;
-   cursor: pointer;
-   }
-
-header .navBar a:hover{
-      color: white;
-      background-color: black;
-      transition: all 0.3s;
-   }
+   width: 100vw;
+   justify-content: flex-end;
+   margin: 5px;
+   padding: 5px 10px;
+}
