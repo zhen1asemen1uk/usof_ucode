@@ -12,7 +12,8 @@ import {
    getCommentsPostByID_Post,
    getPostByUserID_Post,
    getPostByID_Post,
-   updatePost_Post
+   updatePost_Post,
+   search_Post
 } from '../reducers/postReducer/postReducer';
 
 export const postAPI = {
@@ -22,11 +23,11 @@ export const postAPI = {
             dispatch(isLoading_Auth(true));
             const dataPosts = await api.get(`/api/posts/`);
 
-            dispatch(isLoading_Auth(false));
             return dispatch(getAllPosts_Post(dataPosts.data));
          } catch (error) {
             console.log(error);
          } finally {
+            dispatch(isLoading_Auth(false));
          }
       }
    },
@@ -199,4 +200,18 @@ export const postAPI = {
          }
       }
    },
+
+   search(data) {
+      return async (dispatch) => {
+         try {
+            dispatch(isLoading_Auth(true));
+
+            return dispatch(search_Post(data));
+         } catch (error) {
+            console.log(error);
+         } finally {
+            dispatch(isLoading_Auth(false));
+         }
+      }
+   }
 }

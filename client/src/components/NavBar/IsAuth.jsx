@@ -6,7 +6,6 @@ import { authAPI } from "../../API/authAPI";
 import { postAPI } from '../../API/postAPI';
 import { userAPI } from '../../API/userAPI';
 import { API_URL } from '../../config';
-import { search_Post } from '../../reducers/postReducer/postReducer';
 
 import stl from '../../styles/IsAuth.module.css'
 
@@ -25,7 +24,7 @@ const IsAuth = (props) => {
                placeholder='Search posts by title/content' />
             <Link to='filterPosts' className={stl.searchBtn} onClick={() => {
                setSearch('');
-               dispatch(search_Post(search));
+               dispatch(postAPI.search(search));
             }}></Link>
          </div>
          <div className={stl.links}>

@@ -136,23 +136,17 @@ export const postReducer = (state = initialState, action) => {
             }
          });
          return { ...state, postsData: action.payload }
-         
+
       case search_Type:
-
-         let filterPostsData = [];
-
          const title = state.postsData.filter((word) => {
             return word.title_post.includes(action.payload);
          });
          const content = state.postsData.filter((word) => {
             return word.content_post.includes(action.payload)
          });
-
-         if (title.length > 0) {
-            filterPostsData = title;
-         } else {
-            filterPostsData = content;
-         }
+         
+         const filterPostsData = title.concat(content).filter(
+            (v, i, a) => a.findIndex(t => (t.id === v.id)) === i)
 
          return { ...state, filterPosts: filterPostsData }
 
