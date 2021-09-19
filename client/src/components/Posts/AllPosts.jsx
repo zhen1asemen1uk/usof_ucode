@@ -10,7 +10,7 @@ const AllPosts = (props) => {
    if (typeof postsData === 'string') {
       return (<><h1>{postsData}</h1> </>)
    }
-
+  
    return (
       <div className={stl.wrappPost}>
          <div className={stl.posts}>

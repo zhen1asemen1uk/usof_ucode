@@ -8,7 +8,7 @@ import stl from '../../../styles/Users.module.css'
 import AllPosts from '../../Posts/AllPosts';
 
 const UserPage = (props) => {
-   const { userPage, posts, getPostByUserID } = props;
+   const { userPage, posts, getPostByUserID, getUserByID } = props;
 
    const userPosts = () => {
       getPostByUserID(userPage[0].id);
@@ -30,7 +30,7 @@ const UserPage = (props) => {
 
                   <h2>Posts:</h2>
                   {posts.length > 0 ?
-                     <AllPosts postsData={posts} /> :
+                     <AllPosts postsData={posts} getPostByUserID={getPostByUserID} getUserByID={getUserByID} /> :
                      <button className={stl.btnPosts} onClick={() => {
                         userPosts();
                      }}>Sorry i was late 😵‍💫 click on me for more posts...</button>}
