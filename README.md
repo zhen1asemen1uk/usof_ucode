@@ -5,7 +5,8 @@ For start:
       mysql -u root -p < db.sql (or insert text from db.sql to database)
      
       must be:    /.env
-      in .env:  HOST=http://localhost:
+      in .env:    
+                  HOST=http://localhost:
                   PORT=5000
 
                   API_URL=http://localhost:5000
@@ -75,9 +76,9 @@ Comments:
 For start:
       npm i
 
-      must be:    /src/config.js 
-      in config:  module.exports = {
-                        API_URL: "http://localhost:5000"
-                  }
+      must be:    /.env
+      in .env:  
+                  HOST=http://localhost:5000
+
                   
 (my React frontEnd for ucode project)

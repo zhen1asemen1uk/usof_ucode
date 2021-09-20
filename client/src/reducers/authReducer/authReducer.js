@@ -41,13 +41,11 @@ export const authReducer = (state = initialState, action) => {
          return { ...state, user: verify.data }
 
       case password_reset_Type:
-         console.log(action.payload);
          return { ...state, passwordReset: action.payload }
 
       case password_reset_link_Type:
          const password_reset_link = authAPI.password_reset_link(action.payload.link);
 
-         console.log(password_reset_link.data);
          return { ...state, user: password_reset_link.data }
 
       case logout_Type:
