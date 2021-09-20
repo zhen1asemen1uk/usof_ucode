@@ -1,8 +1,10 @@
 const express = require(`express`);
+require('dotenv').config();
 const app = express();
 
-const config = require(`./config`);
-const { port, host, CLIENT_URL } = config;
+const PORT = process.env.PORT || 5000;
+const HOST = process.env.HOST || `http://localhost:`;
+const CLIENT_URL = process.env.CLIENT_URL || `http://localhost:3000`;
 
 const cors = require(`cors`);
 const cookieParser = require(`cookie-parser`);
@@ -13,7 +15,7 @@ app.use(fileUpload({}));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(cors({
-   credentials:true,
+   credentials: true,
    origin: CLIENT_URL
 }));
 app.use(cookieParser());
@@ -27,4 +29,4 @@ app.use((req, res) => {
 })
 
 
-app.listen(port, () => { console.log(`Server started...\n On ==> ${host}${port}`) });
+app.listen(PORT, () => { console.log(`Server started...\n On ==> ${HOST}${PORT}`) });

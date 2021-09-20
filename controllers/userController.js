@@ -4,11 +4,11 @@ const userModel = require(`../models/userModel`);
 const sendMailService = require("../service/sendMailService");
 const tokenService = require("../service/tokenService");
 
-const { API_URL, CLIENT_URL } = require(`../config`);
-
-
 const bcrypt = require(`bcryptjs`);
 const uuid = require(`uuid`);
+require('dotenv').config();
+const API_URL = process.env.API_URL;
+const CLIENT_URL = process.env.CLIENT_URL;
 
 
 class userController extends Controller {

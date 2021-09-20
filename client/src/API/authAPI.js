@@ -1,8 +1,12 @@
 import axios from 'axios';
 import { verify } from 'jsonwebtoken';
 import api from '.'
-import { API_URL } from '../config';
-import { isLoading_Auth, login_Auth, logout_Auth, password_reset_Auth, register_Auth } from '../reducers/authReducer/authReducer';
+import {
+   isLoading_Auth, login_Auth, logout_Auth,
+   password_reset_Auth, register_Auth
+} from '../reducers/authReducer/authReducer';
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 export const authAPI = {
 

@@ -10,7 +10,7 @@ const AllPosts = (props) => {
    if (typeof postsData === 'string') {
       return (<><h1>{postsData}</h1> </>)
    }
-  
+   // console.log(postsData);
    return (
       <div className={stl.wrappPost}>
          <div className={stl.posts}>
@@ -36,6 +36,11 @@ const AllPosts = (props) => {
                   </div>)
             })}
          </div>
+         {/* <div className={stl.pagination}>
+            <span ></span>
+            <span className={}></span>
+            <span ></span>
+         </div> */}
       </div>
    )
 }

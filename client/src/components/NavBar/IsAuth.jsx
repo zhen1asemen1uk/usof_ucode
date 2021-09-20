@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { authAPI } from "../../API/authAPI";
 import { postAPI } from '../../API/postAPI';
 import { userAPI } from '../../API/userAPI';
-import { API_URL } from '../../config';
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 import stl from '../../styles/IsAuth.module.css'
 

@@ -3,30 +3,27 @@ For start:
       npm i (Install the module separately in the server folder and in the client folder)
 
       mysql -u root -p < db.sql (or insert text from db.sql to database)
+     
+      must be:    /.env
+      in .env:  HOST=http://localhost:
+                  PORT=5000
 
-      must be:    /db/configDb.json
-      in config:  {
-                        "user": "...",
-                        "password": "...",
-                        "server": "localhost",
-                        "database": "db_usof"
-                  }
+                  API_URL=http://localhost:5000
+                  CLIENT_URL=http://localhost:3000
 
-      must be:    /config.js 
-      in config:  module.exports = {
-                        port: 5000,
-                        host: "http://localhost:",
-                        API_URL: "http://localhost:5000",
-                        CLIENT_URL: "http://localhost:3000",
-                        //JWT
-                        JWT_ACCESS_SECRET: "...",
-                        JWT_REFRESH_SECRET: "...",
-                        //email
-                        SMTP_HOST: "...",
-                        SMTP_PORT: ,
-                        SMTP_USER: "...",
-                        SMTP_PASSWORD: "..."
-                  }
+                  JWT_ACCESS_SECRET=...
+                  JWT_REFRESH_SECRET=...
+
+                  SMTP_HOST=smtp...
+                  SMTP_PORT=465
+                  SMTP_USER=...@....com
+                  SMTP_PASSWORD=...
+
+                  user=ysemeniuk
+                  password=securepass
+                  server=localhost
+                  database=db_usof
+
       npm run dev - start server and client
       
 (my REST API for ucode project)

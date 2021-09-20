@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-import { API_URL } from '../../config';
 import stl from '../../styles/Users.module.css'
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 const AllUsers = (props) => {
    const { users, getUserByID, getPostByUserID } = props;

@@ -1,7 +1,14 @@
 const nodemailer = require(`nodemailer`);
 
-const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, API_URL, CLIENT_URL } = require("../config");
+require('dotenv').config();
 
+const SMTP_HOST = process.env.SMTP_HOST;
+const SMTP_PORT = process.env.SMTP_PORT;
+const SMTP_USER = process.env.SMTP_USER;
+const SMTP_PASSWORD = process.env.SMTP_PASSWORD;
+
+const API_URL = process.env.API_URL || `http://localhost:5000`;
+const CLIENT_URL = process.env.CLIENT_URL || `http://localhost:3000`;
 class sendMailService {
    constructor() {
       this.transporter = nodemailer.createTransport({

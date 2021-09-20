@@ -1,11 +1,14 @@
 const sql = require('mysql2');
-
-const config = require('./configDb');
-
+require('dotenv').config();
 class dbConnection {
    async getConnection(query) {
       try {
-         return await sql.createConnection(config).promise().query(query);
+         return await sql.createConnection({
+            user: process.env.user,
+            password: process.env.password,
+            server: process.env.server,
+            database: process.env.database,
+         }).promise().query(query);
       }
       catch (error) {
          console.log(error);

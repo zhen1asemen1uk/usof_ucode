@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
+require('dotenv').config();
 
-const { JWT_REFRESH_SECRET } = require("../../config");
+const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET;
 
 module.exports = function (stat) {
    return function (req, res, next) {

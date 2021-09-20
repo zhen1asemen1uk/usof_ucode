@@ -3,14 +3,14 @@ const tokenController = require(`./tokenController`);
 
 const userModel = require(`../models/userModel`);
 
-const { API_URL, CLIENT_URL } = require(`../config`);
+const bcrypt = require(`bcryptjs`);
+const uuid = require(`uuid`);
+require('dotenv').config();
+const API_URL = process.env.API_URL;
 
 const sendMailService = require(`../service/sendMailService`);
 const tokenService = require(`../service/tokenService`);
 const userService = require(`../service/userService`);
-
-const bcrypt = require(`bcryptjs`);
-const uuid = require(`uuid`);
 
 class authController extends Controller {
    constructor() {

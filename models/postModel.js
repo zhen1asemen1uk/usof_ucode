@@ -5,9 +5,9 @@ class postModel extends Model {
    constructor() {
       super();
    }
-   async getAllPosts( ) {
+   async getAllPosts(page,size) {
       return await dbConnection.getConnection(`
-      SELECT * FROM users INNER JOIN posts ON users.id=posts.id_author_post ORDER BY 6 DESC;`);
+      SELECT * FROM users INNER JOIN posts ON users.id=posts.id_author_post ORDER BY 6 DESC LIMIT ${page},${size};`);
    }
    async getPostByID(id) {
       return await dbConnection.getConnection(`

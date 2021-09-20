@@ -1,8 +1,10 @@
 const jwt = require("jsonwebtoken");
+require('dotenv').config();
 
-const { JWT_REFRESH_SECRET } = require("../../config");
+const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET;
 
 const userModel = require("../../models/userModel");
+
 
 module.exports = function () {
    return async function (req, res, next) {
