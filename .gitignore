@@ -2,13 +2,4 @@ node_modules
 package-lock.json
 .DS_Store
 
-config.js
-config
-config.json
-
-/client/config.js
-
-configDb
-configDb.json
-/db/configDb.json
 /public/avatar/*

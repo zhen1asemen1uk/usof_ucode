@@ -1,6 +1,6 @@
 # usof_backEnd
 For start:
-      npm i
+      npm i (Install the module separately in the server folder and in the client folder)
 
       mysql -u root -p < db.sql (or insert text from db.sql to database)
 
