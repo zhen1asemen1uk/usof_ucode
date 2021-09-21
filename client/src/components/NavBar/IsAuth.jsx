@@ -6,9 +6,9 @@ import { authAPI } from "../../API/authAPI";
 import { postAPI } from '../../API/postAPI';
 import { userAPI } from '../../API/userAPI';
 
-const API_URL = process.env.REACT_APP_API_URL;
 
 import stl from '../../styles/IsAuth.module.css'
+const API_URL = process.env.REACT_APP_HOST;
 
 const IsAuth = (props) => {
    const dispatch = useDispatch();

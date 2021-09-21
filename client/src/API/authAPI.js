@@ -6,7 +6,7 @@ import {
    password_reset_Auth, register_Auth
 } from '../reducers/authReducer/authReducer';
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_HOST;
 
 export const authAPI = {
 

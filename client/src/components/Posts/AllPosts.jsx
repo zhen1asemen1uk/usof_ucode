@@ -10,7 +10,6 @@ const AllPosts = (props) => {
    if (typeof postsData === 'string') {
       return (<><h1>{postsData}</h1> </>)
    }
-   // console.log(postsData);
    return (
       <div className={stl.wrappPost}>
          <div className={stl.posts}>
@@ -28,7 +27,8 @@ const AllPosts = (props) => {
                            getUserByID(pst.id_author_post);
                            getPostByUserID(pst.id_author_post);
                         }}>
-                           <div className={stl.createdAt}>{pst.created_at.split("T")[0].replaceAll('-', '.')}</div>
+                           <div className={stl.createdAt}>{pst.created_at.split("T")[0].replace('-', '.').replace('-', '.').replace('-', '.')}</div>
+                           {/* <div className={stl.createdAt}>{pst.created_at.split("T")[0].replaceAll('-', '.')}</div> */}
                            {pst.login}
                         </Link>
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import stl from '../../styles/Users.module.css'
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_HOST;
 
 const AllUsers = (props) => {
    const { users, getUserByID, getPostByUserID } = props;

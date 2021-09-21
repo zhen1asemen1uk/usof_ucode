@@ -51,7 +51,7 @@ class authController extends Controller {
 
          let checkUser = await userModel.getUser(login, email);
          let user = checkUser[0];
-
+          user = user[0];
          //generation token
          const token = tokenService.generationToken(user.id, user.login,
             user.email, user.status, user.verify, user.avatar);

@@ -1,11 +1,11 @@
 import React from 'react';
 
-const API_URL = process.env.REACT_APP_API_URL;
-
 import NoneUsers from '../NoneUsers';
 
 import stl from '../../../styles/Users.module.css'
 import AllPosts from '../../Posts/AllPosts';
+
+const API_URL = process.env.REACT_APP_HOST;
 
 const UserPage = (props) => {
    const { userPage, posts, getPostByUserID, getUserByID } = props;

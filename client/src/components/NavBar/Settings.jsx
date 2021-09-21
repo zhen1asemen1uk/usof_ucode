@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 
-const API_URL = process.env.REACT_APP_API_URL;
-
 import stl from '../../styles/Settings.module.css'
+const API_URL = process.env.REACT_APP_HOST;
 
 const Settings = (props) => {
    const { addAvatar, updateUser, user, updateData } = props;
