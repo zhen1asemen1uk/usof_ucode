@@ -4,7 +4,7 @@ import stl from '../../styles/Posts.module.css'
 const AddPost = (props) => {
    const [title, setTitle] = useState("");
    const [content, setContent] = useState("");
-   const [categories, setCategories] = useState("");
+   const [categories, setCategories] = useState("Other");
 
    const { addPost } = props;
 

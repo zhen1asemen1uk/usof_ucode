@@ -1,8 +1,8 @@
 import React from 'react';
 
-import NoneUsers from '../NoneUsers';
-
 import stl from '../../../styles/Users.module.css'
+
+import NoneUsers from '../NoneUsers';
 import AllPosts from '../../Posts/AllPosts';
 
 const API_URL = process.env.REACT_APP_HOST;

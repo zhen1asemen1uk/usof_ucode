@@ -22,7 +22,6 @@ export const postAPI = {
          try {
             dispatch(isLoading_Auth(true));
             const dataPosts = await api.get(`/api/posts/`);
-
             return dispatch(getAllPosts_Post(dataPosts.data));
          } catch (error) {
             console.log(error);

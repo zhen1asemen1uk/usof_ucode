@@ -27,7 +27,6 @@ const AllUsers = (props) => {
                         </div>
 
                      </Link>
-
                   )
                })}
             </div>
