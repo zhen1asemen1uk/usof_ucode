@@ -17,11 +17,13 @@ import {
 } from '../reducers/postReducer/postReducer';
 
 export const postAPI = {
-   getAllPosts() {
+   getAllPosts(page, size) {
       return async (dispatch) => {
          try {
             dispatch(isLoading_Auth(true));
-            const dataPosts = await api.get(`/api/posts/`);
+            // const dataPosts = await api.get(`/api/posts/?page=${page}&size=${size}`);
+            const dataPosts = await api.get(`/api/posts`);
+            
             return dispatch(getAllPosts_Post(dataPosts.data));
          } catch (error) {
             console.log(error);

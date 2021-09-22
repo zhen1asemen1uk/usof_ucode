@@ -10,6 +10,7 @@ class postModel extends Model {
       SELECT * FROM users INNER JOIN posts ON users.id=posts.id_author_post ORDER BY 6 DESC;`);
       // SELECT * FROM users INNER JOIN posts ON users.id=posts.id_author_post ORDER BY 6 DESC LIMIT ${page},${size};`);
    }
+
    async getPostByID(id) {
       return await dbConnection.getConnection(`
       SELECT * FROM posts WHERE id=${id};`);

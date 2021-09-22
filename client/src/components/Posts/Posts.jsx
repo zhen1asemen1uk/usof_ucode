@@ -9,7 +9,7 @@ const Posts = (props) => {
 
    const { authState, postState, addPost, getUserByID, getPostByUserID,
       sortByTitleASC, sortByTitleDESC, sortByAuthorASC, sortByAuthorDESC,
-      sortByTimeASC, sortByTimeDESC } = props;
+      sortByTimeASC, sortByTimeDESC} = props;
 
 
    return (

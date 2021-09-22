@@ -9,38 +9,11 @@ class postController extends Controller {
    constructor() {
       super();
    }
-   // async getAllPosts(req, res) {
-   //    try {
-   //       // const { page, size } = req.query;
-
-   //       // if (!page) page = 1;
-   //       // if (!size) size = 5;
-
-   //       // const limit = parseInt(size);
-   //       // const skip = (page - 1) * size;
-
-
-
-   //       const postsData = await postModel.getAllPosts(1,2);
-
-   //       for (const key in postsData[0]) {
-   //          delete postsData[0][key].password
-   //          delete postsData[0][key].activationLink
-   //          delete postsData[0][key].verify
-   //          delete postsData[0][key].status
-   //          delete postsData[0][key].avatar
-   //          delete postsData[0][key].email
-   //       }
-
-   //       return res.json(postsData[0])
-   //    } catch (error) {
-   //       res.send(`Error get all post!`);
-   //    }
-   // }
+  
    async getAllPosts(req, res) {
       try {
          const postsData = await postModel.getAllPosts();
-console.log(postsData[0]);
+
          for (const key in postsData[0]) {
             delete postsData[0][key].password
             delete postsData[0][key].activationLink

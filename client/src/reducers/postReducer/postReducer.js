@@ -20,7 +20,6 @@ import {
    search_Type
 } from "./types";
 
-
 export const initialState = {
    postsData: [],
    postDataByID: [],
@@ -28,7 +27,7 @@ export const initialState = {
    commentsPostByID: [],
    categoryByPostID: [],
    likeForPost: [],
-   filterPosts: []
+   filterPosts: [],
 }
 
 export const postReducer = (state = initialState, action) => {
@@ -144,7 +143,7 @@ export const postReducer = (state = initialState, action) => {
          const content = state.postsData.filter((word) => {
             return word.content_post.includes(action.payload)
          });
-         
+
          const filterPostsData = title.concat(content).filter(
             (v, i, a) => a.findIndex(t => (t.id === v.id)) === i)
 

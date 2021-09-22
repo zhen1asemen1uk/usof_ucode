@@ -4,19 +4,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { postAPI } from '../../API/postAPI';
 import { userAPI } from '../../API/userAPI';
 import {
-   sortByTitleASC_Post, sortByTitleDESC_Post,
-   sortByAuthorASC_Post, sortByAuthorDESC_Post,
-   sortByTimeASC_Post, sortByTimeDESC_Post
+   sortByTitleASC_Post,
+   sortByTitleDESC_Post,
+   sortByAuthorASC_Post,
+   sortByAuthorDESC_Post,
+   sortByTimeASC_Post,
+   sortByTimeDESC_Post
 } from '../../reducers/postReducer/postReducer';
+
 import NonePosts from './NonePosts';
 import Loading from '../Auth/Loading';
-
 import Posts from './Posts';
 
 const PostsConteiner = () => {
    const dispatch = useDispatch();
 
-   let postState = useSelector(state => state.postState);
+   const postState = useSelector(state => state.postState);
    const authState = useSelector(state => state.authState);
    const isLoading = useSelector(store => store.authState.isLoading);
 

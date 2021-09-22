@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import stl from '../../styles/Posts.module.css'
 
 const AllPosts = (props) => {
-
    const { postsData, getUserByID, getPostByUserID } = props;
 
    if (typeof postsData === 'string') {
@@ -27,8 +26,8 @@ const AllPosts = (props) => {
                            getUserByID(pst.id_author_post);
                            getPostByUserID(pst.id_author_post);
                         }}>
-                           <div className={stl.createdAt}>{pst.created_at.split("T")[0].replace('-', '.').replace('-', '.').replace('-', '.')}</div>
-                           {/* <div className={stl.createdAt}>{pst.created_at.split("T")[0].replaceAll('-', '.')}</div> */}
+                           {/* <div className={stl.createdAt}>{pst.created_at.split("T")[0].replace('-', '.').replace('-', '.').replace('-', '.')}</div> */}
+                           <div className={stl.createdAt}>{pst.created_at.split("T")[0].replaceAll('-', '.')}</div>
                            {pst.login}
                         </Link>
 
@@ -36,11 +35,6 @@ const AllPosts = (props) => {
                   </div>)
             })}
          </div>
-         {/* <div className={stl.pagination}>
-            <span ></span>
-            <span className={}></span>
-            <span ></span>
-         </div> */}
       </div>
    )
 }

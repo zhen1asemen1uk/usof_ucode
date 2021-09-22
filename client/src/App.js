@@ -3,18 +3,17 @@ import { useSelector } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
 import AppRouter from "./components/AppRouter";
-import IsAuth from "./components/NavBar/IsAuth";
 import NotAuth from "./components/NavBar/NotAuth";
 
 import { authAPI } from "./API/authAPI";
 
 import "./styles/App.css";
 import Loading from "./components/Auth/Loading";
+import IsAuthConteiner from "./components/NavBar/IsAuthConteiner";
 
 
 const App = () => {
   const store = useSelector(store => store);
-  const user = useSelector(store => store.authState.user);
   const isLoading = useSelector(store => store.authState.isLoading);
 
   //for true auth status
@@ -39,7 +38,7 @@ const App = () => {
       <BrowserRouter>
         <header>
           <nav className='navBar'>
-            {store.authState.isAuth ? <IsAuth user={user} /> : <NotAuth />}
+            {store.authState.isAuth ? <IsAuthConteiner /> : <NotAuth />}
           </nav>
         </header>
         {isLoading === true ?
