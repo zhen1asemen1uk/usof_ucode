@@ -13,17 +13,17 @@ api.interceptors.request.use((config) => {
 })
 
 api.interceptors.response.use((config) => {
-   return config 
+   return config
 }, async (error) => {
    const originalReq = error.config;
 
-   if (error.response.status === 401 && error.config && !error.config._isRetry) {
+   if (error.response.status === 403 && error.config && !error.config._isRetry) {
 
-      originalReq._isRetry(true);
+      originalReq._isRetry = true;
 
       try {
          const res = await axios.get(`${API_URL}/api/auth/refresh`, { withCredentials: true });
-
+         console.log(1);
          localStorage.setItem('token', res.data.accessToken);
 
          return api.request(originalReq);

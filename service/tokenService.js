@@ -17,7 +17,7 @@ class TokenService {
             email, status, verify, avatar
          }
 
-         const accessToken = jwt.sign(payload, JWT_ACCESS_SECRET, { expiresIn: "30m" });
+         const accessToken = jwt.sign(payload, JWT_ACCESS_SECRET, { expiresIn: "5s" });
          const refreshToken = jwt.sign(payload, JWT_REFRESH_SECRET, { expiresIn: "30d" });
 
          return {

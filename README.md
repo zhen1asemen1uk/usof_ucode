@@ -78,7 +78,7 @@ For start:
 
       must be:    /.env
       in .env:  
-                  HOST=http://localhost:5000
+                  REACT_APP_HOST=http://localhost:5000
 
                   
 (my React frontEnd for ucode project)
