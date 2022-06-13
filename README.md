@@ -1,5 +1,7 @@
 # usof_backEnd
 For start:
+      brew install mysql
+      mysql.server start
       npm i (Install the module separately in the server folder and in the client folder)
 
       mysql -u root -p < db.sql (or insert text from db.sql to database)
@@ -7,9 +9,9 @@ For start:
       must be:    /.env
       in .env:    
                   HOST=http://localhost:
-                  PORT=5000
+                  PORT=3001
 
-                  API_URL=http://localhost:5000
+                  API_URL=http://localhost:3001
                   CLIENT_URL=http://localhost:3000
 
                   JWT_ACCESS_SECRET=...
@@ -78,7 +80,7 @@ For start:
 
       must be:    /.env
       in .env:  
-                  REACT_APP_HOST=http://localhost:5000
+                  REACT_APP_HOST=http://localhost:3001
 
                   
 (my React frontEnd for ucode project)
