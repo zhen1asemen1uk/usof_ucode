@@ -3,11 +3,18 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "server.js",
+	"engines": {
+		"node": "16.x",
+		"yarn": "1.22.x"
+	},
 	"scripts": {
 		"start": "node server.js",
 		"server": "nodemon server.js",
 		"client": "yarn start --prefix client",
-		"dev": "concurrently \"yarn server\" \"yarn client\""
+		"dev": "concurrently \"yarn server\" \"yarn client\"",
+		"prepare": "husky install",
+		"lint": "eslint --ext .js",
+		"lint:fix": "eslint --ext .js src --fix"
 	},
 	"repository": {
 		"type": "git",
@@ -29,7 +36,13 @@
 		"uuid": "^8.3.2"
 	},
 	"devDependencies": {
+		"eslint-config-prettier": "^8.5.0",
+		"husky": "^8.0.1",
+		"lint-staged": "^13.0.3",
 		"nodemon": "^2.0.12",
 		"prettier": "2.7.1"
+	},
+	"lint-staged": {
+		"**/*": "prettier --write --ignore-unknown"
 	}
 }
