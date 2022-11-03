@@ -1,22 +1,30 @@
 const express = require(`express`);
 const router = express.Router();
 
-const userController = require(`../controllers/userController`);
-const authController = require(`../controllers/authController`);
+const UserController = require(`../controllers/UserController`);
+const AuthController = require(`../controllers/AuthController`);
 
 const statusMiddleware = require(`./middleware/statusMiddleware`);
 const userAccessMiddleware = require(`./middleware/userAccessMiddleware`);
 
-router.get(`/`, userController.getAllUser);
+router.get(`/`, UserController.getAllUser);
 
-router.get(`/:user_id`, userController.getUserByID);
+router.get(`/:user_id`, UserController.getUserByID);
 
-router.post(`/`, statusMiddleware([`admin`]), authController.createUser_ADMIN);
+router.post(`/`, statusMiddleware([`admin`]), AuthController.createUser_ADMIN);
 
-router.patch(`/avatar`, userController.addAvatar);
+router.patch(`/avatar`, UserController.addAvatar);
 
-router.patch(`/:user_id`, userAccessMiddleware(), userController.updateDataUserByID);
+router.patch(
+	`/:user_id`,
+	userAccessMiddleware(),
+	UserController.updateDataUserByID
+);
 
-router.delete(`/:user_id`, userAccessMiddleware(), userController.deleteUserByID);
+router.delete(
+	`/:user_id`,
+	userAccessMiddleware(),
+	UserController.deleteUserByID
+);
 
-module.exports = router; 
+module.exports = router;

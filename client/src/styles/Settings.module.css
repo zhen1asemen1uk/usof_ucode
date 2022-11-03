@@ -1,86 +1,86 @@
 .wrappSettings {
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   justify-content: space-around;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
 }
 
 .avatarData {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .avatar {
-   border: 2px solid black;
-   border-radius: 10px;
-   margin: 15px;
-   width: 250px;
-   height: 250px;
+	border: 2px solid black;
+	border-radius: 10px;
+	margin: 15px;
+	width: 250px;
+	height: 250px;
 }
 
 .updateData {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   width: 250px;
-   height: 250px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 250px;
+	height: 250px;
 }
 
 .inp {
-   outline: none;
-   text-decoration: none;
-   border: none;
-   border-radius: 2px;
-   border-bottom: 2px solid black;
-   background-color: white;
-   width: 205px;
-   margin: 15px;
-   /* for destroy defoult style Chrome */
-   box-shadow: inset 0 0 0 50px #fff;
-   /* end */
+	outline: none;
+	text-decoration: none;
+	border: none;
+	border-radius: 2px;
+	border-bottom: 2px solid black;
+	background-color: white;
+	width: 205px;
+	margin: 15px;
+	/* for destroy defoult style Chrome */
+	box-shadow: inset 0 0 0 50px #fff;
+	/* end */
 }
 
 .btnSend {
-   display: flex;
-   justify-content: center;
-   border-radius: 10px;
-   border: none;
-   border-top: 1px solid black;
-   border-left: 2px solid black;
-   border-right: 2px solid black;
-   border-bottom: 3px solid black;
-   background-color: white;
-   font-weight: 600;
-   padding: 3px 2px;
-   width: 120px;
-   height: 30px;
-   margin: 12px;
-   cursor: pointer;
+	display: flex;
+	justify-content: center;
+	border-radius: 10px;
+	border: none;
+	border-top: 1px solid black;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+	border-bottom: 3px solid black;
+	background-color: white;
+	font-weight: 600;
+	padding: 3px 2px;
+	width: 120px;
+	height: 30px;
+	margin: 12px;
+	cursor: pointer;
 }
 
 .btnSend:hover {
-   transition: all 0.6s;
-   background-color: black;
-   color: white;
+	transition: all 0.6s;
+	background-color: black;
+	color: white;
 }
-.not{
-   display: flex;
-   flex-direction: column;
+.not {
+	display: flex;
+	flex-direction: column;
 }
 .notification {
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: center;
-   align-self: center;
-   align-items: center;
-   color: green;
-   border: 1px solid #8ed9f6;
-   background: #e3f7fc;
-   border-radius: 3px;
-   width: fit-content;
-   padding: 2px 4px;
-   margin: 10px 0px;
-   transition: all 1s;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-self: center;
+	align-items: center;
+	color: green;
+	border: 1px solid #8ed9f6;
+	background: #e3f7fc;
+	border-radius: 3px;
+	width: fit-content;
+	padding: 2px 4px;
+	margin: 10px 0px;
+	transition: all 1s;
 }

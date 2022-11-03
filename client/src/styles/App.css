@@ -1,24 +1,24 @@
 body {
-   margin: 0px;
-   padding: 0px;
+	margin: 0px;
+	padding: 0px;
 }
 
 header {
-   display: flex;
-   width: 100vw;
-   height: 50px;
-   padding: 5px 10px;
-   background-color: rgb(0, 132, 255);
-   font-weight: 600;
-   color: white;
-   /* align-items: center; */
+	display: flex;
+	width: 100vw;
+	height: 50px;
+	padding: 5px 10px;
+	background-color: rgb(0, 132, 255);
+	font-weight: 600;
+	color: white;
+	/* align-items: center; */
 }
 
 .navBar {
-   display: flex;
-   align-items: center;
-   width: 100vw;
-   justify-content: flex-end;
-   margin: 5px;
-   padding: 5px 10px;
+	display: flex;
+	align-items: center;
+	width: 100vw;
+	justify-content: flex-end;
+	margin: 5px;
+	padding: 5px 10px;
 }

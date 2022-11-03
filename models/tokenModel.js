@@ -1,42 +1,42 @@
 const Model = require(`./model`);
 
-const dbConnection = require(`../db/dbConnection`);
+const DbConnection = require(`../db/DbConnection`);
 
-class tokenModel extends Model {
-   constructor() {
-      super();
-   }
+class TokenModel extends Model {
+	constructor() {
+		super();
+	}
 
-   async getTokenByID(user_id) {
-      return await dbConnection.getConnection(`
+	async getTokenByID(user_id) {
+		return await DbConnection.getConnection(`
       SELECT refreshToken FROM tokens WHERE user_id=${user_id};`);
-   }
+	}
 
-   async getToken(refreshToken) {
-      return await dbConnection.getConnection(`
+	async getToken(refreshToken) {
+		return await DbConnection.getConnection(`
       SELECT * FROM tokens WHERE refreshToken='${refreshToken}';`);
-   }
+	}
 
-   async refreshToken(user_id, refreshToken) {
-      return await dbConnection.getConnection(`
+	async refreshToken(user_id, refreshToken) {
+		return await DbConnection.getConnection(`
       UPDATE tokens SET refreshToken='${refreshToken}'
       WHERE user_id='${user_id}';`);
-   }
+	}
 
-   async save(user_id, refreshToken) {
-      return await dbConnection.getConnection(`
+	async save(user_id, refreshToken) {
+		return await DbConnection.getConnection(`
       INSERT INTO tokens (user_id, refreshToken)
       VALUES ('${user_id}','${refreshToken}');`);
-   }
-   async delete(refreshToken) {
-      return await dbConnection.getConnection(`
+	}
+	async delete(refreshToken) {
+		return await DbConnection.getConnection(`
       DELETE FROM tokens WHERE refreshToken='${refreshToken}';`);
-   }
+	}
 
-   async getTokenAllInfo(refreshToken) {
-      return await dbConnection.getConnection(`
+	async getTokenAllInfo(refreshToken) {
+		return await DbConnection.getConnection(`
       SELECT * FROM tokens WHERE refreshToken='${refreshToken}';`);
-   }
+	}
 }
 
-module.exports = new tokenModel();
+module.exports = new TokenModel();

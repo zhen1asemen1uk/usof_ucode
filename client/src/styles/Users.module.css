@@ -1,101 +1,101 @@
-h1, h6 {
-  display: flex;
-  justify-content: center;
+h1,
+h6 {
+	display: flex;
+	justify-content: center;
 }
 
 /* AllUsers */
 
 .wrappUsers {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
 }
 
 .linkForEveryone {
-  color: black;
-  outline: none;
-  text-decoration: none;
+	color: black;
+	outline: none;
+	text-decoration: none;
 }
 
 .linkForEveryone:hover {
-  box-shadow: 0px 0px 10px -2px rgba(34, 60, 80, 0.3);
+	box-shadow: 0px 0px 10px -2px rgba(34, 60, 80, 0.3);
 }
 
 .users {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  justify-content: flex-start;
-  max-width: 100%;
-  padding: 50px 80px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	justify-content: flex-start;
+	max-width: 100%;
+	padding: 50px 80px;
 }
 
 .user {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 5px;
-  margin: 5px;
-  border-radius: 10px;
-  width: 100px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 5px;
+	margin: 5px;
+	border-radius: 10px;
+	width: 100px;
 }
 
 .userAvatar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  width: 80px;
-  height: 80px;
-  margin-bottom: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+	width: 80px;
+	height: 80px;
+	margin-bottom: 5px;
 }
 
 .userLogin {
-  display: flex;
-  overflow-x: hidden;
-  justify-content: center;
-  align-items: center;
-  width: 105px;
-  font-weight: 700;
-  font-size: 10px;
+	display: flex;
+	overflow-x: hidden;
+	justify-content: center;
+	align-items: center;
+	width: 105px;
+	font-weight: 700;
+	font-size: 10px;
 }
 
 .userID {
-  display: none;
+	display: none;
 }
 
 /* UserPage */
 
 .wrappUserPage {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding: 20px 30px;
-  width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	padding: 20px 30px;
+	width: 100%;
 }
 
 .postsData {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .userData {
-  display: flex;
-  flex-direction: column;
-  ;
+	display: flex;
+	flex-direction: column;
 }
 
 .avatarUser {
-  display: flex;
-  align-items: flex-start;
-  width: 200px;
-  border-radius: 10px;
+	display: flex;
+	align-items: flex-start;
+	width: 200px;
+	border-radius: 10px;
 }
 
 .btnPosts {
-  border-radius: 10px;
-  padding: 2px 4px;
-  width: 150px;
-  height: fit-content;
+	border-radius: 10px;
+	padding: 2px 4px;
+	width: 150px;
+	height: fit-content;
 }

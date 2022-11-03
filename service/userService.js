@@ -1,39 +1,43 @@
-const tokenController = require("../controllers/tokenController");
-const userModel = require("../models/userModel");
-const tokenService = require("./tokenService");
+const TokenController = require('../controllers/TokenController');
+const UserModel = require('../models/UserModel');
+const TokenService = require('./TokenService');
 
-class userService {
-   constructor() {
+class UserService {
+	constructor() {}
+	async refresh(refToken) {
+		if (!refToken) {
+			return console.error(`Error refresh token!`);
+		}
 
-   }
-   async refresh(refToken) {
+		const userData = await TokenService.vadateRefreshToken(refToken);
+		const tokenFromDB = await TokenController.getToken(refToken);
 
-      if (!refToken) {
-         return console.error(`Error refresh token!`);
-      }
+		if (!userData || !tokenFromDB) {
+			return console.error(`Error refresh token, user unAuthorized !!!`);
+		}
 
-      const userData = await tokenService.vadateRefreshToken(refToken);
-      const tokenFromDB = await tokenController.getToken(refToken);
+		let user = await UserModel.getUserByID(userData.id);
+		user = user[0][0];
 
-      if (!userData || !tokenFromDB) {
-         return console.error(`Error refresh token, user unAuthorized !!!`);
-      }
-      
-      let user = await userModel.getUserByID(userData.id);
-      user = user[0][0];
+		//generation token
+		const token = TokenService.generationToken(
+			user.id,
+			user.login,
+			user.email,
+			user.status,
+			user.verify,
+			user.avatar
+		);
 
-      //generation token
-      const token = tokenService.generationToken(user.id, user.login,
-         user.email, user.status, user.verify, user.avatar);
+		const { accessToken, refreshToken } = token;
 
-      const { accessToken, refreshToken } = token;
+		//save token to databases
+		await TokenService.saveToken(user.id, refreshToken);
 
-      //save token to databases
-      await tokenService.saveToken(user.id, refreshToken);
-
-      return {
-         ...token, user: { ...user }
-      }
-   }
+		return {
+			...token,
+			user: { ...user },
+		};
+	}
 }
-module.exports = new userService();
+module.exports = new UserService();

@@ -1,18 +1,18 @@
 a {
-  display: flex;
-  color: black;
-  width: fit-content;
-  padding: 2px 5px;
-  border-radius: 10%;
-  text-decoration: none;
-  cursor: pointer;
-  font-size: 16px!important;
-  font-weight: 600!important;
+	display: flex;
+	color: black;
+	width: fit-content;
+	padding: 2px 5px;
+	border-radius: 10%;
+	text-decoration: none;
+	cursor: pointer;
+	font-size: 16px !important;
+	font-weight: 600 !important;
 }
 
 .noneLink a:hover {
-  color: white;
-  background-color: black;
-  border-radius: 5px;
-  transition: all 0.3s;
+	color: white;
+	background-color: black;
+	border-radius: 5px;
+	transition: all 0.3s;
 }

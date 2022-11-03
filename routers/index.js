@@ -1,17 +1,17 @@
 const express = require(`express`);
 const router = express.Router();
 
-const authRoute = require(`./authRoute`)
+const authRoute = require(`./authRoute`);
 const categoriesRoute = require(`./categoriesRoute`);
 const commentsRoute = require(`./commentsRoute`);
 const postsRoute = require(`./postsRoute`);
 const usersRoute = require(`./usersRoute`);
 
-const userController = require(`../controllers/userController`);
+const UserController = require(`../controllers/UserController`);
 
 const authMiddleware = require(`./middleware/authMiddleware`);
 
-router.get(`/activate/:link`, userController.activateUser);
+router.get(`/activate/:link`, UserController.activateUser);
 
 router.use(`/api/auth`, authRoute);
 router.use(`/api/categories`, categoriesRoute);

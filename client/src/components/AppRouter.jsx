@@ -1,23 +1,27 @@
-import React from 'react'
-import { Redirect, Route, Switch } from "react-router-dom";
+import React from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 import routes from '../router/route';
 
-
 const AppRouter = () => {
-   return (
-      <>
-         <Switch>
-            {routes.map((route) =>
-               <Route component={route.component} path={route.path} exact={route.exact} key={route.path} />      //key!!!!
-            )}
+	return (
+		<>
+			<Switch>
+				{routes.map(
+					(route) => (
+						<Route
+							component={route.component}
+							path={route.path}
+							exact={route.exact}
+							key={route.path}
+						/>
+					) //key!!!!
+				)}
 
-            <Redirect to="/" />
+				<Redirect to='/' />
+			</Switch>
+		</>
+	);
+};
 
-         </Switch>
-
-      </>
-   )
-}
-
-export default AppRouter
+export default AppRouter;
