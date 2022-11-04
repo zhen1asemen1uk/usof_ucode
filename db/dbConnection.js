@@ -3,17 +3,20 @@ require('dotenv').config();
 class DbConnection {
 	async getConnection(query) {
 		try {
-			return await sql
+			const db = await sql
 				.createConnection({
-					user: process.env.user,
-					password: process.env.password,
-					server: process.env.server,
-					database: process.env.database,
+					host: process.env.RDS_HOSTNAME,
+					user: process.env.RDS_USERNAME,
+					password: process.env.RDS_PASSWORD,
+					port: process.env.RDS_PORT,
+					database: process.env.RDS_DATABASE,
 				})
 				.promise()
 				.query(query);
+
+			return db;
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	}
 }

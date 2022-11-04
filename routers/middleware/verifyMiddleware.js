@@ -3,7 +3,7 @@ const UserController = require('../../controllers/UserController');
 module.exports = function () {
 	return async function (req, res, next) {
 		try {
-			if (!req.body.login) {
+			if (!req.body.login || req.body.login === '') {
 				return res.send(`Error empty login!`);
 			}
 			const login = req.body.login;
@@ -12,7 +12,7 @@ module.exports = function () {
 			if (verify && verify[0] && verify[0].length > 0) {
 				verify = verify[0][0].verify;
 
-				if (verify == 'true') {
+				if (verify) {
 					return next();
 				}
 			}

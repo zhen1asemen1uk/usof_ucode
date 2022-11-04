@@ -8,17 +8,17 @@
 		"yarn": "1.22.x"
 	},
 	"scripts": {
-		"start": "node server.js",
+		"start": "concurrently \"yarn server\" \"cd client/build && yarn start\"",
+		"start:prod": "cd client && yarn && yarn build && cd .. && yarn start",
 		"server": "nodemon server.js",
-		"client": "yarn start --prefix client",
-		"dev": "concurrently \"yarn server\" \"yarn client\"",
+		"dev": "concurrently \"yarn server\" \"cd client && yarn start\"",
 		"prepare": "husky install",
 		"lint": "eslint --ext .js",
 		"lint:fix": "eslint --ext .js src --fix"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git@gitlab.ucode.world:ucode/usof-backend/ysemeniuk.git"
+		"url": "git@github.com:zhen1asemen1uk/usof_ucode.git"
 	},
 	"author": "Yevhen Semeniuk",
 	"license": "ISC",
